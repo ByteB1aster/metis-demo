@@ -2782,7 +2782,7 @@
         let touchStartY = 0;
         let touchEndY = 0;
         
-        // Make functions globally accessible
+        // Navigation function
         window.showPage = function(pageId, addToHistory = true) {
             if (addToHistory && currentPage && currentPage !== pageId) {
                 pageHistory.push(currentPage);
@@ -2796,36 +2796,41 @@
                 page.classList.add('active');
             }
             
-            toggleMenu(false);
-            updateBackButton();
+            window.toggleMenu(false);
+            window.updateBackButton();
             window.scrollTo({top: 0, behavior: 'smooth'});
         };
         
+        // Back button function
         window.goBack = function() {
             if (pageHistory.length > 0) {
                 const previousPage = pageHistory.pop();
-                showPage(previousPage, false);
+                window.showPage(previousPage, false);
             } else {
-                showPage('dashboard', false);
+                window.showPage('dashboard', false);
             }
         };
         
+        // Update back button visibility
         window.updateBackButton = function() {
             const backBtn = document.getElementById('backBtn');
             const menuBtn = document.getElementById('menuBtn');
             
             if (pageHistory.length > 0 && currentPage !== 'dashboard') {
-                backBtn.style.display = 'flex';
-                menuBtn.style.display = 'none';
+                if (backBtn) backBtn.style.display = 'flex';
+                if (menuBtn) menuBtn.style.display = 'none';
             } else {
-                backBtn.style.display = 'none';
-                menuBtn.style.display = 'flex';
+                if (backBtn) backBtn.style.display = 'none';
+                if (menuBtn) menuBtn.style.display = 'flex';
             }
         };
         
+        // Toggle menu
         window.toggleMenu = function(force) {
             const menu = document.getElementById('menu');
             const overlay = document.getElementById('menuOverlay');
+            
+            if (!menu || !overlay) return;
             
             if (force === false) {
                 menu.classList.remove('open');
@@ -2836,6 +2841,7 @@
             }
         };
         
+        // Touch/swipe handlers
         function handleTouchStart(e) {
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
@@ -2853,31 +2859,17 @@
             const minSwipeDistance = 100;
             const maxVerticalDistance = 100;
             
-            if (swipeDistanceY < maxVerticalDistance) {
-                if (swipeDistanceX > minSwipeDistance) {
-                    goBack();
-                }
+            if (swipeDistanceY < maxVerticalDistance && swipeDistanceX > minSwipeDistance) {
+                window.goBack();
             }
         }
         
-        // Initialize when DOM is ready
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            updateBackButton();
-            
-            // Add swipe listeners
+            window.updateBackButton();
             document.addEventListener('touchstart', handleTouchStart, {passive: true});
             document.addEventListener('touchend', handleTouchEnd, {passive: true});
         });
-        
-        // Also initialize immediately in case DOMContentLoaded already fired
-        if (document.readyState === 'loading') {
-            // Still loading, DOMContentLoaded will fire
-        } else {
-            // DOM already loaded
-            updateBackButton();
-            document.addEventListener('touchstart', handleTouchStart, {passive: true});
-            document.addEventListener('touchend', handleTouchEnd, {passive: true});
-        }
     </script>
 </body>
 </html>
