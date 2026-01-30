@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>MÉTIS Health Navigator - Interactive Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #001830 0%, #003050 100%);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            height: 60px;
+        }
+        
+        .nav-btn {
+            background: none;
+            border: 2px solid #a7cf28;
+            color: #a7cf28;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .nav-btn:active {
+            transform: scale(0.95);
+            background: rgba(167, 207, 40, 0.1);
+        }
+        
+        .logo {
+            color: white;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        /* Menu Sidebar */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1998;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+        
+        .menu-overlay.show { display: block; }
+        
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+            z-index: 1999;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+        }
+        
+        .menu.open { left: 0; }
+        
+        .menu-header {
+            background: linear-gradient(135deg, #001830 0%, #003050 100%);
+            color: white;
+            padding: 20px;
+            font-size: 22px;
+            font-weight: 800;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .menu-section {
+            padding: 20px 16px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .menu-section-title {
+            font-size: 11px;
+            color: #999;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .menu-item {
+            padding: 12px 14px;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        
+        .menu-item:active {
+            background: #f0f0f0;
+            transform: scale(0.98);
+        }
+        
+        /* Page Container */
+        .page {
+            display: none;
+            padding: 80px 16px 40px;
+            min-height: 100vh;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .page.active { display: block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #001830;
+        }
+        
+        .card-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+        
+        /* Stats Grid */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #a7cf28 0%, #8ab020 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(167, 207, 40, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.95;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+        
+        /* List Items */
+        .list-item {
+            border-left: 4px solid #a7cf28;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+        
+        .list-item:active {
+            background: #f0f0f0;
+            transform: scale(0.99);
+        }
+        
+        .list-title {
+            font-weight: 700;
+            color: #001830;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+        
+        .list-subtitle {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .list-code {
+            font-size: 12px;
+            color: #999;
+            font-family: 'Courier New', monospace;
+            margin-top: 4px;
+        }
+        
+        /* Badges */
+        .badge {
+            background: #a7cf28;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-orange { background: #f88a2f; }
+        .badge-blue { background: #4a90e2; }
+        
+        /* Alert Boxes */
+        .alert {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        
+        .alert-orange {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-color: #f88a2f;
+            color: #856404;
+        }
+        
+        /* Big Stat Display */
+        .big-stat {
+            background: linear-gradient(135deg, #a7cf28 0%, #8ab020 100%);
+            color: white;
+            padding: 32px 24px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 6px 20px rgba(167, 207, 40, 0.4);
+        }
+        
+        .big-stat-label {
+            font-size: 14px;
+            opacity: 0.95;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .big-stat-value {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+            margin: 8px 0;
+        }
+        
+        .big-stat-subtitle {
+            font-size: 13px;
+            opacity: 0.95;
+            margin-top: 8px;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: #001830;
+            margin: 24px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #a7cf28;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <button class="nav-btn" onclick="toggleMenu()">
+            <span>☰</span>
+            <span>Menu</span>
+        </button>
+        <div class="logo">MÉTIS</div>
+        <button class="nav-btn" onclick="showPage('dashboard')">
+            <span>🏠</span>
+        </button>
+    </div>
+    
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    
+    <!-- Sidebar Menu -->
+    <div class="menu" id="menu">
+        <div class="menu-header">MÉTIS Navigator</div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">Dashboard</div>
+            <div class="menu-item" onclick="showPage('dashboard')">📊 Overview</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">Health Data</div>
+            <div class="menu-item" onclick="showPage('conditions')">🏥 My Conditions</div>
+            <div class="menu-item" onclick="showPage('medications')">💊 Medications</div>
+            <div class="menu-item" onclick="showPage('vitals')">📈 Vital Signs</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">AI Features</div>
+            <div class="menu-item" onclick="showPage('benefits')">💰 Benefits Maximizer</div>
+            <div class="menu-item" onclick="showPage('comorbidity')">🔬 Comorbidity Analysis</div>
+            <div class="menu-item" onclick="showPage('icd-optimizer')">📋 ICD Optimizer</div>
+            <div class="menu-item" onclick="showPage('interactions')">⚠️ Drug Interactions</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">Care Team</div>
+            <div class="menu-item" onclick="showPage('appointments')">📅 Appointments</div>
+            <div class="menu-item" onclick="showPage('doctors')">👨‍⚕️ My Doctors</div>
+            <div class="menu-item" onclick="showPage('messages')">💬 Messages</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">Documents</div>
+            <div class="menu-item" onclick="showPage('documents')">📄 My Documents</div>
+            <div class="menu-item" onclick="showPage('lab-results')">🧪 Lab Results</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">Account</div>
+            <div class="menu-item" onclick="showPage('profile')">👤 Profile</div>
+            <div class="menu-item" onclick="showPage('settings')">⚙️ Settings</div>
+        </div>
+    </div>
+    
+    <!-- DASHBOARD PAGE -->
+    <div class="page active" id="dashboard">
+        <div class="card">
+            <div class="card-title">Welcome Back, John</div>
+            <div class="card-subtitle">Army Veteran • 60% VA Disability Rating<br>Member since January 2024</div>
+            
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Active Conditions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Current Medications</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Upcoming Appointments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Providers</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="alert">
+                🤖 AI found <strong>$1,847/year</strong> in unclaimed benefits across 3 programs
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">AI Insights</div>
+            
+            <div class="list-item">
+                <div class="list-title">Metabolic Syndrome Pattern Detected</div>
+                <div class="list-subtitle">Your combination of diabetes, hypertension, and hyperlipidemia indicates metabolic syndrome. This may qualify you for additional care coordination benefits.</div>
+                <span class="badge">92% Confidence</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Diabetes Equipment Available</div>
+                <div class="list-subtitle">Based on your Type 2 Diabetes, you may qualify for free glucose monitoring equipment through VA Prosthetics.</div>
+                <span class="badge badge-orange">Action Required</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Medication Optimization Opportunity</div>
+                <div class="list-subtitle">Your Metformin dosage timing could be optimized for better glucose control. Discuss with your endocrinologist.</div>
+                <span class="badge badge-blue">Low Priority</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Recent Activity</div>
+            <div class="list-item">
+                <div class="list-title">Lab Results Available</div>
+                <div class="list-subtitle">HbA1c test from Jan 15, 2026</div>
+                <div class="list-code">Result: 7.2% (Good control)</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Prescription Refilled</div>
+                <div class="list-subtitle">Metformin 1000mg - 90 day supply</div>
+                <div class="list-code">Filled: Jan 20, 2026</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CONDITIONS PAGE -->
+    <div class="page" id="conditions">
+        <div class="card">
+            <div class="card-title">My Health Conditions</div>
+            <div class="card-subtitle">3 active diagnoses being managed</div>
+            
+            <div class="section-header">Active Conditions</div>
+            
+            <div class="list-item">
+                <div class="list-title">Type 2 Diabetes Mellitus</div>
+                <div class="list-subtitle">Diagnosed January 2020 • Managed by Dr. Johnson</div>
+                <div class="list-code">ICD-10: E11.9</div>
+                <span class="badge">Service Connected 40%</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Essential Hypertension</div>
+                <div class="list-subtitle">Diagnosed March 2019 • Managed by Dr. Chen</div>
+                <div class="list-code">ICD-10: I10</div>
+                <span class="badge">Service Connected 10%</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Hyperlipidemia</div>
+                <div class="list-subtitle">Diagnosed March 2019 • Managed by Dr. Chen</div>
+                <div class="list-code">ICD-10: E78.5</div>
+                <span class="badge">Service Connected 10%</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Condition Management</div>
+            <div class="alert-orange alert">
+                <strong>Next Checkup Due:</strong> Endocrinology follow-up scheduled for Feb 15, 2026
+            </div>
+        </div>
+    </div>
+    
+    <!-- MEDICATIONS PAGE -->
+    <div class="page" id="medications">
+        <div class="card">
+            <div class="card-title">Current Medications</div>
+            <div class="card-subtitle">3 active prescriptions</div>
+            
+            <div class="list-item">
+                <div class="list-title">Metformin 1000mg</div>
+                <div class="list-subtitle">Take twice daily with meals<br>For: Type 2 Diabetes Management</div>
+                <div class="list-code">NDC: 0093-7214-01 • Refills: 2 remaining</div>
+                <span class="badge">Next Refill: Feb 10</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Lisinopril 10mg</div>
+                <div class="list-subtitle">Take once daily in the morning<br>For: Blood Pressure Control</div>
+                <div class="list-code">NDC: 0071-0135-23 • Refills: 3 remaining</div>
+                <span class="badge">Next Refill: Mar 1</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Atorvastatin 20mg</div>
+                <div class="list-subtitle">Take once daily at bedtime<br>For: Cholesterol Management</div>
+                <div class="list-code">NDC: 0071-0156-23 • Refills: 3 remaining</div>
+                <span class="badge">Next Refill: Mar 5</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="alert">
+                ✓ No drug interactions detected between your current medications
+            </div>
+        </div>
+    </div>
+    
+    <!-- VITALS PAGE -->
+    <div class="page" id="vitals">
+        <div class="card">
+            <div class="card-title">Recent Vital Signs</div>
+            
+            <div class="list-item">
+                <div class="list-title">Blood Pressure</div>
+                <div class="list-subtitle">128/82 mmHg • Jan 22, 2026</div>
+                <span class="badge">Within Target</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Blood Glucose (Fasting)</div>
+                <div class="list-subtitle">118 mg/dL • Jan 23, 2026</div>
+                <span class="badge">Good Control</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Weight</div>
+                <div class="list-subtitle">185 lbs • Jan 22, 2026</div>
+                <span class="badge badge-blue">Stable</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">HbA1c</div>
+                <div class="list-subtitle">7.2% • Jan 15, 2026</div>
+                <span class="badge">Target: <7.5%</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BENEFITS PAGE -->
+    <div class="page" id="benefits">
+        <div class="card">
+            <div class="card-title">Benefits Maximizer <span class="badge">AI-Powered</span></div>
+            
+            <div class="big-stat">
+                <div class="big-stat-label">Estimated Unclaimed Benefits</div>
+                <div class="big-stat-value">$1,847</div>
+                <div class="big-stat-subtitle">per year across 3 programs</div>
+            </div>
+            
+            <div class="section-header">Available Benefits</div>
+            
+            <div class="list-item">
+                <div class="list-title">SNAP Food Assistance</div>
+                <div class="list-subtitle">Based on your 60% VA disability rating and household income, you may qualify for $200-300/month in food assistance benefits.</div>
+                <div class="list-code">Estimated value: $2,400-3,600/year</div>
+                <span class="badge badge-orange">Apply Now</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">VA Care Coordination Services</div>
+                <div class="list-subtitle">Your multiple complex conditions qualify you for comprehensive care management services at no additional cost.</div>
+                <div class="list-code">Estimated value: $500/year in time savings</div>
+                <span class="badge badge-orange">Enroll</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Durable Medical Equipment</div>
+                <div class="list-subtitle">Free glucose monitors, testing supplies, and diabetic shoes through VA Prosthetics program.</div>
+                <div class="list-code">Estimated value: $800/year</div>
+                <span class="badge badge-orange">Contact VA</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- COMORBIDITY PAGE -->
+    <div class="page" id="comorbidity">
+        <div class="card">
+            <div class="card-title">Comorbidity Analysis <span class="badge">AI-Powered</span></div>
+            
+            <div class="alert">
+                AI detected significant comorbidity patterns in your health profile
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Metabolic Syndrome (E88.81)</div>
+                <div class="list-subtitle">Your combination of Type 2 Diabetes, Essential Hypertension, and Hyperlipidemia strongly indicates Metabolic Syndrome. This diagnosis may qualify you for:</div>
+                <div class="list-code">• Comprehensive lifestyle intervention programs<br>• Additional VA disability consideration<br>• Coordinated care management services</div>
+                <span class="badge">92% Confidence</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Cardiovascular Risk Assessment</div>
+                <div class="list-subtitle">Based on your current conditions, you have elevated cardiovascular risk. Consider discussing:</div>
+                <div class="list-code">• Cardiology referral for preventive screening<br>• Cardiac stress test<br>• Advanced lipid panel</div>
+                <span class="badge">87% Confidence</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Diabetic Complications Monitoring</div>
+                <div class="list-subtitle">Recommended annual screenings based on your diabetes:</div>
+                <div class="list-code">• Diabetic retinopathy exam (ophthalmology)<br>• Kidney function tests (nephropathy screening)<br>• Foot exam (neuropathy assessment)</div>
+                <span class="badge badge-blue">Preventive</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ICD OPTIMIZER PAGE -->
+    <div class="page" id="icd-optimizer">
+        <div class="card">
+            <div class="card-title">ICD Code Optimizer <span class="badge">AI-Powered</span></div>
+            
+            <div class="section-header">Optimization Opportunities</div>
+            
+            <div class="list-item">
+                <div class="list-title">Type 2 Diabetes Code Enhancement</div>
+                <div class="list-subtitle"><strong>Current:</strong> E11.9 (Type 2 diabetes without complications)<br><strong>Recommended:</strong> E11.65 (Type 2 diabetes with hyperglycemia)</div>
+                <div class="list-code">Benefit: Better justification for glucose monitoring supplies and more frequent HbA1c testing</div>
+                <span class="badge">Save $400/year</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Add Metabolic Syndrome Diagnosis</div>
+                <div class="list-subtitle"><strong>Suggested Code:</strong> E88.81 (Metabolic syndrome)</div>
+                <div class="list-code">Benefit: Qualifies for comprehensive lifestyle program and may support increased VA disability rating</div>
+                <span class="badge badge-orange">Discuss with Doctor</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Hypertension Specificity</div>
+                <div class="list-subtitle"><strong>Current:</strong> I10 (Essential hypertension)<br><strong>Consider:</strong> I11.0 (Hypertensive heart disease) if cardiac involvement</div>
+                <div class="list-code">Benefit: More accurate diagnosis may support cardiology referral and additional testing</div>
+                <span class="badge badge-blue">Low Priority</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- INTERACTIONS PAGE -->
+    <div class="page" id="interactions">
+        <div class="card">
+            <div class="card-title">Drug Interaction Checker <span class="badge">AI-Powered</span></div>
+            
+            <div class="alert">
+                ✓ No significant interactions detected between your current medications
+            </div>
+            
+            <div class="section-header">Medication Analysis</div>
+            
+            <div class="list-item">
+                <div class="list-title">Metformin + Lisinopril</div>
+                <div class="list-subtitle">No interaction • These medications work well together</div>
+                <span class="badge">Safe</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Lisinopril + Atorvastatin</div>
+                <div class="list-subtitle">No interaction • Commonly prescribed together for cardiovascular protection</div>
+                <span class="badge">Safe</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Metformin + Atorvastatin</div>
+                <div class="list-subtitle">No interaction • Standard combination for metabolic syndrome</div>
+                <span class="badge">Safe</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Food & Lifestyle Considerations</div>
+            
+            <div class="list-item">
+                <div class="list-title">Metformin</div>
+                <div class="list-subtitle">Take with food to reduce GI side effects. Avoid excessive alcohol consumption.</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Atorvastatin</div>
+                <div class="list-subtitle">Avoid grapefruit and grapefruit juice as they can increase drug levels.</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- APPOINTMENTS PAGE -->
+    <div class="page" id="appointments">
+        <div class="card">
+            <div class="card-title">Upcoming Appointments</div>
+            
+            <div class="list-item">
+                <div class="list-title">Endocrinology Follow-up</div>
+                <div class="list-subtitle"><strong>Dr. Sarah Johnson, MD</strong><br>February 15, 2026 at 10:00 AM</div>
+                <div class="list-code">VA Medical Center - Endocrinology Clinic, Building 2, 3rd Floor</div>
+                <span class="badge">In 2 weeks</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Primary Care Annual Physical</div>
+                <div class="list-subtitle"><strong>Dr. Michael Chen, MD</strong><br>March 2, 2026 at 2:30 PM</div>
+                <div class="list-code">VA Medical Center - Primary Care, Building 1, 2nd Floor</div>
+                <span class="badge badge-blue">In 5 weeks</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Recent Appointments</div>
+            
+            <div class="list-item">
+                <div class="list-title">Lab Work</div>
+                <div class="list-subtitle">January 15, 2026<br>HbA1c, Lipid Panel, Comprehensive Metabolic Panel</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Primary Care Visit</div>
+                <div class="list-subtitle">January 10, 2026<br>Dr. Chen - Routine checkup and medication review</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- DOCTORS PAGE -->
+    <div class="page" id="doctors">
+        <div class="card">
+            <div class="card-title">My Care Team</div>
+            <div class="card-subtitle">5 healthcare providers</div>
+            
+            <div class="list-item">
+                <div class="list-title">Dr. Michael Chen, MD</div>
+                <div class="list-subtitle">Primary Care Physician<br>Internal Medicine</div>
+                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4567<br>Secure Message: Available</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Dr. Sarah Johnson, MD</div>
+                <div class="list-subtitle">Endocrinologist<br>Diabetes & Metabolism</div>
+                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4568<br>Secure Message: Available</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Dr. Robert Martinez, MD</div>
+                <div class="list-subtitle">Cardiologist<br>Cardiovascular Medicine</div>
+                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4569<br>Secure Message: Available</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Dr. Emily White, PharmD</div>
+                <div class="list-subtitle">Clinical Pharmacist<br>Medication Management</div>
+                <div class="list-code">VA Pharmacy<br>Phone: (555) 123-4570</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Jennifer Brown, RN</div>
+                <div class="list-subtitle">Care Coordinator<br>Care Management</div>
+                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4571<br>Secure Message: Available</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MESSAGES PAGE -->
+    <div class="page" id="messages">
+        <div class="card">
+            <div class="card-title">Secure Messages</div>
+            
+            <div class="list-item">
+                <div class="list-title">Lab Results Available</div>
+                <div class="list-subtitle">From: Dr. Michael Chen<br>Received: Jan 16, 2026</div>
+                <span class="badge">Unread</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Prescription Refill Approved</div>
+                <div class="list-subtitle">From: VA Pharmacy<br>Received: Jan 20, 2026</div>
+                <span class="badge badge-blue">Read</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Appointment Reminder</div>
+                <div class="list-subtitle">From: Endocrinology Clinic<br>Received: Jan 28, 2026</div>
+                <span class="badge">Unread</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- DOCUMENTS PAGE -->
+    <div class="page" id="documents">
+        <div class="card">
+            <div class="card-title">My Documents</div>
+            
+            <div class="list-item">
+                <div class="list-title">VA Disability Award Letter</div>
+                <div class="list-subtitle">60% Service-Connected Disability Rating</div>
+                <div class="list-code">Dated: December 15, 2025 • PDF • 3 pages</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Current Medication List</div>
+                <div class="list-subtitle">Complete list of all active prescriptions</div>
+                <div class="list-code">Updated: January 20, 2026 • PDF • 1 page</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Diabetes Management Plan</div>
+                <div class="list-subtitle">Care plan from Dr. Johnson</div>
+                <div class="list-code">Dated: January 10, 2026 • PDF • 2 pages</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Insurance Card (VA)</div>
+                <div class="list-subtitle">Veterans Health Identification Card</div>
+                <div class="list-code">Updated: January 2024 • Image</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- LAB RESULTS PAGE -->
+    <div class="page" id="lab-results">
+        <div class="card">
+            <div class="card-title">Recent Lab Results</div>
+            
+            <div class="list-item">
+                <div class="list-title">HbA1c (Hemoglobin A1c)</div>
+                <div class="list-subtitle">Result: 7.2% • Date: Jan 15, 2026</div>
+                <div class="list-code">Reference Range: <7.0% (diabetic control target)<br>Previous: 7.5% (Oct 2025)</div>
+                <span class="badge">Improved</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Lipid Panel</div>
+                <div class="list-subtitle">Date: Jan 15, 2026</div>
+                <div class="list-code">Total Cholesterol: 185 mg/dL (Desirable: <200)<br>LDL: 110 mg/dL (Optimal: <100)<br>HDL: 48 mg/dL (Low: >40)<br>Triglycerides: 135 mg/dL (Normal: <150)</div>
+                <span class="badge">Within Target</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Comprehensive Metabolic Panel</div>
+                <div class="list-subtitle">Date: Jan 15, 2026</div>
+                <div class="list-code">Glucose (Fasting): 118 mg/dL<br>Creatinine: 1.1 mg/dL<br>eGFR: >60 (normal kidney function)<br>All electrolytes within normal range</div>
+                <span class="badge">Normal</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PROFILE PAGE -->
+    <div class="page" id="profile">
+        <div class="card">
+            <div class="card-title">Personal Information</div>
+            
+            <div class="list-item">
+                <div class="list-title">Name</div>
+                <div class="list-subtitle">John Michael Doe</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Date of Birth</div>
+                <div class="list-subtitle">March 15, 1960 (Age 65)</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Contact</div>
+                <div class="list-subtitle">Email: john.doe@email.com<br>Phone: (555) 987-6543</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Address</div>
+                <div class="list-subtitle">123 Main Street<br>Springfield, VA 22150</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Military Service</div>
+            
+            <div class="list-item">
+                <div class="list-title">Branch</div>
+                <div class="list-subtitle">United States Army</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Service Period</div>
+                <div class="list-subtitle">1979 - 1999 (20 years)</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">VA Claim Number</div>
+                <div class="list-subtitle">123-45-6789</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Disability Rating</div>
+                <div class="list-subtitle">60% Service-Connected</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SETTINGS PAGE -->
+    <div class="page" id="settings">
+        <div class="card">
+            <div class="card-title">App Settings</div>
+            
+            <div class="list-item">
+                <div class="list-title">Notifications</div>
+                <div class="list-subtitle">Push notifications for appointments, messages, and alerts</div>
+                <span class="badge">Enabled</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Biometric Login</div>
+                <div class="list-subtitle">Use Face ID / Touch ID to access app</div>
+                <span class="badge">Enabled</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">AI Features</div>
+                <div class="list-subtitle">Enable AI-powered insights and recommendations</div>
+                <span class="badge">Enabled</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Data Sharing</div>
+                <div class="list-subtitle">Share health data with VA healthcare providers</div>
+                <span class="badge">Enabled</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Privacy & Security</div>
+            
+            <div class="list-item">
+                <div class="list-title">HIPAA Authorization</div>
+                <div class="list-subtitle">View and manage your HIPAA data sharing preferences</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Export My Data</div>
+                <div class="list-subtitle">Download all your health information</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Delete Account</div>
+                <div class="list-subtitle">Permanently delete your MÉTIS account and data</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // Close menu
+            toggleMenu(false);
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        
+        // Menu Toggle
+        function toggleMenu(force) {
+            const menu = document.getElementById('menu');
+            const overlay = document.getElementById('menuOverlay');
+            
+            if (force === false) {
+                menu.classList.remove('open');
+                overlay.classList.remove('show');
+            } else if (force === true) {
+                menu.classList.add('open');
+                overlay.classList.add('show');
+            } else {
+                menu.classList.toggle('open');
+                overlay.classList.toggle('show');
+            }
+        }
+        
+        // Prevent body scroll when menu is open
+        document.getElementById('menu').addEventListener('transitionend', function() {
+            if (this.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
