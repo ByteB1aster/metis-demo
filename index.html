@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>MÉTIS Health Navigator - Interactive Demo</title>
+    <title>MÉTIS - AI-Powered Benefits Navigator</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -17,7 +16,7 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* Navigation Bar */
+        /* Navigation */
         .nav-bar {
             position: fixed;
             top: 0;
@@ -43,9 +42,6 @@
             font-size: 13px;
             cursor: pointer;
             transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
         
         .nav-btn:active {
@@ -57,10 +53,9 @@
             color: white;
             font-size: 26px;
             font-weight: 800;
-            letter-spacing: 1px;
         }
         
-        /* Menu Sidebar */
+        /* Menu */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -70,7 +65,6 @@
             background: rgba(0,0,0,0.6);
             z-index: 1998;
             display: none;
-            backdrop-filter: blur(2px);
         }
         
         .menu-overlay.show { display: block; }
@@ -123,9 +117,6 @@
             cursor: pointer;
             border-radius: 8px;
             margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
             transition: all 0.2s;
         }
         
@@ -134,7 +125,7 @@
             transform: scale(0.98);
         }
         
-        /* Page Container */
+        /* Pages */
         .page {
             display: none;
             padding: 80px 16px 40px;
@@ -159,54 +150,48 @@
             border: 1px solid #eee;
         }
         
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        
         .card-title {
             font-size: 20px;
             font-weight: 700;
             color: #001830;
+            margin-bottom: 8px;
         }
         
         .card-subtitle {
             font-size: 14px;
             color: #666;
-            margin-top: 4px;
             line-height: 1.5;
+            margin-bottom: 16px;
         }
         
-        /* Stats Grid */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 20px 0;
-        }
-        
-        .stat-card {
+        /* Big Stat */
+        .big-stat {
             background: linear-gradient(135deg, #a7cf28 0%, #8ab020 100%);
             color: white;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 32px 24px;
+            border-radius: 16px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(167, 207, 40, 0.3);
+            margin: 20px 0;
+            box-shadow: 0 6px 20px rgba(167, 207, 40, 0.4);
         }
         
-        .stat-value {
-            font-size: 36px;
+        .big-stat-label {
+            font-size: 14px;
+            opacity: 0.95;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .big-stat-value {
+            font-size: 48px;
             font-weight: 800;
             line-height: 1;
+            margin: 8px 0;
         }
         
-        .stat-label {
+        .big-stat-subtitle {
             font-size: 13px;
             opacity: 0.95;
-            margin-top: 8px;
-            font-weight: 600;
         }
         
         /* List Items */
@@ -216,6 +201,7 @@
             background: #f9f9f9;
             border-radius: 8px;
             margin-bottom: 12px;
+            cursor: pointer;
             transition: all 0.2s;
         }
         
@@ -241,7 +227,7 @@
             font-size: 12px;
             color: #999;
             font-family: 'Courier New', monospace;
-            margin-top: 4px;
+            margin-top: 8px;
         }
         
         /* Badges */
@@ -255,13 +241,13 @@
             display: inline-block;
             margin-top: 10px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
         .badge-orange { background: #f88a2f; }
         .badge-blue { background: #4a90e2; }
+        .badge-red { background: #dc3545; }
         
-        /* Alert Boxes */
+        /* Alerts */
         .alert {
             background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             border: 2px solid #28a745;
@@ -280,38 +266,126 @@
             color: #856404;
         }
         
-        /* Big Stat Display */
-        .big-stat {
-            background: linear-gradient(135deg, #a7cf28 0%, #8ab020 100%);
-            color: white;
-            padding: 32px 24px;
-            border-radius: 16px;
-            text-align: center;
-            margin: 20px 0;
-            box-shadow: 0 6px 20px rgba(167, 207, 40, 0.4);
+        .alert-blue {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-color: #4a90e2;
+            color: #0c5460;
         }
         
-        .big-stat-label {
+        /* Form Preview */
+        .form-preview {
+            background: white;
+            border: 2px solid #a7cf28;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .form-header {
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 16px;
+        }
+        
+        .form-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #001830;
+            margin-bottom: 4px;
+        }
+        
+        .form-number {
+            font-size: 12px;
+            color: #999;
+            font-family: monospace;
+        }
+        
+        .form-field {
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        
+        .form-label {
+            font-size: 11px;
+            color: #999;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        
+        .form-value {
             font-size: 14px;
-            opacity: 0.95;
-            margin-bottom: 12px;
+            color: #001830;
             font-weight: 600;
         }
         
-        .big-stat-value {
-            font-size: 48px;
+        /* Action Button */
+        .action-btn {
+            background: linear-gradient(135deg, #a7cf28, #8ab020);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(167, 207, 40, 0.3);
+        }
+        
+        .action-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .action-btn-secondary {
+            background: linear-gradient(135deg, #f88a2f, #e67828);
+        }
+        
+        /* Steps */
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 12px;
+        }
+        
+        .step-number {
+            background: #a7cf28;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 800;
-            line-height: 1;
-            margin: 8px 0;
+            flex-shrink: 0;
         }
         
-        .big-stat-subtitle {
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 700;
+            color: #001830;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+        
+        .step-desc {
             font-size: 13px;
-            opacity: 0.95;
-            margin-top: 8px;
+            color: #666;
+            line-height: 1.5;
         }
         
-        /* Section Headers */
         .section-header {
             font-size: 18px;
             font-weight: 700;
@@ -320,25 +394,33 @@
             padding-bottom: 8px;
             border-bottom: 2px solid #a7cf28;
         }
+        
+        /* Status Badge */
+        .status-ready {
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-block;
+            margin: 12px 0;
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <div class="nav-bar">
-        <button class="nav-btn" onclick="toggleMenu()">
-            <span>☰</span>
-            <span>Menu</span>
-        </button>
+        <button class="nav-btn" id="backBtn" onclick="goBack()" style="display: none;">← Back</button>
+        <button class="nav-btn" id="menuBtn" onclick="toggleMenu()">☰ Menu</button>
         <div class="logo">MÉTIS</div>
-        <button class="nav-btn" onclick="showPage('dashboard')">
-            <span>🏠</span>
-        </button>
+        <button class="nav-btn" onclick="showPage('dashboard')">🏠</button>
     </div>
     
     <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
     
-    <!-- Sidebar Menu -->
+    <!-- Menu -->
     <div class="menu" id="menu">
         <div class="menu-header">MÉTIS Navigator</div>
         
@@ -348,105 +430,731 @@
         </div>
         
         <div class="menu-section">
+            <div class="menu-section-title">🤖 AI Benefits Applications</div>
+            <div class="menu-item" onclick="showPage('benefits-hub')">💰 Benefits Hub</div>
+            <div class="menu-item" onclick="showPage('va-application')">🎖️ VA Disability Claim</div>
+            <div class="menu-item" onclick="showPage('ssdi-application')">♿ SSDI Application</div>
+            <div class="menu-item" onclick="showPage('medicare-application')">🏥 Medicare Application</div>
+            <div class="menu-item" onclick="showPage('snap-application')">🍽️ SNAP Benefits</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">📋 Pre-Filled Forms</div>
+            <div class="menu-item" onclick="showPage('forms-hub')">📄 Forms Library</div>
+            <div class="menu-item" onclick="showPage('intake-form')">🏥 New Patient Intake</div>
+            <div class="menu-item" onclick="showPage('hipaa-form')">🔒 HIPAA Authorization</div>
+            <div class="menu-item" onclick="showPage('fmla-form')">👨‍👩‍👧 FMLA Application</div>
+            <div class="menu-item" onclick="showPage('records-release')">📋 Records Release</div>
+            <div class="menu-item" onclick="showPage('trial-form')">🧪 Clinical Trial Pre-Screen</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">📱 Connected Health</div>
+            <div class="menu-item" onclick="showPage('wearables-hub')">⌚ Connected Devices</div>
+            <div class="menu-item" onclick="showPage('wearable-insights')">🧠 AI Health Insights</div>
+            <div class="menu-item" onclick="showPage('trends')">📊 Health Trends</div>
+            <div class="menu-item" onclick="showPage('alerts')">🚨 Smart Alerts</div>
+        </div>
+        
+        <div class="menu-section">
             <div class="menu-section-title">Health Data</div>
             <div class="menu-item" onclick="showPage('conditions')">🏥 My Conditions</div>
             <div class="menu-item" onclick="showPage('medications')">💊 Medications</div>
-            <div class="menu-item" onclick="showPage('vitals')">📈 Vital Signs</div>
         </div>
         
         <div class="menu-section">
-            <div class="menu-section-title">AI Features</div>
-            <div class="menu-item" onclick="showPage('benefits')">💰 Benefits Maximizer</div>
+            <div class="menu-section-title">AI Insights</div>
             <div class="menu-item" onclick="showPage('comorbidity')">🔬 Comorbidity Analysis</div>
             <div class="menu-item" onclick="showPage('icd-optimizer')">📋 ICD Optimizer</div>
-            <div class="menu-item" onclick="showPage('interactions')">⚠️ Drug Interactions</div>
         </div>
         
         <div class="menu-section">
-            <div class="menu-section-title">Care Team</div>
+            <div class="menu-section-title">Care</div>
             <div class="menu-item" onclick="showPage('appointments')">📅 Appointments</div>
             <div class="menu-item" onclick="showPage('doctors')">👨‍⚕️ My Doctors</div>
-            <div class="menu-item" onclick="showPage('messages')">💬 Messages</div>
-        </div>
-        
-        <div class="menu-section">
-            <div class="menu-section-title">Documents</div>
-            <div class="menu-item" onclick="showPage('documents')">📄 My Documents</div>
-            <div class="menu-item" onclick="showPage('lab-results')">🧪 Lab Results</div>
-        </div>
-        
-        <div class="menu-section">
-            <div class="menu-section-title">Account</div>
-            <div class="menu-item" onclick="showPage('profile')">👤 Profile</div>
-            <div class="menu-item" onclick="showPage('settings')">⚙️ Settings</div>
         </div>
     </div>
     
-    <!-- DASHBOARD PAGE -->
+    <!-- DASHBOARD -->
     <div class="page active" id="dashboard">
         <div class="card">
             <div class="card-title">Welcome Back, John</div>
-            <div class="card-subtitle">Army Veteran • 60% VA Disability Rating<br>Member since January 2024</div>
+            <div class="card-subtitle">Army Veteran • 60% VA Disability Rating</div>
             
-            <div class="stat-grid">
-                <div class="stat-card">
-                    <div class="stat-value">3</div>
-                    <div class="stat-label">Active Conditions</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">3</div>
-                    <div class="stat-label">Current Medications</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">2</div>
-                    <div class="stat-label">Upcoming Appointments</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">5</div>
-                    <div class="stat-label">Providers</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="card">
             <div class="alert">
-                🤖 AI found <strong>$1,847/year</strong> in unclaimed benefits across 3 programs
+                🤖 <strong>AI completed 4 benefit applications</strong> ready for your review and submission
             </div>
         </div>
         
         <div class="card">
-            <div class="card-title">AI Insights</div>
+            <div class="card-title">Ready to Submit</div>
             
-            <div class="list-item">
-                <div class="list-title">Metabolic Syndrome Pattern Detected</div>
-                <div class="list-subtitle">Your combination of diabetes, hypertension, and hyperlipidemia indicates metabolic syndrome. This may qualify you for additional care coordination benefits.</div>
-                <span class="badge">92% Confidence</span>
+            <div class="list-item" onclick="showPage('va-application')">
+                <div class="list-title">🎖️ VA Disability Increase Request</div>
+                <div class="list-subtitle">Form 21-526EZ pre-filled and ready<br>Requesting increase from 60% to 80%</div>
+                <span class="badge">100% Complete</span>
             </div>
             
-            <div class="list-item">
-                <div class="list-title">Diabetes Equipment Available</div>
-                <div class="list-subtitle">Based on your Type 2 Diabetes, you may qualify for free glucose monitoring equipment through VA Prosthetics.</div>
-                <span class="badge badge-orange">Action Required</span>
+            <div class="list-item" onclick="showPage('ssdi-application')">
+                <div class="list-title">♿ SSDI Application</div>
+                <div class="list-subtitle">Form SSA-16 pre-filled and ready<br>Based on your medical conditions</div>
+                <span class="badge">100% Complete</span>
             </div>
             
-            <div class="list-item">
-                <div class="list-title">Medication Optimization Opportunity</div>
-                <div class="list-subtitle">Your Metformin dosage timing could be optimized for better glucose control. Discuss with your endocrinologist.</div>
-                <span class="badge badge-blue">Low Priority</span>
+            <div class="list-item" onclick="showPage('medicare-application')">
+                <div class="list-title">🏥 Medicare Part D Application</div>
+                <div class="list-subtitle">CMS-10763 pre-filled<br>Low-income subsidy included</div>
+                <span class="badge">100% Complete</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('snap-application')">
+                <div class="list-title">🍽️ SNAP Benefits Application</div>
+                <div class="list-subtitle">State form pre-filled<br>Estimated $285/month benefit</div>
+                <span class="badge">100% Complete</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- BENEFITS HUB -->
+    <div class="page" id="benefits-hub">
+        <div class="card">
+            <div class="card-title">AI Benefits Hub <span class="badge">AI-Powered</span></div>
+            
+            <div class="big-stat">
+                <div class="big-stat-label">Total Potential Benefits</div>
+                <div class="big-stat-value">$28,427</div>
+                <div class="big-stat-subtitle">per year across 4 programs</div>
             </div>
         </div>
         
         <div class="card">
-            <div class="card-title">Recent Activity</div>
-            <div class="list-item">
-                <div class="list-title">Lab Results Available</div>
-                <div class="list-subtitle">HbA1c test from Jan 15, 2026</div>
-                <div class="list-code">Result: 7.2% (Good control)</div>
+            <div class="card-title">Applications Ready to Submit</div>
+            
+            <div class="list-item" onclick="showPage('va-application')">
+                <div class="list-title">VA Disability Increase</div>
+                <div class="list-subtitle">$1,789/month → $2,312/month (+$523/month)</div>
+                <span class="badge">Ready</span>
             </div>
+            
+            <div class="list-item" onclick="showPage('ssdi-application')">
+                <div class="list-title">SSDI Benefits</div>
+                <div class="list-subtitle">Estimated $1,537/month</div>
+                <span class="badge">Ready</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('medicare-application')">
+                <div class="list-title">Medicare Part D + Subsidy</div>
+                <div class="list-subtitle">Drug coverage + $800/year subsidy</div>
+                <span class="badge">Ready</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('snap-application')">
+                <div class="list-title">SNAP Food Assistance</div>
+                <div class="list-subtitle">$285/month in food benefits</div>
+                <span class="badge">Ready</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- VA APPLICATION -->
+    <div class="page" id="va-application">
+        <div class="card">
+            <div class="card-title">🎖️ VA Disability Increase Request</div>
+            <div class="card-subtitle">Form 21-526EZ • Application for Disability Compensation</div>
+            
+            <div class="status-ready">✓ Application 100% Complete - Ready to Submit</div>
+            
+            <div class="alert-blue alert">
+                <strong>AI Analysis:</strong> Based on your current conditions and medical records, you have a strong case for increasing your rating from 60% to 80%. This would increase your monthly compensation by $523/month ($6,276/year).
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Form Preview: VA Form 21-526EZ</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">APPLICATION FOR DISABILITY COMPENSATION</div>
+                    <div class="form-number">VA Form 21-526EZ</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Veteran's Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">VA File Number / SSN</div>
+                    <div class="form-value">123-45-6789</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Date of Birth</div>
+                    <div class="form-value">March 15, 1960</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Disability Rating</div>
+                    <div class="form-value">60% Service-Connected</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Conditions for Increase</div>
+                    <div class="form-value">
+                        • Type 2 Diabetes Mellitus (E11.9) - Currently 40%<br>
+                        • Essential Hypertension (I10) - Currently 10%<br>
+                        • Hyperlipidemia (E78.5) - Currently 10%
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">New Condition: Metabolic Syndrome</div>
+                    <div class="form-value">E88.81 - Secondary to diabetes, hypertension, hyperlipidemia</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Supporting Evidence</div>
+                    <div class="form-value">
+                        ✓ Medical records from VA Medical Center (2020-2026)<br>
+                        ✓ Lab results: HbA1c, Lipid Panel, BP readings<br>
+                        ✓ Medication list (3 prescriptions)<br>
+                        ✓ Provider statements from Dr. Chen, Dr. Johnson
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Claim Justification</div>
+                    <div class="form-value">
+                        Worsening of service-connected diabetes with poor glycemic control (HbA1c 7.2%), requiring multiple medications. Hypertension remains uncontrolled despite treatment. Development of metabolic syndrome represents progression of service-connected conditions.
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: This would open the VA.gov ebenefits portal with your pre-filled form ready to submit!')">
+                📤 Submit to VA.gov eBenefits
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Submission Instructions</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Review Your Application</div>
+                    <div class="step-desc">Check all pre-filled information above for accuracy. MÉTIS pulled this data from your health records.</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Submit Online via VA.gov</div>
+                    <div class="step-desc">Click "Submit to VA.gov eBenefits" above. You'll be redirected to VA.gov with your form pre-filled. Log in with your DS Logon, ID.me, or Login.gov credentials.</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Upload Supporting Documents</div>
+                    <div class="step-desc">MÉTIS has prepared your medical evidence package. Upload when prompted by VA.gov portal.</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Alternative: Mail Submission</div>
+                    <div class="step-desc">
+                        If you prefer to mail:<br>
+                        <strong>Department of Veterans Affairs</strong><br>
+                        Claims Intake Center<br>
+                        PO Box 4616<br>
+                        Janesville, WI 53547-4616
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">Track Your Claim</div>
+                    <div class="step-desc">Average processing time: 127 days. MÉTIS will monitor your claim status and alert you to any requests for additional information.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">What Happens Next?</div>
+            
             <div class="list-item">
-                <div class="list-title">Prescription Refilled</div>
-                <div class="list-subtitle">Metformin 1000mg - 90 day supply</div>
-                <div class="list-code">Filled: Jan 20, 2026</div>
+                <div class="list-title">Day 1-7: Initial Review</div>
+                <div class="list-subtitle">VA confirms receipt and assigns claim number</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Day 7-30: Evidence Gathering</div>
+                <div class="list-subtitle">VA requests medical records from your providers</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Day 30-90: C&P Exam (If Required)</div>
+                <div class="list-subtitle">VA may schedule Compensation & Pension exam</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Day 90-127: Decision</div>
+                <div class="list-subtitle">VA rates your conditions and issues decision letter</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SSDI APPLICATION -->
+    <div class="page" id="ssdi-application">
+        <div class="card">
+            <div class="card-title">♿ SSDI Application</div>
+            <div class="card-subtitle">Form SSA-16 • Application for Disability Insurance Benefits</div>
+            
+            <div class="status-ready">✓ Application 100% Complete - Ready to Submit</div>
+            
+            <div class="alert-blue alert">
+                <strong>AI Analysis:</strong> Your Type 2 Diabetes with complications, combined with hypertension and hyperlipidemia, meets SSA's criteria for disability consideration under Listing 9.00 (Endocrine Disorders). Estimated monthly benefit: $1,537.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Form Preview: SSA-16</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">APPLICATION FOR DISABILITY INSURANCE BENEFITS</div>
+                    <div class="form-number">Form SSA-16-BK</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Full Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Social Security Number</div>
+                    <div class="form-value">123-45-6789</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Date of Birth</div>
+                    <div class="form-value">March 15, 1960 (Age 65)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Disability Onset Date</div>
+                    <div class="form-value">January 1, 2020 (Date diabetes diagnosed)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Disabling Conditions</div>
+                    <div class="form-value">
+                        PRIMARY: Type 2 Diabetes Mellitus with complications (E11.9)<br>
+                        SECONDARY: Essential Hypertension (I10)<br>
+                        SECONDARY: Hyperlipidemia (E78.5)<br>
+                        SECONDARY: Metabolic Syndrome (E88.81)
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Work History (Last 15 Years)</div>
+                    <div class="form-value">
+                        Army Veteran (1979-1999)<br>
+                        Security Supervisor (2000-2019)<br>
+                        Unable to work since: January 2020
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medical Treatments</div>
+                    <div class="form-value">
+                        • Metformin 1000mg twice daily<br>
+                        • Lisinopril 10mg daily<br>
+                        • Atorvastatin 20mg daily<br>
+                        • Regular monitoring with endocrinologist<br>
+                        • Blood pressure and glucose monitoring
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Healthcare Providers</div>
+                    <div class="form-value">
+                        Dr. Michael Chen, MD - Primary Care<br>
+                        VA Medical Center, (555) 123-4567<br><br>
+                        Dr. Sarah Johnson, MD - Endocrinology<br>
+                        VA Medical Center, (555) 123-4568
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Functional Limitations</div>
+                    <div class="form-value">
+                        • Fatigue and low energy limiting sustained activity<br>
+                        • Frequent blood sugar fluctuations affecting concentration<br>
+                        • Medication side effects (dizziness, nausea)<br>
+                        • Unable to stand for extended periods<br>
+                        • Difficulty with fine motor tasks due to neuropathy symptoms
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: This would open SSA.gov with your pre-filled application!')">
+                📤 Submit to SSA.gov Online
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: This would download a PDF ready to print and mail!')">
+                📄 Download PDF to Mail
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Submission Options</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Option A: Apply Online (Recommended)</div>
+                    <div class="step-desc">
+                        Visit <strong>ssa.gov/applyfordisability</strong><br>
+                        Create or log in to your my Social Security account<br>
+                        Use pre-filled data from MÉTIS<br>
+                        Fastest processing time
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Option B: Phone Application</div>
+                    <div class="step-desc">
+                        Call SSA: <strong>1-800-772-1213</strong><br>
+                        TTY: 1-800-325-0778<br>
+                        Mon-Fri 8am-7pm<br>
+                        Have your MÉTIS form data ready to read to representative
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Option C: In-Person at Local SSA Office</div>
+                    <div class="step-desc">
+                        Find your local office: <strong>ssa.gov/locator</strong><br>
+                        Schedule appointment (recommended)<br>
+                        Bring printed MÉTIS form and supporting documents
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Timeline & Next Steps</div>
+            
+            <div class="list-item">
+                <div class="list-title">Month 1-3: Initial Processing</div>
+                <div class="list-subtitle">SSA reviews application and requests medical records from your doctors</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Month 3-5: Medical Review</div>
+                <div class="list-subtitle">Disability Determination Services (DDS) reviews your medical evidence. May request consultative examination.</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Month 5-6: Decision</div>
+                <div class="list-subtitle">
+                    Average approval time: 3-6 months<br>
+                    If approved: Benefits retroactive to disability onset date<br>
+                    If denied: MÉTIS will help you file appeal
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MEDICARE APPLICATION -->
+    <div class="page" id="medicare-application">
+        <div class="card">
+            <div class="card-title">🏥 Medicare Part D Application</div>
+            <div class="card-subtitle">CMS-10763 • Application for Prescription Drug Coverage</div>
+            
+            <div class="status-ready">✓ Application 100% Complete - Ready to Submit</div>
+            
+            <div class="alert-blue alert">
+                <strong>AI Analysis:</strong> Based on your income and medications, you qualify for Extra Help (Low-Income Subsidy) saving you ~$5,000/year on prescription costs.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Form Preview: Medicare Part D</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">MEDICARE PRESCRIPTION DRUG COVERAGE</div>
+                    <div class="form-number">CMS Form 10763</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Applicant Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medicare Number</div>
+                    <div class="form-value">1EG4-TE5-MK72</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Medications</div>
+                    <div class="form-value">
+                        • Metformin 1000mg - $15/month<br>
+                        • Lisinopril 10mg - $8/month<br>
+                        • Atorvastatin 20mg - $12/month<br>
+                        <strong>Total: $35/month ($420/year)</strong>
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Extra Help (Low-Income Subsidy)</div>
+                    <div class="form-value">
+                        ✓ YES - Requesting Extra Help<br>
+                        Income: VA Disability only ($21,468/year)<br>
+                        <strong>Qualifies for full subsidy</strong>
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Recommended Plan</div>
+                    <div class="form-value">
+                        <strong>Humana Walmart Rx Plan (S5884-327)</strong><br>
+                        Premium with Extra Help: $0/month<br>
+                        Deductible: $0<br>
+                        Copays: $0-$4.50 per prescription<br>
+                        Covers all your current medications
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: This would direct you to Medicare.gov enrollment!')">
+                📤 Enroll at Medicare.gov
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">How to Enroll</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Visit Medicare.gov</div>
+                    <div class="step-desc">
+                        Go to <strong>medicare.gov/plan-compare</strong><br>
+                        Log in or create account
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Enter Your Medications</div>
+                    <div class="step-desc">
+                        MÉTIS has prepared your medication list:<br>
+                        • Metformin 1000mg<br>
+                        • Lisinopril 10mg<br>
+                        • Atorvastatin 20mg
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Select Plan</div>
+                    <div class="step-desc">
+                        AI recommends: <strong>Humana Walmart Rx Plan</strong><br>
+                        Lowest cost for your medications<br>
+                        Accepts Extra Help subsidy
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Apply for Extra Help</div>
+                    <div class="step-desc">
+                        On Medicare.gov, select "Apply for Extra Help"<br>
+                        Or call: <strong>1-800-MEDICARE</strong><br>
+                        SSA will auto-approve based on VA disability income
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Your Savings Breakdown</div>
+            
+            <div class="list-item">
+                <div class="list-title">Without Part D</div>
+                <div class="list-subtitle">Current cost: $420/year</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">With Part D (No Extra Help)</div>
+                <div class="list-subtitle">Premium: $480/year<br>Copays: $360/year<br><strong>Total: $840/year</strong></div>
+                <span class="badge-red badge">More Expensive!</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">With Part D + Extra Help</div>
+                <div class="list-subtitle">Premium: $0/year<br>Copays: $54/year<br><strong>Total: $54/year</strong></div>
+                <span class="badge">Save $366/year!</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SNAP APPLICATION -->
+    <div class="page" id="snap-application">
+        <div class="card">
+            <div class="card-title">🍽️ SNAP Benefits Application</div>
+            <div class="card-subtitle">Supplemental Nutrition Assistance Program</div>
+            
+            <div class="status-ready">✓ Application 100% Complete - Ready to Submit</div>
+            
+            <div class="alert-blue alert">
+                <strong>AI Analysis:</strong> Based on your VA disability income and household size, you qualify for approximately $285/month ($3,420/year) in SNAP benefits.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Application Preview</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">SNAP APPLICATION</div>
+                    <div class="form-number">State Application Form</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Applicant Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Household Size</div>
+                    <div class="form-value">1 person</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Monthly Income</div>
+                    <div class="form-value">
+                        VA Disability: $1,789/month<br>
+                        <strong>Total: $1,789/month</strong>
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Disability Status</div>
+                    <div class="form-value">
+                        ✓ Veteran with Service-Connected Disability (60%)<br>
+                        Qualifies for expedited processing and higher benefit
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medical Expenses</div>
+                    <div class="form-value">
+                        Medications: $35/month<br>
+                        Medical supplies: $45/month<br>
+                        <strong>Total: $80/month</strong><br>
+                        (Increases SNAP benefit amount)
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Estimated Monthly Benefit</div>
+                    <div class="form-value" style="font-size: 20px; color: #a7cf28; font-weight: 800;">
+                        $285/month ($3,420/year)
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: This would direct you to your state SNAP portal!')">
+                📤 Submit to State Agency
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">How to Apply</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Apply Online</div>
+                    <div class="step-desc">
+                        Visit your state's SNAP website<br>
+                        <strong>Virginia:</strong> commonhelp.virginia.gov<br>
+                        Use MÉTIS pre-filled data for faster application
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Interview (Phone or In-Person)</div>
+                    <div class="step-desc">
+                        Agency will schedule within 7 days<br>
+                        Have your VA disability award letter ready<br>
+                        Discuss medical expenses to maximize benefit
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Receive EBT Card</div>
+                    <div class="step-desc">
+                        Approved within 30 days (7 days for expedited)<br>
+                        Benefits loaded monthly to EBT card<br>
+                        Use at grocery stores, farmers markets
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">What You Can Buy</div>
+            
+            <div class="list-item">
+                <div class="list-title">✓ Allowed</div>
+                <div class="list-subtitle">
+                    • Fruits and vegetables<br>
+                    • Meat, poultry, fish<br>
+                    • Dairy products<br>
+                    • Breads and cereals<br>
+                    • Seeds and plants (to grow food)
+                </div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">✗ Not Allowed</div>
+                <div class="list-subtitle">
+                    • Alcohol, tobacco<br>
+                    • Hot prepared foods<br>
+                    • Vitamins and medicines<br>
+                    • Pet food<br>
+                    • Cleaning supplies
+                </div>
             </div>
         </div>
     </div>
@@ -455,36 +1163,26 @@
     <div class="page" id="conditions">
         <div class="card">
             <div class="card-title">My Health Conditions</div>
-            <div class="card-subtitle">3 active diagnoses being managed</div>
-            
-            <div class="section-header">Active Conditions</div>
             
             <div class="list-item">
                 <div class="list-title">Type 2 Diabetes Mellitus</div>
-                <div class="list-subtitle">Diagnosed January 2020 • Managed by Dr. Johnson</div>
+                <div class="list-subtitle">Diagnosed: January 2020</div>
                 <div class="list-code">ICD-10: E11.9</div>
                 <span class="badge">Service Connected 40%</span>
             </div>
             
             <div class="list-item">
                 <div class="list-title">Essential Hypertension</div>
-                <div class="list-subtitle">Diagnosed March 2019 • Managed by Dr. Chen</div>
+                <div class="list-subtitle">Diagnosed: March 2019</div>
                 <div class="list-code">ICD-10: I10</div>
                 <span class="badge">Service Connected 10%</span>
             </div>
             
             <div class="list-item">
                 <div class="list-title">Hyperlipidemia</div>
-                <div class="list-subtitle">Diagnosed March 2019 • Managed by Dr. Chen</div>
+                <div class="list-subtitle">Diagnosed: March 2019</div>
                 <div class="list-code">ICD-10: E78.5</div>
                 <span class="badge">Service Connected 10%</span>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-title">Condition Management</div>
-            <div class="alert-orange alert">
-                <strong>Next Checkup Due:</strong> Endocrinology follow-up scheduled for Feb 15, 2026
             </div>
         </div>
     </div>
@@ -493,100 +1191,23 @@
     <div class="page" id="medications">
         <div class="card">
             <div class="card-title">Current Medications</div>
-            <div class="card-subtitle">3 active prescriptions</div>
             
             <div class="list-item">
                 <div class="list-title">Metformin 1000mg</div>
-                <div class="list-subtitle">Take twice daily with meals<br>For: Type 2 Diabetes Management</div>
-                <div class="list-code">NDC: 0093-7214-01 • Refills: 2 remaining</div>
-                <span class="badge">Next Refill: Feb 10</span>
+                <div class="list-subtitle">Twice daily with meals<br>For: Type 2 Diabetes</div>
+                <div class="list-code">Cost: $15/month</div>
             </div>
             
             <div class="list-item">
                 <div class="list-title">Lisinopril 10mg</div>
-                <div class="list-subtitle">Take once daily in the morning<br>For: Blood Pressure Control</div>
-                <div class="list-code">NDC: 0071-0135-23 • Refills: 3 remaining</div>
-                <span class="badge">Next Refill: Mar 1</span>
+                <div class="list-subtitle">Once daily<br>For: Blood Pressure</div>
+                <div class="list-code">Cost: $8/month</div>
             </div>
             
             <div class="list-item">
                 <div class="list-title">Atorvastatin 20mg</div>
-                <div class="list-subtitle">Take once daily at bedtime<br>For: Cholesterol Management</div>
-                <div class="list-code">NDC: 0071-0156-23 • Refills: 3 remaining</div>
-                <span class="badge">Next Refill: Mar 5</span>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="alert">
-                ✓ No drug interactions detected between your current medications
-            </div>
-        </div>
-    </div>
-    
-    <!-- VITALS PAGE -->
-    <div class="page" id="vitals">
-        <div class="card">
-            <div class="card-title">Recent Vital Signs</div>
-            
-            <div class="list-item">
-                <div class="list-title">Blood Pressure</div>
-                <div class="list-subtitle">128/82 mmHg • Jan 22, 2026</div>
-                <span class="badge">Within Target</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Blood Glucose (Fasting)</div>
-                <div class="list-subtitle">118 mg/dL • Jan 23, 2026</div>
-                <span class="badge">Good Control</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Weight</div>
-                <div class="list-subtitle">185 lbs • Jan 22, 2026</div>
-                <span class="badge badge-blue">Stable</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">HbA1c</div>
-                <div class="list-subtitle">7.2% • Jan 15, 2026</div>
-                <span class="badge">Target: <7.5%</span>
-            </div>
-        </div>
-    </div>
-    
-    <!-- BENEFITS PAGE -->
-    <div class="page" id="benefits">
-        <div class="card">
-            <div class="card-title">Benefits Maximizer <span class="badge">AI-Powered</span></div>
-            
-            <div class="big-stat">
-                <div class="big-stat-label">Estimated Unclaimed Benefits</div>
-                <div class="big-stat-value">$1,847</div>
-                <div class="big-stat-subtitle">per year across 3 programs</div>
-            </div>
-            
-            <div class="section-header">Available Benefits</div>
-            
-            <div class="list-item">
-                <div class="list-title">SNAP Food Assistance</div>
-                <div class="list-subtitle">Based on your 60% VA disability rating and household income, you may qualify for $200-300/month in food assistance benefits.</div>
-                <div class="list-code">Estimated value: $2,400-3,600/year</div>
-                <span class="badge badge-orange">Apply Now</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">VA Care Coordination Services</div>
-                <div class="list-subtitle">Your multiple complex conditions qualify you for comprehensive care management services at no additional cost.</div>
-                <div class="list-code">Estimated value: $500/year in time savings</div>
-                <span class="badge badge-orange">Enroll</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Durable Medical Equipment</div>
-                <div class="list-subtitle">Free glucose monitors, testing supplies, and diabetic shoes through VA Prosthetics program.</div>
-                <div class="list-code">Estimated value: $800/year</div>
-                <span class="badge badge-orange">Contact VA</span>
+                <div class="list-subtitle">Once daily at bedtime<br>For: Cholesterol</div>
+                <div class="list-code">Cost: $12/month</div>
             </div>
         </div>
     </div>
@@ -596,29 +1217,10 @@
         <div class="card">
             <div class="card-title">Comorbidity Analysis <span class="badge">AI-Powered</span></div>
             
-            <div class="alert">
-                AI detected significant comorbidity patterns in your health profile
-            </div>
-            
             <div class="list-item">
                 <div class="list-title">Metabolic Syndrome (E88.81)</div>
-                <div class="list-subtitle">Your combination of Type 2 Diabetes, Essential Hypertension, and Hyperlipidemia strongly indicates Metabolic Syndrome. This diagnosis may qualify you for:</div>
-                <div class="list-code">• Comprehensive lifestyle intervention programs<br>• Additional VA disability consideration<br>• Coordinated care management services</div>
+                <div class="list-subtitle">Your diabetes + hypertension + hyperlipidemia indicates metabolic syndrome. This diagnosis strengthens your disability claims.</div>
                 <span class="badge">92% Confidence</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Cardiovascular Risk Assessment</div>
-                <div class="list-subtitle">Based on your current conditions, you have elevated cardiovascular risk. Consider discussing:</div>
-                <div class="list-code">• Cardiology referral for preventive screening<br>• Cardiac stress test<br>• Advanced lipid panel</div>
-                <span class="badge">87% Confidence</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Diabetic Complications Monitoring</div>
-                <div class="list-subtitle">Recommended annual screenings based on your diabetes:</div>
-                <div class="list-code">• Diabetic retinopathy exam (ophthalmology)<br>• Kidney function tests (nephropathy screening)<br>• Foot exam (neuropathy assessment)</div>
-                <span class="badge badge-blue">Preventive</span>
             </div>
         </div>
     </div>
@@ -628,72 +1230,10 @@
         <div class="card">
             <div class="card-title">ICD Code Optimizer <span class="badge">AI-Powered</span></div>
             
-            <div class="section-header">Optimization Opportunities</div>
-            
             <div class="list-item">
-                <div class="list-title">Type 2 Diabetes Code Enhancement</div>
-                <div class="list-subtitle"><strong>Current:</strong> E11.9 (Type 2 diabetes without complications)<br><strong>Recommended:</strong> E11.65 (Type 2 diabetes with hyperglycemia)</div>
-                <div class="list-code">Benefit: Better justification for glucose monitoring supplies and more frequent HbA1c testing</div>
-                <span class="badge">Save $400/year</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Add Metabolic Syndrome Diagnosis</div>
-                <div class="list-subtitle"><strong>Suggested Code:</strong> E88.81 (Metabolic syndrome)</div>
-                <div class="list-code">Benefit: Qualifies for comprehensive lifestyle program and may support increased VA disability rating</div>
-                <span class="badge badge-orange">Discuss with Doctor</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Hypertension Specificity</div>
-                <div class="list-subtitle"><strong>Current:</strong> I10 (Essential hypertension)<br><strong>Consider:</strong> I11.0 (Hypertensive heart disease) if cardiac involvement</div>
-                <div class="list-code">Benefit: More accurate diagnosis may support cardiology referral and additional testing</div>
-                <span class="badge badge-blue">Low Priority</span>
-            </div>
-        </div>
-    </div>
-    
-    <!-- INTERACTIONS PAGE -->
-    <div class="page" id="interactions">
-        <div class="card">
-            <div class="card-title">Drug Interaction Checker <span class="badge">AI-Powered</span></div>
-            
-            <div class="alert">
-                ✓ No significant interactions detected between your current medications
-            </div>
-            
-            <div class="section-header">Medication Analysis</div>
-            
-            <div class="list-item">
-                <div class="list-title">Metformin + Lisinopril</div>
-                <div class="list-subtitle">No interaction • These medications work well together</div>
-                <span class="badge">Safe</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Lisinopril + Atorvastatin</div>
-                <div class="list-subtitle">No interaction • Commonly prescribed together for cardiovascular protection</div>
-                <span class="badge">Safe</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Metformin + Atorvastatin</div>
-                <div class="list-subtitle">No interaction • Standard combination for metabolic syndrome</div>
-                <span class="badge">Safe</span>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-title">Food & Lifestyle Considerations</div>
-            
-            <div class="list-item">
-                <div class="list-title">Metformin</div>
-                <div class="list-subtitle">Take with food to reduce GI side effects. Avoid excessive alcohol consumption.</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Atorvastatin</div>
-                <div class="list-subtitle">Avoid grapefruit and grapefruit juice as they can increase drug levels.</div>
+                <div class="list-title">Diabetes Code Enhancement</div>
+                <div class="list-subtitle">Current: E11.9<br>Recommended: E11.65 (with hyperglycemia)</div>
+                <span class="badge">Better Coverage</span>
             </div>
         </div>
     </div>
@@ -705,30 +1245,12 @@
             
             <div class="list-item">
                 <div class="list-title">Endocrinology Follow-up</div>
-                <div class="list-subtitle"><strong>Dr. Sarah Johnson, MD</strong><br>February 15, 2026 at 10:00 AM</div>
-                <div class="list-code">VA Medical Center - Endocrinology Clinic, Building 2, 3rd Floor</div>
-                <span class="badge">In 2 weeks</span>
+                <div class="list-subtitle">Dr. Sarah Johnson<br>Feb 15, 2026 at 10:00 AM</div>
             </div>
             
             <div class="list-item">
-                <div class="list-title">Primary Care Annual Physical</div>
-                <div class="list-subtitle"><strong>Dr. Michael Chen, MD</strong><br>March 2, 2026 at 2:30 PM</div>
-                <div class="list-code">VA Medical Center - Primary Care, Building 1, 2nd Floor</div>
-                <span class="badge badge-blue">In 5 weeks</span>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-title">Recent Appointments</div>
-            
-            <div class="list-item">
-                <div class="list-title">Lab Work</div>
-                <div class="list-subtitle">January 15, 2026<br>HbA1c, Lipid Panel, Comprehensive Metabolic Panel</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Primary Care Visit</div>
-                <div class="list-subtitle">January 10, 2026<br>Dr. Chen - Routine checkup and medication review</div>
+                <div class="list-title">Primary Care Annual</div>
+                <div class="list-subtitle">Dr. Michael Chen<br>Mar 2, 2026 at 2:30 PM</div>
             </div>
         </div>
     </div>
@@ -737,246 +1259,696 @@
     <div class="page" id="doctors">
         <div class="card">
             <div class="card-title">My Care Team</div>
-            <div class="card-subtitle">5 healthcare providers</div>
             
             <div class="list-item">
                 <div class="list-title">Dr. Michael Chen, MD</div>
-                <div class="list-subtitle">Primary Care Physician<br>Internal Medicine</div>
-                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4567<br>Secure Message: Available</div>
+                <div class="list-subtitle">Primary Care Physician<br>VA Medical Center<br>(555) 123-4567</div>
             </div>
             
             <div class="list-item">
                 <div class="list-title">Dr. Sarah Johnson, MD</div>
-                <div class="list-subtitle">Endocrinologist<br>Diabetes & Metabolism</div>
-                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4568<br>Secure Message: Available</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Dr. Robert Martinez, MD</div>
-                <div class="list-subtitle">Cardiologist<br>Cardiovascular Medicine</div>
-                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4569<br>Secure Message: Available</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Dr. Emily White, PharmD</div>
-                <div class="list-subtitle">Clinical Pharmacist<br>Medication Management</div>
-                <div class="list-code">VA Pharmacy<br>Phone: (555) 123-4570</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Jennifer Brown, RN</div>
-                <div class="list-subtitle">Care Coordinator<br>Care Management</div>
-                <div class="list-code">VA Medical Center<br>Phone: (555) 123-4571<br>Secure Message: Available</div>
+                <div class="list-subtitle">Endocrinologist<br>VA Medical Center<br>(555) 123-4568</div>
             </div>
         </div>
     </div>
     
-    <!-- MESSAGES PAGE -->
-    <div class="page" id="messages">
-        <div class="card">
-            <div class="card-title">Secure Messages</div>
-            
-            <div class="list-item">
-                <div class="list-title">Lab Results Available</div>
-                <div class="list-subtitle">From: Dr. Michael Chen<br>Received: Jan 16, 2026</div>
-                <span class="badge">Unread</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Prescription Refill Approved</div>
-                <div class="list-subtitle">From: VA Pharmacy<br>Received: Jan 20, 2026</div>
-                <span class="badge badge-blue">Read</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Appointment Reminder</div>
-                <div class="list-subtitle">From: Endocrinology Clinic<br>Received: Jan 28, 2026</div>
-                <span class="badge">Unread</span>
-            </div>
-        </div>
-    </div>
     
-    <!-- DOCUMENTS PAGE -->
-    <div class="page" id="documents">
+    <!-- FORMS HUB -->
+    <div class="page" id="forms-hub">
         <div class="card">
-            <div class="card-title">My Documents</div>
+            <div class="card-title">📋 Pre-Filled Forms Library <span class="badge">AI-Powered</span></div>
+            <div class="card-subtitle">Never fill out the same form twice. All forms pre-populated with your health data.</div>
             
-            <div class="list-item">
-                <div class="list-title">VA Disability Award Letter</div>
-                <div class="list-subtitle">60% Service-Connected Disability Rating</div>
-                <div class="list-code">Dated: December 15, 2025 • PDF • 3 pages</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Current Medication List</div>
-                <div class="list-subtitle">Complete list of all active prescriptions</div>
-                <div class="list-code">Updated: January 20, 2026 • PDF • 1 page</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Diabetes Management Plan</div>
-                <div class="list-subtitle">Care plan from Dr. Johnson</div>
-                <div class="list-code">Dated: January 10, 2026 • PDF • 2 pages</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Insurance Card (VA)</div>
-                <div class="list-subtitle">Veterans Health Identification Card</div>
-                <div class="list-code">Updated: January 2024 • Image</div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- LAB RESULTS PAGE -->
-    <div class="page" id="lab-results">
-        <div class="card">
-            <div class="card-title">Recent Lab Results</div>
-            
-            <div class="list-item">
-                <div class="list-title">HbA1c (Hemoglobin A1c)</div>
-                <div class="list-subtitle">Result: 7.2% • Date: Jan 15, 2026</div>
-                <div class="list-code">Reference Range: <7.0% (diabetic control target)<br>Previous: 7.5% (Oct 2025)</div>
-                <span class="badge">Improved</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Lipid Panel</div>
-                <div class="list-subtitle">Date: Jan 15, 2026</div>
-                <div class="list-code">Total Cholesterol: 185 mg/dL (Desirable: <200)<br>LDL: 110 mg/dL (Optimal: <100)<br>HDL: 48 mg/dL (Low: >40)<br>Triglycerides: 135 mg/dL (Normal: <150)</div>
-                <span class="badge">Within Target</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Comprehensive Metabolic Panel</div>
-                <div class="list-subtitle">Date: Jan 15, 2026</div>
-                <div class="list-code">Glucose (Fasting): 118 mg/dL<br>Creatinine: 1.1 mg/dL<br>eGFR: >60 (normal kidney function)<br>All electrolytes within normal range</div>
-                <span class="badge">Normal</span>
-            </div>
-        </div>
-    </div>
-    
-    <!-- PROFILE PAGE -->
-    <div class="page" id="profile">
-        <div class="card">
-            <div class="card-title">Personal Information</div>
-            
-            <div class="list-item">
-                <div class="list-title">Name</div>
-                <div class="list-subtitle">John Michael Doe</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Date of Birth</div>
-                <div class="list-subtitle">March 15, 1960 (Age 65)</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Contact</div>
-                <div class="list-subtitle">Email: john.doe@email.com<br>Phone: (555) 987-6543</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Address</div>
-                <div class="list-subtitle">123 Main Street<br>Springfield, VA 22150</div>
+            <div class="alert">
+                ✓ All forms ready to download or email to your provider
             </div>
         </div>
         
         <div class="card">
-            <div class="card-title">Military Service</div>
+            <div class="card-title">Provider Forms</div>
             
-            <div class="list-item">
-                <div class="list-title">Branch</div>
-                <div class="list-subtitle">United States Army</div>
+            <div class="list-item" onclick="showPage('intake-form')">
+                <div class="list-title">🏥 New Patient Intake Form</div>
+                <div class="list-subtitle">Complete patient information, medical history, current medications</div>
+                <span class="badge">Ready to Send</span>
             </div>
             
-            <div class="list-item">
-                <div class="list-title">Service Period</div>
-                <div class="list-subtitle">1979 - 1999 (20 years)</div>
+            <div class="list-item" onclick="showPage('hipaa-form')">
+                <div class="list-title">🔒 HIPAA Privacy Authorization</div>
+                <div class="list-subtitle">Standard privacy and consent forms for new providers</div>
+                <span class="badge">Ready to Sign</span>
             </div>
             
-            <div class="list-item">
-                <div class="list-title">VA Claim Number</div>
-                <div class="list-subtitle">123-45-6789</div>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Disability Rating</div>
-                <div class="list-subtitle">60% Service-Connected</div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- SETTINGS PAGE -->
-    <div class="page" id="settings">
-        <div class="card">
-            <div class="card-title">App Settings</div>
-            
-            <div class="list-item">
-                <div class="list-title">Notifications</div>
-                <div class="list-subtitle">Push notifications for appointments, messages, and alerts</div>
-                <span class="badge">Enabled</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Biometric Login</div>
-                <div class="list-subtitle">Use Face ID / Touch ID to access app</div>
-                <span class="badge">Enabled</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">AI Features</div>
-                <div class="list-subtitle">Enable AI-powered insights and recommendations</div>
-                <span class="badge">Enabled</span>
-            </div>
-            
-            <div class="list-item">
-                <div class="list-title">Data Sharing</div>
-                <div class="list-subtitle">Share health data with VA healthcare providers</div>
-                <span class="badge">Enabled</span>
+            <div class="list-item" onclick="showPage('records-release')">
+                <div class="list-title">📋 Medical Records Release</div>
+                <div class="list-subtitle">Authorization to share records with new providers</div>
+                <span class="badge">Ready to Send</span>
             </div>
         </div>
         
         <div class="card">
-            <div class="card-title">Privacy & Security</div>
+            <div class="card-title">Work & Family Forms</div>
             
-            <div class="list-item">
-                <div class="list-title">HIPAA Authorization</div>
-                <div class="list-subtitle">View and manage your HIPAA data sharing preferences</div>
+            <div class="list-item" onclick="showPage('fmla-form')">
+                <div class="list-title">👨‍👩‍👧 FMLA Medical Certification</div>
+                <div class="list-subtitle">Family Medical Leave Act - Employee or family member care</div>
+                <span class="badge">Ready for Doctor</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Research & Trials</div>
+            
+            <div class="list-item" onclick="showPage('trial-form')">
+                <div class="list-title">🧪 Clinical Trial Pre-Screening</div>
+                <div class="list-subtitle">Standard eligibility questionnaire for medical research</div>
+                <span class="badge">Ready to Submit</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">How It Works</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">MÉTIS Pre-Fills Everything</div>
+                    <div class="step-desc">All your health data automatically populates standard forms</div>
+                </div>
             </div>
             
-            <div class="list-item">
-                <div class="list-title">Export My Data</div>
-                <div class="list-subtitle">Download all your health information</div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Review & Download</div>
+                    <div class="step-desc">Check accuracy, download PDF, or email directly to provider</div>
+                </div>
             </div>
             
-            <div class="list-item">
-                <div class="list-title">Delete Account</div>
-                <div class="list-subtitle">Permanently delete your MÉTIS account and data</div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">No More Clipboards!</div>
+                    <div class="step-desc">Arrive at appointments with forms already complete</div>
+                </div>
             </div>
         </div>
     </div>
     
-    <script>
-        // Page Navigation
-        function showPage(pageId) {
+    <!-- NEW PATIENT INTAKE FORM -->
+    <div class="page" id="intake-form">
+        <div class="card">
+            <div class="card-title">🏥 New Patient Intake Form</div>
+            <div class="card-subtitle">Complete patient information ready for any provider</div>
+            
+            <div class="status-ready">✓ 100% Complete - Ready to Send</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Form Preview</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">NEW PATIENT REGISTRATION</div>
+                    <div class="form-number">Universal Intake Form</div>
+                </div>
+                
+                <div class="section-header" style="margin-top: 0;">Patient Information</div>
+                
+                <div class="form-field">
+                    <div class="form-label">Full Legal Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Date of Birth</div>
+                    <div class="form-value">March 15, 1960 (Age 65)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Social Security Number</div>
+                    <div class="form-value">123-45-6789</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Address</div>
+                    <div class="form-value">123 Main Street<br>Springfield, VA 22150</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Phone Number</div>
+                    <div class="form-value">Mobile: (555) 987-6543</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Email</div>
+                    <div class="form-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a9c3c6c1c787cdc6cce9ccc4c8c0c587cac6c4">[email&#160;protected]</a></div>
+                </div>
+                
+                <div class="section-header">Emergency Contact</div>
+                
+                <div class="form-field">
+                    <div class="form-label">Emergency Contact Name</div>
+                    <div class="form-value">Mary Doe (Spouse)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Emergency Contact Phone</div>
+                    <div class="form-value">(555) 123-9999</div>
+                </div>
+                
+                <div class="section-header">Insurance Information</div>
+                
+                <div class="form-field">
+                    <div class="form-label">Primary Insurance</div>
+                    <div class="form-value">Veterans Affairs (VA Healthcare)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">VA Claim Number</div>
+                    <div class="form-value">123-45-6789</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medicare Number</div>
+                    <div class="form-value">1EG4-TE5-MK72</div>
+                </div>
+                
+                <div class="section-header">Medical History</div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Diagnoses</div>
+                    <div class="form-value">
+                        • Type 2 Diabetes Mellitus (E11.9) - Diagnosed Jan 2020<br>
+                        • Essential Hypertension (I10) - Diagnosed Mar 2019<br>
+                        • Hyperlipidemia (E78.5) - Diagnosed Mar 2019
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Medications</div>
+                    <div class="form-value">
+                        • Metformin 1000mg - Twice daily with meals<br>
+                        • Lisinopril 10mg - Once daily morning<br>
+                        • Atorvastatin 20mg - Once daily bedtime
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Allergies</div>
+                    <div class="form-value">No known drug allergies (NKDA)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Primary Care Provider</div>
+                    <div class="form-value">Dr. Michael Chen, MD<br>VA Medical Center<br>(555) 123-4567</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Pharmacy</div>
+                    <div class="form-value">VA Pharmacy<br>VA Medical Center, Springfield, VA</div>
+                </div>
+                
+                <div class="section-header">Military Service</div>
+                
+                <div class="form-field">
+                    <div class="form-label">Veteran Status</div>
+                    <div class="form-value">Yes - United States Army</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Service Period</div>
+                    <div class="form-value">1979 - 1999 (20 years active duty)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">VA Disability Rating</div>
+                    <div class="form-value">60% Service-Connected</div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: Downloads PDF or emails to provider')">
+                📧 Email to Provider
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Downloads completed PDF')">
+                📄 Download PDF
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">How to Use</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Before Your Appointment</div>
+                    <div class="step-desc">Email this form to your new provider 24-48 hours before your visit</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Or Bring to Appointment</div>
+                    <div class="step-desc">Download PDF and bring printed copy. No more clipboard forms!</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Auto-Updates</div>
+                    <div class="step-desc">When you add medications or diagnoses in MÉTIS, this form updates automatically</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- HIPAA FORM -->
+    <div class="page" id="hipaa-form">
+        <div class="card">
+            <div class="card-title">🔒 HIPAA Privacy Authorization</div>
+            <div class="card-subtitle">Standard consent for new healthcare providers</div>
+            
+            <div class="status-ready">✓ Ready to Sign</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Form Preview</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">HIPAA PRIVACY AUTHORIZATION</div>
+                    <div class="form-number">Protected Health Information Release</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Patient Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Date of Birth</div>
+                    <div class="form-value">March 15, 1960</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">I Authorize Release Of:</div>
+                    <div class="form-value">
+                        ☑ Complete Medical Records<br>
+                        ☑ Lab Results<br>
+                        ☑ Medication History<br>
+                        ☑ Treatment Plans<br>
+                        ☑ Specialist Consultations
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">To Be Shared With:</div>
+                    <div class="form-value">[NEW PROVIDER NAME TO BE FILLED]</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Purpose</div>
+                    <div class="form-value">Continuity of Care - Treatment by new healthcare provider</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Healthcare Providers</div>
+                    <div class="form-value">
+                        Dr. Michael Chen, MD - VA Medical Center<br>
+                        Dr. Sarah Johnson, MD - VA Medical Center<br>
+                        Dr. Robert Martinez, MD - VA Medical Center
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Signature Required</div>
+                    <div class="form-value">[TO BE SIGNED AT PROVIDER OFFICE OR DIGITALLY]</div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: Emails form to provider')">
+                📧 Email to Provider
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Downloads PDF for signature')">
+                📄 Download for Signature
+            </button>
+        </div>
+    </div>
+    
+    <!-- FMLA FORM -->
+    <div class="page" id="fmla-form">
+        <div class="card">
+            <div class="card-title">👨‍👩‍👧 FMLA Medical Certification</div>
+            <div class="card-subtitle">Family Medical Leave Act - WH-380-E Form</div>
+            
+            <div class="status-ready">✓ Ready for Doctor to Complete</div>
+            
+            <div class="alert-blue alert">
+                Patient information pre-filled. Take this to your doctor to complete the medical certification section.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Form Preview: WH-380-E</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">CERTIFICATION OF HEALTH CARE PROVIDER</div>
+                    <div class="form-number">U.S. Dept of Labor WH-380-E</div>
+                </div>
+                
+                <div class="section-header" style="margin-top: 0;">Section I - Employee Information (Pre-Filled)</div>
+                
+                <div class="form-field">
+                    <div class="form-label">Employee Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Date of Birth</div>
+                    <div class="form-value">March 15, 1960</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medical Conditions</div>
+                    <div class="form-value">
+                        Type 2 Diabetes Mellitus (E11.9)<br>
+                        Essential Hypertension (I10)<br>
+                        Hyperlipidemia (E78.5)
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Treatment</div>
+                    <div class="form-value">
+                        Medications: Metformin, Lisinopril, Atorvastatin<br>
+                        Regular monitoring with endocrinologist and primary care
+                    </div>
+                </div>
+                
+                <div class="section-header">Section II - For Healthcare Provider</div>
+                
+                <div class="form-field">
+                    <div class="form-label">Healthcare Provider Name</div>
+                    <div class="form-value">[TO BE COMPLETED BY PROVIDER]</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medical Specialty</div>
+                    <div class="form-value">[TO BE COMPLETED BY PROVIDER]</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Suggested Fields for Provider</div>
+                    <div class="form-value">
+                        ☐ Employee is unable to perform job functions due to serious health condition<br>
+                        ☐ Intermittent leave needed for medical appointments and treatment<br>
+                        ☐ Estimated frequency: ___ times per month<br>
+                        ☐ Estimated duration of leave needed: ___ weeks/months
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: Downloads PDF to take to doctor')">
+                📄 Download for Doctor
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Emails to doctor to complete')">
+                📧 Email to Doctor
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Instructions</div>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Download Pre-Filled Form</div>
+                    <div class="step-desc">All your medical information already populated</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Take to Your Doctor</div>
+                    <div class="step-desc">Bring to appointment or email ahead. Doctor completes Section II.</div>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Submit to Employer</div>
+                    <div class="step-desc">Once doctor completes, submit to your HR department</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- RECORDS RELEASE -->
+    <div class="page" id="records-release">
+        <div class="card">
+            <div class="card-title">📋 Medical Records Release Authorization</div>
+            <div class="card-subtitle">Transfer records from current providers to new provider</div>
+            
+            <div class="status-ready">✓ Ready to Send</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Form Preview</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">AUTHORIZATION TO RELEASE MEDICAL RECORDS</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Patient Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Date of Birth</div>
+                    <div class="form-value">March 15, 1960</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Release Records FROM:</div>
+                    <div class="form-value">
+                        Dr. Michael Chen, MD<br>
+                        VA Medical Center<br>
+                        1500 Medical Drive, Springfield, VA 22150<br>
+                        Phone: (555) 123-4567<br>
+                        Fax: (555) 123-4568
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Send Records TO:</div>
+                    <div class="form-value">[NEW PROVIDER INFORMATION TO BE FILLED]</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Records Requested</div>
+                    <div class="form-value">
+                        ☑ Complete medical records from Jan 2019 - Present<br>
+                        ☑ Lab results (HbA1c, lipid panels, metabolic panels)<br>
+                        ☑ Medication history and current prescriptions<br>
+                        ☑ Specialist consultation notes<br>
+                        ☑ Treatment plans and progress notes
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Purpose</div>
+                    <div class="form-value">Continuity of care with new healthcare provider</div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: Sends to current provider')">
+                📧 Send to Current Provider
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Downloads PDF')">
+                📄 Download PDF
+            </button>
+        </div>
+    </div>
+    
+    <!-- CLINICAL TRIAL FORM -->
+    <div class="page" id="trial-form">
+        <div class="card">
+            <div class="card-title">🧪 Clinical Trial Pre-Screening</div>
+            <div class="card-subtitle">Standard eligibility questionnaire for medical research</div>
+            
+            <div class="status-ready">✓ Complete - Ready to Submit</div>
+            
+            <div class="alert-blue alert">
+                Based on your diabetes diagnosis, you may be eligible for Type 2 Diabetes research studies.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Pre-Screening Questionnaire</div>
+            
+            <div class="form-preview">
+                <div class="form-header">
+                    <div class="form-title">CLINICAL TRIAL PRE-SCREENING</div>
+                    <div class="form-number">Standard Eligibility Assessment</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Participant Name</div>
+                    <div class="form-value">John Michael Doe</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Age</div>
+                    <div class="form-value">65 years old</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Primary Diagnosis</div>
+                    <div class="form-value">Type 2 Diabetes Mellitus (E11.9)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Date of Diagnosis</div>
+                    <div class="form-value">January 2020 (5 years)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Treatment</div>
+                    <div class="form-value">
+                        Metformin 1000mg twice daily<br>
+                        HbA1c: 7.2% (most recent)
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Comorbidities</div>
+                    <div class="form-value">
+                        Essential Hypertension (controlled)<br>
+                        Hyperlipidemia (controlled)
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Current Medications</div>
+                    <div class="form-value">
+                        • Metformin 1000mg<br>
+                        • Lisinopril 10mg<br>
+                        • Atorvastatin 20mg
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Eligible for Studies Involving:</div>
+                    <div class="form-value">
+                        ✓ Type 2 Diabetes Management<br>
+                        ✓ Metabolic Syndrome<br>
+                        ✓ Cardiovascular Risk Reduction<br>
+                        ✓ New Diabetes Medications
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Willing to Travel</div>
+                    <div class="form-value">Within 50 miles of Springfield, VA</div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: Submits to ClinicalTrials.gov or research coordinator')">
+                📤 Submit for Trial Matching
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Downloads PDF')">
+                📄 Download PDF
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Potential Studies</div>
+            
+            <div class="list-item">
+                <div class="list-title">Diabetes Prevention Research</div>
+                <div class="list-subtitle">May be eligible based on your diagnosis and HbA1c level</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Cardiovascular Outcomes Study</div>
+                <div class="list-subtitle">Your metabolic syndrome profile matches eligibility criteria</div>
+            </div>
+        </div>
+    </div>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Navigation History Stack
+        let pageHistory = [];
+        let currentPage = 'dashboard';
+        
+        // Touch/Swipe Detection
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        function showPage(pageId, addToHistory = true) {
+            // Add current page to history before navigating
+            if (addToHistory && currentPage && currentPage !== pageId) {
+                pageHistory.push(currentPage);
+            }
+            
+            // Update current page
+            currentPage = pageId;
+            
             // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             
             // Show selected page
-            const selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.classList.add('active');
+            const page = document.getElementById(pageId);
+            if (page) {
+                page.classList.add('active');
             }
             
             // Close menu
             toggleMenu(false);
             
+            // Update back button visibility
+            updateBackButton();
+            
             // Scroll to top
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
         
-        // Menu Toggle
+        function goBack() {
+            if (pageHistory.length > 0) {
+                const previousPage = pageHistory.pop();
+                showPage(previousPage, false); // Don't add to history when going back
+            } else {
+                showPage('dashboard', false);
+            }
+        }
+        
+        function updateBackButton() {
+            const backBtn = document.getElementById('backBtn');
+            const menuBtn = document.getElementById('menuBtn');
+            
+            if (pageHistory.length > 0 && currentPage !== 'dashboard') {
+                backBtn.style.display = 'flex';
+                menuBtn.style.display = 'none';
+            } else {
+                backBtn.style.display = 'none';
+                menuBtn.style.display = 'flex';
+            }
+        }
+        
         function toggleMenu(force) {
             const menu = document.getElementById('menu');
             const overlay = document.getElementById('menuOverlay');
@@ -984,23 +1956,48 @@
             if (force === false) {
                 menu.classList.remove('open');
                 overlay.classList.remove('show');
-            } else if (force === true) {
-                menu.classList.add('open');
-                overlay.classList.add('show');
             } else {
                 menu.classList.toggle('open');
                 overlay.classList.toggle('show');
             }
         }
         
-        // Prevent body scroll when menu is open
-        document.getElementById('menu').addEventListener('transitionend', function() {
-            if (this.classList.contains('open')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
+        // Swipe Gesture Detection
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }
+        
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
+            const swipeDistanceX = touchEndX - touchStartX;
+            const swipeDistanceY = Math.abs(touchEndY - touchStartY);
+            const minSwipeDistance = 100; // Minimum distance for swipe
+            const maxVerticalDistance = 100; // Max vertical movement to still count as horizontal swipe
+            
+            // Check if it's a horizontal swipe (not vertical scroll)
+            if (swipeDistanceY < maxVerticalDistance) {
+                // Swipe right = go back
+                if (swipeDistanceX > minSwipeDistance) {
+                    goBack();
+                }
+                // Swipe left = open menu (optional)
+                else if (swipeDistanceX < -minSwipeDistance) {
+                    // Optionally open menu on left swipe
+                    // toggleMenu(true);
+                }
             }
-        });
-    </script>
-</body>
-</html>
+        }
+        
+        // Add swipe listeners
+        document.addEventListener('touchstart', handleTouchStart, {passive: true});
+        document.addEventListener('touchend', handleTouchEnd, {passive: true});
+        
+        // Initialize on load
+        window.addEventListener('load', function() {
+ 
