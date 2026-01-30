@@ -457,6 +457,14 @@
         </div>
         
         <div class="menu-section">
+            <div class="menu-section-title">📱 Connected Health</div>
+            <div class="menu-item" onclick="showPage('wearables-hub')">⌚ Connected Devices</div>
+            <div class="menu-item" onclick="showPage('wearable-insights')">🧠 AI Health Insights</div>
+            <div class="menu-item" onclick="showPage('trends')">📊 Health Trends</div>
+            <div class="menu-item" onclick="showPage('alerts')">🚨 Smart Alerts</div>
+        </div>
+        
+        <div class="menu-section">
             <div class="menu-section-title">Health Data</div>
             <div class="menu-item" onclick="showPage('conditions')">🏥 My Conditions</div>
             <div class="menu-item" onclick="showPage('medications')">💊 Medications</div>
@@ -472,6 +480,13 @@
             <div class="menu-section-title">Care</div>
             <div class="menu-item" onclick="showPage('appointments')">📅 Appointments</div>
             <div class="menu-item" onclick="showPage('doctors')">👨‍⚕️ My Doctors</div>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-section-title">💬 Communications</div>
+            <div class="menu-item" onclick="showPage('messages')">📨 Messages</div>
+            <div class="menu-item" onclick="showPage('message-thread-chen')">👨‍⚕️ Dr. Chen Thread</div>
+            <div class="menu-item" onclick="showPage('message-thread-pharmacy')">💊 Pharmacy Thread</div>
         </div>
     </div>
     
@@ -1888,7 +1903,7 @@
         </div>
     </div>
     
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    
         // Navigation History Stack
         let pageHistory = [];
         let currentPage = 'dashboard';
@@ -2000,4 +2015,869 @@
         
         // Initialize on load
         window.addEventListener('load', function() {
- 
+    
+    <!-- WEARABLES HUB -->
+    <div class="page" id="wearables-hub">
+        <div class="card">
+            <div class="card-title">⌚ Connected Devices</div>
+            <div class="card-subtitle">Sync with Apple Health, Oura Ring, Fitbit, and more</div>
+            
+            <div class="alert">
+                🤖 <strong>AI combines wearable data with your medical records</strong> for powerful new insights
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Currently Connected</div>
+            
+            <div class="list-item">
+                <div class="list-title">🍎 Apple Health</div>
+                <div class="list-subtitle">
+                    Syncing: Heart Rate, Steps, Sleep, Blood Glucose, Blood Pressure<br>
+                    Last sync: 2 minutes ago
+                </div>
+                <span class="badge">Connected</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">⭕ Oura Ring (Gen 3)</div>
+                <div class="list-subtitle">
+                    Syncing: Sleep Quality, HRV, Resting Heart Rate, Body Temperature<br>
+                    Last sync: 5 minutes ago
+                </div>
+                <span class="badge">Connected</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">⌚ Apple Watch Series 9</div>
+                <div class="list-subtitle">
+                    Syncing: Heart Rate, ECG, Activity, Blood Oxygen<br>
+                    Last sync: Real-time via Apple Health
+                </div>
+                <span class="badge">Connected</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Available to Connect</div>
+            
+            <div class="list-item">
+                <div class="list-title">Fitbit</div>
+                <div class="list-subtitle">Track activity, heart rate, sleep</div>
+                <span class="badge-blue badge">Connect</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Dexcom CGM</div>
+                <div class="list-subtitle">Continuous glucose monitoring for diabetes</div>
+                <span class="badge-blue badge">Connect</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Withings Scale</div>
+                <div class="list-subtitle">Weight, BMI, body composition</div>
+                <span class="badge-blue badge">Connect</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">WHOOP</div>
+                <div class="list-subtitle">Strain, recovery, sleep tracking</div>
+                <span class="badge-blue badge">Connect</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Today's Data Summary</div>
+            
+            <div class="form-preview">
+                <div class="form-field">
+                    <div class="form-label">Resting Heart Rate</div>
+                    <div class="form-value">72 bpm</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Sleep Last Night</div>
+                    <div class="form-value">7.2 hours (Quality Score: 81/100)</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Steps Today</div>
+                    <div class="form-value">8,247 steps</div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Heart Rate Variability</div>
+                    <div class="form-value">45ms average</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- WEARABLE AI INSIGHTS -->
+    <div class="page" id="wearable-insights">
+        <div class="card">
+            <div class="card-title">🧠 AI Health Insights <span class="badge">AI-Powered</span></div>
+            <div class="card-subtitle">Combining medical records + wearable data for breakthrough insights</div>
+            
+            <div class="alert-orange alert">
+                <strong>⚠️ Action Recommended:</strong> Your resting heart rate has increased 8% over the past week. Schedule cardiology follow-up.
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Critical Insights</div>
+            
+            <div class="list-item">
+                <div class="list-title">🫀 Cardiovascular Risk Pattern Detected</div>
+                <div class="list-subtitle">
+                    <strong>AI Analysis:</strong> Your resting heart rate has increased from 68 bpm to 76 bpm over 7 days. Combined with your hypertension diagnosis and recent HbA1c of 7.2%, this suggests potential cardiovascular stress.<br><br>
+                    <strong>Medical Context:</strong><br>
+                    • Current diagnosis: Essential Hypertension (I10)<br>
+                    • Medication: Lisinopril 10mg daily<br>
+                    • Recent labs: HbA1c 7.2% (elevated)<br>
+                    • Age: 65 years<br><br>
+                    <strong>Recommendation:</strong> Schedule appointment with Dr. Martinez (cardiologist) within 2 weeks. Consider stress test. This 11% increase in resting heart rate combined with your existing conditions warrants immediate evaluation.
+                </div>
+                <span class="badge-red badge">High Priority</span>
+                <button class="action-btn" style="margin-top: 12px;" onclick="alert('In production: Schedules appointment with Dr. Martinez')">
+                    📅 Schedule Cardiology Appointment
+                </button>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">😴 Sleep Quality Affects Glucose Control</div>
+                <div class="list-subtitle">
+                    <strong>AI Correlation Found:</strong> On nights when you sleep less than 6 hours, your fasting glucose averages 132 mg/dL. On nights with 7+ hours sleep, it averages 118 mg/dL (14 point difference!).<br><br>
+                    <strong>Data Analysis (Past 30 Days):</strong><br>
+                    • Nights with <6 hours sleep: 9 nights, avg glucose 132 mg/dL<br>
+                    • Nights with 6-7 hours sleep: 12 nights, avg glucose 125 mg/dL<br>
+                    • Nights with 7+ hours sleep: 9 nights, avg glucose 118 mg/dL<br>
+                    • Correlation coefficient: -0.72 (strong negative correlation)<br><br>
+                    <strong>Clinical Significance:</strong> This 14-point glucose difference represents approximately 0.3-0.5% improvement in HbA1c if sleep is optimized consistently.<br><br>
+                    <strong>Recommendation:</strong> Prioritize 7-8 hours sleep nightly. Consider sleep study if insomnia persists. Discuss with Dr. Chen at next appointment.
+                </div>
+                <span class="badge-orange badge">Actionable</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">🚶 Activity Level Below Target</div>
+                <div class="list-subtitle">
+                    <strong>AI Analysis:</strong> Your average daily steps (6,200) are below the 8,000 step target for diabetes management. Your HbA1c could improve by 0.3-0.5% with increased activity.<br><br>
+                    <strong>Current Activity Pattern:</strong><br>
+                    • Average daily steps: 6,247<br>
+                    • Active minutes/day: 32 minutes<br>
+                    • Days meeting 8,000 step goal: 8 of 30 days<br><br>
+                    <strong>Evidence-Based Target:</strong> Studies show type 2 diabetics who achieve 8,000+ daily steps have 20% better glucose control than those under 6,000 steps.<br><br>
+                    <strong>Recommendation:</strong> Add 15-minute walk after meals. Post-meal walking reduces glucose spikes by up to 20%.
+                </div>
+                <span class="badge">Opportunity</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">💊 Medication Timing Optimization</div>
+                <div class="list-subtitle">
+                    <strong>AI Pattern Detected:</strong> Your blood pressure readings are 8 mmHg higher in the evening (average 138/86) vs morning (130/78). You take Lisinopril in the morning.<br><br>
+                    <strong>Blood Pressure Data (30-Day Average):</strong><br>
+                    • Morning (6-10 AM): 130/78 mmHg<br>
+                    • Afternoon (12-4 PM): 134/82 mmHg<br>
+                    • Evening (6-10 PM): 138/86 mmHg<br><br>
+                    <strong>Current Medication Schedule:</strong><br>
+                    • Lisinopril 10mg - Taken at 8:00 AM<br>
+                    • Peak effect: 6-8 hours after dose<br>
+                    • Wearing off by evening<br><br>
+                    <strong>Recommendation:</strong> Ask Dr. Chen about splitting dose (5mg AM + 5mg PM) or moving entire dose to evening administration. This could better control evening BP elevation.
+                </div>
+                <span class="badge-blue badge">Discuss with Doctor</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Positive Trends</div>
+            
+            <div class="list-item">
+                <div class="list-title">✅ Sleep Quality Improving</div>
+                <div class="list-subtitle">Your average sleep score increased from 72 to 81 over the past month. Deep sleep up 15%. This improvement is already positively impacting your glucose control.</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">✅ Heart Rate Variability Stable</div>
+                <div class="list-subtitle">HRV averaging 45ms indicates good autonomic nervous system function for age 65. This is a positive indicator of cardiovascular health.</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- HEALTH TRENDS -->
+    <div class="page" id="trends">
+        <div class="card">
+            <div class="card-title">📊 Health Trends (30 Days)</div>
+            <div class="card-subtitle">Long-term patterns from wearables + medical records</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">🫀 Cardiovascular Metrics</div>
+            
+            <div class="form-preview">
+                <div class="form-field">
+                    <div class="form-label">Resting Heart Rate Trend</div>
+                    <div class="form-value">
+                        Week 1 (Jan 1-7): 68 bpm<br>
+                        Week 2 (Jan 8-14): 70 bpm<br>
+                        Week 3 (Jan 15-21): 73 bpm<br>
+                        Week 4 (Jan 22-28): 76 bpm<br>
+                        <strong style="color: #f88a2f;">⚠️ Increasing trend - monitor closely</strong><br><br>
+                        11% increase over 4 weeks. Normal range for age 65: 60-80 bpm. Current reading is within normal but trending upward.
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Blood Pressure (Home Monitoring)</div>
+                    <div class="form-value">
+                        Morning average: 130/78 mmHg ✓<br>
+                        Evening average: 138/86 mmHg ⚠️<br>
+                        Target: <140/90 mmHg<br><br>
+                        <strong>AI Note:</strong> Evening readings elevated. Lisinopril taken at 8 AM may be wearing off by evening. Discuss medication timing with Dr. Chen.
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Heart Rate Variability (HRV)</div>
+                    <div class="form-value">
+                        30-day average: 45ms<br>
+                        Range: 38-52ms<br>
+                        Trend: Stable ✓<br><br>
+                        <strong>AI Note:</strong> Good autonomic function for age 65. HRV typically declines with age; maintaining 45ms average is positive indicator of cardiovascular health.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">🍽️ Glucose & Metabolic</div>
+            
+            <div class="form-preview">
+                <div class="form-field">
+                    <div class="form-label">Fasting Glucose Correlation with Sleep</div>
+                    <div class="form-value">
+                        After 7+ hours sleep: 118 mg/dL average ✓<br>
+                        After 6-7 hours sleep: 125 mg/dL average ⚠️<br>
+                        After poor sleep (<6 hrs): 132 mg/dL ❌<br><br>
+                        <strong>AI Insight:</strong> Sleep quality is the #1 controllable factor affecting your glucose levels. Each additional hour of quality sleep correlates with 7 mg/dL improvement in fasting glucose.<br><br>
+                        Target fasting glucose: <126 mg/dL<br>
+                        Current avg (all nights): 125 mg/dL<br>
+                        Potential with optimized sleep: 118 mg/dL
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Activity Impact on Glucose</div>
+                    <div class="form-value">
+                        Days with 8,000+ steps: HbA1c equivalent ~7.0%<br>
+                        Days with 5,000-8,000 steps: HbA1c equivalent ~7.2%<br>
+                        Days with <5,000 steps: HbA1c equivalent ~7.4%<br><br>
+                        <strong>AI Recommendation:</strong> Target 8,000 daily steps. On days you achieve this goal, your glucose control improves measurably. Post-meal walks are especially effective.
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medication Adherence Tracking</div>
+                    <div class="form-value">
+                        Metformin: 100% adherence (tracked via Apple Health)<br>
+                        Lisinopril: 97% adherence<br>
+                        Atorvastatin: 93% adherence<br><br>
+                        Missed doses: 3 in past 30 days (all Atorvastatin, evening dose)
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">😴 Sleep Analysis</div>
+            
+            <div class="form-preview">
+                <div class="form-field">
+                    <div class="form-label">Sleep Duration</div>
+                    <div class="form-value">
+                        30-day average: 6.8 hours<br>
+                        Target: 7-8 hours<br>
+                        <strong>Status:</strong> Slightly below optimal ⚠️<br><br>
+                        Nights meeting 7+ hour goal: 9 of 30<br>
+                        Improvement needed: +12-72 minutes per night
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Sleep Quality Score (Oura Ring)</div>
+                    <div class="form-value">
+                        Current: 81/100 ✓<br>
+                        30-day trend: Improving (+9 points vs last month)<br>
+                        Deep sleep: 1.2 hours average (18% of total)<br>
+                        REM sleep: 1.8 hours average (26% of total)<br>
+                        Light sleep: 3.8 hours average (56% of total)<br><br>
+                        <strong>Sleep Quality Breakdown:</strong><br>
+                        • Sleep efficiency: 89% (good)<br>
+                        • Time to fall asleep: 12 minutes (excellent)<br>
+                        • Wake-ups: 2.3 per night (normal)<br>
+                        • Resting heart rate during sleep: 58 bpm
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">AI Sleep-Health Correlation</div>
+                    <div class="form-value">
+                        Better sleep = 11% lower fasting glucose<br>
+                        Better sleep = 5 bpm lower resting HR<br>
+                        Better sleep = 8% higher HRV<br><br>
+                        <strong>Priority Action:</strong> Optimize sleep hygiene for maximum health benefit. Sleep is your most powerful health lever right now.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">🚶 Activity & Exercise</div>
+            
+            <div class="form-preview">
+                <div class="form-field">
+                    <div class="form-label">Daily Steps Analysis</div>
+                    <div class="form-value">
+                        30-day average: 6,247 steps/day<br>
+                        Target: 8,000 steps/day<br>
+                        <strong>Gap:</strong> Need 1,753 more steps daily ⚠️<br><br>
+                        Best day: 10,842 steps (Jan 14)<br>
+                        Worst day: 3,124 steps (Jan 7)<br>
+                        Days meeting goal: 8 of 30 days
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Active Minutes</div>
+                    <div class="form-value">
+                        Average: 32 minutes/day<br>
+                        Weekly total: 224 minutes<br>
+                        Target: 150 minutes/week (21/day minimum)<br>
+                        <strong>Status:</strong> Exceeding minimum guideline! ✓<br><br>
+                        You're meeting CDC recommendations for moderate activity (150+ min/week). Great work!
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Activity Timing & Glucose Impact</div>
+                    <div class="form-value">
+                        Post-meal walks (within 30 min): 6 days<br>
+                        Glucose reduction on those days: Average 18 mg/dL<br><br>
+                        <strong>Best practice identified:</strong> 15-minute walk after dinner reduces evening glucose by 20 mg/dL on average.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- SMART ALERTS -->
+    <div class="page" id="alerts">
+        <div class="card">
+            <div class="card-title">🚨 Smart Health Alerts</div>
+            <div class="card-subtitle">AI monitors wearable data 24/7 for early warning signs</div>
+            
+            <div class="alert-orange alert">
+                <strong>2 active alerts require attention</strong>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Active Alerts</div>
+            
+            <div class="list-item">
+                <div class="list-title">⚠️ Elevated Resting Heart Rate</div>
+                <div class="list-subtitle">
+                    <strong>Detected:</strong> January 28, 2026<br>
+                    <strong>Pattern:</strong> RHR increased from 68 → 76 bpm over 7 days (11% increase)<br>
+                    <strong>Medical Context:</strong><br>
+                    • You have hypertension (I10) currently treated with Lisinopril 10mg<br>
+                    • You have Type 2 Diabetes (E11.9) with recent HbA1c 7.2%<br>
+                    • You have metabolic syndrome diagnosis<br>
+                    • Age 65 with 60% VA service-connected disability<br><br>
+                    <strong>Risk Assessment:</strong> Moderate - potential cardiovascular stress. Elevated resting heart rate combined with existing cardiovascular risk factors warrants medical evaluation.<br><br>
+                    <strong>Possible Causes:</strong><br>
+                    • Medication adjustment needed<br>
+                    • Increased stress or anxiety<br>
+                    • Dehydration<br>
+                    • Early cardiac event warning sign<br>
+                    • Infection or inflammation<br><br>
+                    <strong>Action Required:</strong> Schedule cardiology appointment within 2 weeks. Dr. Martinez may recommend stress test, ECG, or medication adjustment.
+                </div>
+                <span class="badge-orange badge">Action Needed</span>
+                <button class="action-btn" style="margin-top: 12px;" onclick="alert('In production: Schedules appointment with Dr. Martinez')">
+                    📅 Schedule with Dr. Martinez
+                </button>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">😴 Sleep Duration Below Target</div>
+                <div class="list-subtitle">
+                    <strong>Pattern Detected:</strong> 4 of last 7 nights under 6 hours sleep<br>
+                    <strong>Health Impact:</strong> Fasting glucose averaging 12% higher on low-sleep days (132 mg/dL vs 118 mg/dL)<br>
+                    <strong>Recent Sleep Data:</strong><br>
+                    • Jan 24: 5.2 hours (glucose: 138 mg/dL)<br>
+                    • Jan 25: 6.8 hours (glucose: 122 mg/dL)<br>
+                    • Jan 26: 5.8 hours (glucose: 130 mg/dL)<br>
+                    • Jan 27: 5.4 hours (glucose: 134 mg/dL)<br><br>
+                    <strong>Recommendations:</strong><br>
+                    <strong>Immediate Actions:</strong><br>
+                    • No screens 1 hour before bed<br>
+                    • Keep bedroom temperature under 68°F<br>
+                    • Avoid caffeine after 2 PM<br>
+                    • Establish consistent bedtime (suggest 10 PM)<br><br>
+                    <strong>Consider If Persists:</strong><br>
+                    • Sleep study to rule out sleep apnea<br>
+                    • Discuss with Dr. Chen - may need short-term sleep aid<br>
+                    • Cognitive behavioral therapy for insomnia (CBT-I)
+                </div>
+                <span class="badge-blue badge">Lifestyle Intervention</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Resolved Alerts (Last 30 Days)</div>
+            
+            <div class="list-item">
+                <div class="list-title">✅ Blood Pressure Spike - Resolved</div>
+                <div class="list-subtitle">
+                    <strong>Alert Date:</strong> January 10, 2026<br>
+                    <strong>Issue:</strong> BP reached 152/94 mmHg (above target <140/90)<br>
+                    <strong>Resolution:</strong> Medication adjustment by Dr. Chen on Jan 12<br>
+                    <strong>Current Status:</strong> Stable at 130/78 average (within target)<br>
+                    <strong>Days Stable:</strong> 18 consecutive days
+                </div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">✅ Low Activity Week - Improved</div>
+                <div class="list-subtitle">
+                    <strong>Alert Date:</strong> January 15, 2026<br>
+                    <strong>Issue:</strong> Only 3,800 steps/day average (week of Jan 15-21)<br>
+                    <strong>Cause:</strong> Bad weather prevented outdoor walking<br>
+                    <strong>Current Status:</strong> Back to 6,200 steps/day average<br>
+                    <strong>Recommendation:</strong> Indoor backup plan for inclement weather (mall walking, gym)
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Alert Settings - Customize Monitoring</div>
+            
+            <div class="form-preview">
+                <div class="form-field">
+                    <div class="form-label">Heart Rate Monitoring</div>
+                    <div class="form-value">
+                        ☑ Alert if resting HR increases >10% over 7 days<br>
+                        ☑ Alert if max HR exceeds 220-age formula during exercise<br>
+                        ☑ Alert for irregular rhythm detection (AFib)<br>
+                        ☐ Alert for sustained elevated HR (>100 bpm for 10+ minutes at rest)
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Glucose Monitoring</div>
+                    <div class="form-value">
+                        ☑ Alert if fasting glucose >126 mg/dL for 3+ consecutive days<br>
+                        ☑ Alert when glucose-sleep correlation changes significantly<br>
+                        ☑ Monthly HbA1c estimate based on glucose patterns<br>
+                        ☐ Alert for post-meal glucose spikes >180 mg/dL
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Sleep Monitoring</div>
+                    <div class="form-value">
+                        ☑ Alert if sleep <6 hours for 3+ consecutive nights<br>
+                        ☑ Alert for declining sleep quality trend (>10 point drop)<br>
+                        ☑ Suggest sleep study if chronic issues detected<br>
+                        ☐ Alert for excessive daytime fatigue patterns
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Activity Monitoring</div>
+                    <div class="form-value">
+                        ☑ Alert if steps <5,000/day for 3+ consecutive days<br>
+                        ☑ Weekly activity summary and recommendations<br>
+                        ☐ Push notifications for movement reminders (sedentary >2 hours)<br>
+                        ☐ Alert if active minutes <20/day for full week
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Medication Adherence</div>
+                    <div class="form-value">
+                        ☑ Alert if medication missed for 2+ consecutive doses<br>
+                        ☑ Reminder notifications 15 minutes before scheduled dose<br>
+                        ☐ Alert pharmacy when running low (7-day supply remaining)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- MESSAGES HUB -->
+    <div class="page" id="messages">
+        <div class="card">
+            <div class="card-title">📨 Messages</div>
+            <div class="card-subtitle">Secure communication with your care team</div>
+            
+            <div class="alert">
+                ✓ All messages are HIPAA-compliant and encrypted
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Recent Messages</div>
+            
+            <div class="list-item" onclick="showPage('message-thread-chen')">
+                <div class="list-title">Dr. Michael Chen, MD</div>
+                <div class="list-subtitle">
+                    <strong>Latest:</strong> "Your recent HbA1c shows good control. Let's discuss medication adjustment at next visit."<br>
+                    <strong>Date:</strong> January 28, 2026 at 2:15 PM
+                </div>
+                <span class="badge">2 unread</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('message-thread-pharmacy')">
+                <div class="list-title">VA Pharmacy</div>
+                <div class="list-subtitle">
+                    <strong>Latest:</strong> "Your Metformin refill is ready for pickup."<br>
+                    <strong>Date:</strong> January 27, 2026 at 10:30 AM
+                </div>
+                <span class="badge-blue badge">Read</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">Dr. Sarah Johnson, MD (Endocrinology)</div>
+                <div class="list-subtitle">
+                    <strong>Latest:</strong> "See you at your appointment on Feb 15. Please fast for morning labs."<br>
+                    <strong>Date:</strong> January 25, 2026 at 4:45 PM
+                </div>
+                <span class="badge-blue badge">Read</span>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">VA Medical Records Office</div>
+                <div class="list-subtitle">
+                    <strong>Latest:</strong> "Your requested records have been sent to Dr. Martinez."<br>
+                    <strong>Date:</strong> January 22, 2026 at 11:00 AM
+                </div>
+                <span class="badge-blue badge">Read</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Quick Actions</div>
+            
+            <button class="action-btn" onclick="alert('In production: Opens new message composer')">
+                ✉️ New Message
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Request prescription refill')">
+                💊 Request Prescription Refill
+            </button>
+        </div>
+    </div>
+    
+    <!-- DR. CHEN MESSAGE THREAD -->
+    <div class="page" id="message-thread-chen">
+        <div class="card">
+            <div class="card-title">💬 Conversation with Dr. Michael Chen, MD</div>
+            <div class="card-subtitle">Primary Care Physician • VA Medical Center</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Message Thread</div>
+            
+            <div class="form-preview">
+                <div class="form-field" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
+                    <div class="form-label">Dr. Chen - January 28, 2026 at 2:15 PM</div>
+                    <div class="form-value">
+                        Hi John,<br><br>
+                        I reviewed your recent lab results from January 20th. Your HbA1c is 7.2%, which shows good control compared to your previous reading of 7.8%. Great work on managing your diabetes!<br><br>
+                        I noticed your blood pressure readings from home monitoring show some evening elevation (138/86). We may want to discuss adjusting the timing of your Lisinopril at your next appointment.<br><br>
+                        Please continue your current medications and keep monitoring your glucose and BP at home.<br><br>
+                        - Dr. Chen
+                    </div>
+                </div>
+                
+                <div class="form-field" style="background: #e3f2fd; border-left: 4px solid #2196f3;">
+                    <div class="form-label">You - January 28, 2026 at 4:30 PM</div>
+                    <div class="form-value">
+                        Dr. Chen,<br><br>
+                        Thank you for reviewing my results! I've been working on my sleep schedule and that seems to help with my glucose levels.<br><br>
+                        I've noticed the higher BP in the evenings too. Would moving my Lisinopril to evening help? I take it at 8 AM now.<br><br>
+                        Also, should I schedule my next appointment soon?<br><br>
+                        - John
+                    </div>
+                </div>
+                
+                <div class="form-field" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
+                    <div class="form-label">Dr. Chen - January 29, 2026 at 9:00 AM</div>
+                    <div class="form-value">
+                        John,<br><br>
+                        Great observation about your sleep! There's definitely a connection between sleep quality and glucose control.<br><br>
+                        Regarding the Lisinopril - yes, we could try either splitting your dose (5mg morning + 5mg evening) or moving the entire dose to evening. Let's discuss the best option at your appointment.<br><br>
+                        Please schedule your follow-up for early March. We'll check your BP response and review your home monitoring data.<br><br>
+                        Keep up the good work!<br>
+                        - Dr. Chen
+                    </div>
+                </div>
+                
+                <div class="form-field" style="background: #fff3e0; border-left: 4px solid #ff9800;">
+                    <div class="form-label">⚠️ MÉTIS AI Suggestion</div>
+                    <div class="form-value">
+                        <strong>AI detected:</strong> Your wearable data shows evening BP averaging 138/86 vs morning 130/78. This supports Dr. Chen's observation.<br><br>
+                        <strong>Recommendation:</strong> Share your 30-day BP trend chart from MÉTIS at your appointment to help Dr. Chen make the best medication timing decision.
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: Opens reply composer')">
+                💬 Reply to Dr. Chen
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Shares MÉTIS BP trend data')">
+                📊 Share BP Trend Data
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Previous Messages (Last 30 Days)</div>
+            
+            <div class="list-item">
+                <div class="list-title">January 20 - Lab Results Available</div>
+                <div class="list-subtitle">Dr. Chen notified you that your HbA1c, lipid panel, and metabolic panel results are ready to view.</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">January 12 - Medication Refill Approved</div>
+                <div class="list-subtitle">Dr. Chen approved refills for Metformin, Lisinopril, and Atorvastatin (90-day supply).</div>
+            </div>
+            
+            <div class="list-item">
+                <div class="list-title">January 5 - Blood Pressure Follow-up</div>
+                <div class="list-subtitle">Dr. Chen asked about your home BP readings after recent medication adjustment.</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PHARMACY MESSAGE THREAD -->
+    <div class="page" id="message-thread-pharmacy">
+        <div class="card">
+            <div class="card-title">💊 VA Pharmacy Communications</div>
+            <div class="card-subtitle">Prescription Refills & Pickup Notifications</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Recent Messages</div>
+            
+            <div class="form-preview">
+                <div class="form-field" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
+                    <div class="form-label">VA Pharmacy - January 27, 2026 at 10:30 AM</div>
+                    <div class="form-value">
+                        <strong>Prescription Ready for Pickup</strong><br><br>
+                        The following prescription is ready for pickup at VA Medical Center Pharmacy:<br><br>
+                        <strong>Medication:</strong> Metformin 1000mg<br>
+                        <strong>Quantity:</strong> 180 tablets (90-day supply)<br>
+                        <strong>Refills Remaining:</strong> 2<br>
+                        <strong>Pickup Location:</strong> VA Medical Center, Main Pharmacy<br>
+                        <strong>Hours:</strong> Monday-Friday 8 AM - 6 PM<br><br>
+                        Please bring your VA ID and insurance card.
+                    </div>
+                </div>
+                
+                <div class="form-field" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
+                    <div class="form-label">VA Pharmacy - January 25, 2026 at 3:15 PM</div>
+                    <div class="form-value">
+                        <strong>Refill Request Received</strong><br><br>
+                        We received your refill request for:<br>
+                        • Metformin 1000mg<br>
+                        • Lisinopril 10mg<br>
+                        • Atorvastatin 20mg<br><br>
+                        Your prescriptions will be ready for pickup by January 27th. We'll send you a notification when they're available.
+                    </div>
+                </div>
+                
+                <div class="form-field" style="background: #e3f2fd; border-left: 4px solid #2196f3;">
+                    <div class="form-label">You - January 25, 2026 at 2:00 PM</div>
+                    <div class="form-value">
+                        I'd like to request refills for all three of my medications:<br>
+                        • Metformin 1000mg<br>
+                        • Lisinopril 10mg<br>
+                        • Atorvastatin 20mg<br><br>
+                        Thank you!
+                    </div>
+                </div>
+                
+                <div class="form-field" style="background: #fff3e0; border-left: 4px solid #ff9800;">
+                    <div class="form-label">📋 MÉTIS Reminder</div>
+                    <div class="form-value">
+                        <strong>Medication Schedule:</strong><br>
+                        • Metformin 1000mg - Take with breakfast and dinner<br>
+                        • Lisinopril 10mg - Take once daily in morning<br>
+                        • Atorvastatin 20mg - Take once daily at bedtime<br><br>
+                        <strong>Next Refill Due:</strong> April 25, 2026<br>
+                        MÉTIS will remind you 7 days before you run out.
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="alert('In production: Request another refill')">
+                💊 Request Refill
+            </button>
+            
+            <button class="action-btn action-btn-secondary" onclick="alert('In production: Sets up auto-refill')">
+                🔄 Set Up Auto-Refill
+            </button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Medication Tracker</div>
+            
+            <div class="form-preview">
+                <div class="form-field">
+                    <div class="form-label">Metformin 1000mg</div>
+                    <div class="form-value">
+                        Current Supply: 45 tablets (23 days remaining)<br>
+                        Last Refill: January 27, 2026<br>
+                        Next Refill: February 19, 2026<br>
+                        <span class="badge">On Track</span>
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Lisinopril 10mg</div>
+                    <div class="form-value">
+                        Current Supply: 52 tablets (52 days remaining)<br>
+                        Last Refill: December 15, 2025<br>
+                        Next Refill: March 1, 2026<br>
+                        <span class="badge">On Track</span>
+                    </div>
+                </div>
+                
+                <div class="form-field">
+                    <div class="form-label">Atorvastatin 20mg</div>
+                    <div class="form-value">
+                        Current Supply: 58 tablets (58 days remaining)<br>
+                        Last Refill: December 15, 2025<br>
+                        Next Refill: March 8, 2026<br>
+                        <span class="badge">On Track</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Global navigation variables
+        let pageHistory = [];
+        let currentPage = 'dashboard';
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        // Make functions globally accessible
+        window.showPage = function(pageId, addToHistory = true) {
+            if (addToHistory && currentPage && currentPage !== pageId) {
+                pageHistory.push(currentPage);
+            }
+            
+            currentPage = pageId;
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            
+            const page = document.getElementById(pageId);
+            if (page) {
+                page.classList.add('active');
+            }
+            
+            toggleMenu(false);
+            updateBackButton();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+        
+        window.goBack = function() {
+            if (pageHistory.length > 0) {
+                const previousPage = pageHistory.pop();
+                showPage(previousPage, false);
+            } else {
+                showPage('dashboard', false);
+            }
+        };
+        
+        window.updateBackButton = function() {
+            const backBtn = document.getElementById('backBtn');
+            const menuBtn = document.getElementById('menuBtn');
+            
+            if (pageHistory.length > 0 && currentPage !== 'dashboard') {
+                backBtn.style.display = 'flex';
+                menuBtn.style.display = 'none';
+            } else {
+                backBtn.style.display = 'none';
+                menuBtn.style.display = 'flex';
+            }
+        };
+        
+        window.toggleMenu = function(force) {
+            const menu = document.getElementById('menu');
+            const overlay = document.getElementById('menuOverlay');
+            
+            if (force === false) {
+                menu.classList.remove('open');
+                overlay.classList.remove('show');
+            } else {
+                menu.classList.toggle('open');
+                overlay.classList.toggle('show');
+            }
+        };
+        
+        function handleTouchStart(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }
+        
+        function handleTouchEnd(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }
+        
+        function handleSwipe() {
+            const swipeDistanceX = touchEndX - touchStartX;
+            const swipeDistanceY = Math.abs(touchEndY - touchStartY);
+            const minSwipeDistance = 100;
+            const maxVerticalDistance = 100;
+            
+            if (swipeDistanceY < maxVerticalDistance) {
+                if (swipeDistanceX > minSwipeDistance) {
+                    goBack();
+                }
+            }
+        }
+        
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBackButton();
+            
+            // Add swipe listeners
+            document.addEventListener('touchstart', handleTouchStart, {passive: true});
+            document.addEventListener('touchend', handleTouchEnd, {passive: true});
+        });
+        
+        // Also initialize immediately in case DOMContentLoaded already fired
+        if (document.readyState === 'loading') {
+            // Still loading, DOMContentLoaded will fire
+        } else {
+            // DOM already loaded
+            updateBackButton();
+            document.addEventListener('touchstart', handleTouchStart, {passive: true});
+            document.addEventListener('touchend', handleTouchEnd, {passive: true});
+        }
+    </script>
+</body>
+</html>
