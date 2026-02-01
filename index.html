@@ -42,14 +42,13 @@
             background: none;
             border: 2px solid #a7cf28;
             color: #a7cf28;
-            padding: 10px 14px;
+            padding: 10px 16px;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             cursor: pointer;
             transition: all 0.3s;
             font-family: 'Montserrat', sans-serif;
-            white-space: nowrap;
         }
         
         .nav-btn:hover {
@@ -59,15 +58,9 @@
         
         .logo {
             color: white;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
             letter-spacing: 1px;
-        }
-        
-        @media (min-width: 480px) {
-            .logo {
-                font-size: 28px;
-            }
         }
         
         /* Menu */
@@ -328,10 +321,7 @@
     
     <!-- Navigation Bar -->
     <div class="nav-bar">
-        <div style="display: flex; gap: 8px;">
-            <button class="nav-btn" id="backBtn" onclick="goBack()" style="display: none;">← Back</button>
-            <button class="nav-btn" id="menuBtn" onclick="toggleMenu()">☰ Menu</button>
-        </div>
+        <button class="nav-btn" id="menuBtn" onclick="toggleMenu()">☰ Menu</button>
         <div class="logo">MÉTIS</div>
         <button class="nav-btn" onclick="showPage('dashboard')">🏠 Home</button>
     </div>
@@ -1944,27 +1934,7 @@
             }
             
             toggleMenu(false);
-            updateBackButton();
             window.scrollTo(0, 0);
-        }
-        
-        function goBack() {
-            if (pageHistory.length > 0) {
-                var previousPage = pageHistory.pop();
-                showPage(previousPage, false);
-            }
-        }
-        
-        function updateBackButton() {
-            var backBtn = document.getElementById('backBtn');
-            
-            if (backBtn) {
-                if (pageHistory.length > 0) {
-                    backBtn.style.display = 'block';
-                } else {
-                    backBtn.style.display = 'none';
-                }
-            }
         }
         
         function toggleMenu(forceClose) {
@@ -1981,10 +1951,6 @@
                 }
             }
         }
-        
-        window.onload = function() {
-            updateBackButton();
-        };
     </script>
 </body>
 </html>
