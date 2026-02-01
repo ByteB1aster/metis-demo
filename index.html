@@ -370,8 +370,7 @@
         <div class="menu-section">
             <div class="menu-section-title">👨‍⚕️ Care Team</div>
             <div class="menu-item" onclick="showPage('appointments')">📅 Appointments</div>
-            <div class="menu-item" onclick="showPage('messages')">💬 Dr. Chen</div>
-            <div class="menu-item" onclick="showPage('ssdi-thread')">📝 SSDI Thread</div>
+            <div class="menu-item" onclick="showPage('communications')">💬 Messages</div>
         </div>
         
         <div class="menu-section">
@@ -389,6 +388,7 @@
         
         <div class="menu-section">
             <div class="menu-section-title">📚 Resources</div>
+            <div class="menu-item" onclick="showPage('forms')">📋 Forms Library</div>
             <div class="menu-item" onclick="showPage('resources')">📚 Education</div>
             <div class="menu-item" onclick="showPage('documents')">📄 Documents</div>
             <div class="menu-item" onclick="showPage('upload')">⬆️ Upload</div>
@@ -439,10 +439,15 @@
                 <div class="list-title">✅ Lab Results Received</div>
                 <div class="list-subtitle">HbA1c: 7.2% (improved from 8.1%)</div>
             </div>
+            <div class="list-item" onclick="showPage('communications')" style="cursor: pointer;">
+                <div class="list-title">💬 New Messages (2)</div>
+                <div class="list-subtitle">C&P exam reminder + SSDI status update</div>
+                <span class="badge-red badge">Action Needed</span>
+            </div>
             <div class="list-item">
                 <div class="list-title">⚠️ Heart Rate Alert</div>
                 <div class="list-subtitle">Resting HR increased 11% over 7 days</div>
-                <span class="badge-red badge">Action Needed</span>
+                <span class="badge-red badge">Review Needed</span>
             </div>
         </div>
     </div>
@@ -916,7 +921,59 @@
         </div>
     </div>
     
-    <!-- MESSAGES -->
+    <!-- COMMUNICATIONS HUB -->
+    <div class="page" id="communications">
+        <div class="card">
+            <div class="card-title">Messages</div>
+            <div class="card-subtitle">All conversations with your care team</div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Active Conversations</div>
+            
+            <div class="list-item" onclick="showPage('messages')" style="cursor: pointer;">
+                <div class="list-title">💬 Dr. Chen - Primary Care Team</div>
+                <div class="list-subtitle">
+                    <strong>Latest:</strong> C&P exam reminder - 4 days away<br>
+                    📅 Today, 9:00 AM
+                </div>
+                <span class="badge-red badge">Urgent - Reply Needed</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('ssdi-thread')" style="cursor: pointer;">
+                <div class="list-title">📝 SSDI Application - DC DDS</div>
+                <div class="list-subtitle">
+                    <strong>Latest:</strong> Case in decision-making phase<br>
+                    📅 March 18, 2024
+                </div>
+                <span class="badge-blue badge">In Progress</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('va-messages')" style="cursor: pointer;">
+                <div class="list-title">🎖️ VA Benefits Office</div>
+                <div class="list-subtitle">
+                    <strong>Latest:</strong> Claim status update<br>
+                    📅 March 15, 2024
+                </div>
+                <span class="badge-orange badge">Update Available</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Archived Conversations</div>
+            
+            <div class="list-item" style="opacity: 0.7;">
+                <div class="list-title">👨‍⚕️ Dr. Johnson - Endocrinology</div>
+                <div class="list-subtitle">
+                    Last message: February 28, 2024<br>
+                    Topic: Medication adjustment
+                </div>
+                <span class="badge">Archived</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- DR. CHEN MESSAGES (accessible only from communications hub) -->
     <div class="page" id="messages">
         <div class="card">
             <div class="card-title">Messages - Dr. Chen</div>
@@ -946,7 +1003,7 @@
         </div>
     </div>
     
-    <!-- SSDI THREAD -->
+    <!-- SSDI THREAD (accessible only from communications hub) -->
     <div class="page" id="ssdi-thread">
         <div class="card">
             <div class="card-title">SSDI Communication</div>
@@ -975,6 +1032,43 @@
                     <strong>DC DDS:</strong><br>
                     SSDI application received. Review process: 3-5 months. We'll contact you if additional info needed.
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- VA MESSAGES (accessible only from communications hub) -->
+    <div class="page" id="va-messages">
+        <div class="card">
+            <div class="card-title">VA Benefits Office</div>
+            <div class="card-subtitle">Disability Claim #2024-123456</div>
+        </div>
+        
+        <div class="card">
+            <div class="list-item">
+                <div class="list-title">📅 March 15, 2024</div>
+                <div class="list-subtitle">
+                    <strong>VA Regional Office:</strong><br>
+                    Your disability claim has moved to Step 3 of 5: Evidence Gathering. We're reviewing the medical documentation you submitted.
+                </div>
+                <span class="badge-blue badge">Status Update</span>
+            </div>
+            <div class="list-item">
+                <div class="list-title">📅 March 10, 2024</div>
+                <div class="list-subtitle">
+                    <strong>VA Regional Office:</strong><br>
+                    Thank you for submitting your medical records. We have received:<br>
+                    • Primary care notes from Dr. Johnson<br>
+                    • Lab results (HbA1c, Lipid panel)<br>
+                    • Medication list
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">📅 March 1, 2024</div>
+                <div class="list-subtitle">
+                    <strong>VA Regional Office:</strong><br>
+                    We need additional medical evidence to support your claim for Type 2 Diabetes (E11.9) and Hypertension (I10). Please upload recent medical records within 30 days.
+                </div>
+                <span class="badge-orange badge">Documents Needed</span>
             </div>
         </div>
     </div>
@@ -1301,6 +1395,479 @@
                 <div class="list-title">✓ MRI Scan.dicom</div>
                 <div class="list-subtitle">Uploaded 03/10/2024 • Processed</div>
             </div>
+        </div>
+    </div>
+    
+    <!-- FORMS LIBRARY -->
+    <div class="page" id="forms">
+        <div class="card">
+            <div class="card-title">📋 Forms Library</div>
+            <div class="card-subtitle">Pre-filled forms ready to submit</div>
+            <div class="alert">
+                🤖 <strong>AI Auto-Fill:</strong> All forms pre-populated with your medical data
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">VA Disability Forms</div>
+            
+            <div class="list-item" onclick="showPage('form-va-21-526')" style="cursor: pointer;">
+                <div class="list-title">📄 VA Form 21-526EZ</div>
+                <div class="list-subtitle">
+                    Application for Disability Compensation<br>
+                    <strong>Status:</strong> Pre-filled with your service records & conditions<br>
+                    Conditions: E11.9 (Type 2 Diabetes), I10 (Hypertension), PTSD
+                </div>
+                <span class="badge-blue badge">Ready to Review</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('form-va-21-4142')" style="cursor: pointer;">
+                <div class="list-title">📄 VA Form 21-4142</div>
+                <div class="list-subtitle">
+                    Authorization to Release Medical Information<br>
+                    <strong>Status:</strong> Pre-filled with your providers<br>
+                    Providers: Dr. Sarah Johnson, VA Medical Center
+                </div>
+                <span class="badge-blue badge">Ready to Review</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('form-va-21-0781')" style="cursor: pointer;">
+                <div class="list-title">📄 VA Form 21-0781</div>
+                <div class="list-subtitle">
+                    Statement in Support of Claim for PTSD<br>
+                    <strong>Status:</strong> Partially filled<br>
+                    Personal statement section needs completion
+                </div>
+                <span class="badge-orange badge">Action Needed</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">SSDI Forms</div>
+            
+            <div class="list-item" onclick="showPage('form-ssdi-application')" style="cursor: pointer;">
+                <div class="list-title">📄 SSDI Application (SSA-16)</div>
+                <div class="list-subtitle">
+                    Application for Social Security Disability<br>
+                    <strong>Status:</strong> Pre-filled with work history & medical conditions<br>
+                    Conditions: E11.9, I10, E78.5
+                </div>
+                <span class="badge-blue badge">Ready to Review</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('form-ssdi-3368')" style="cursor: pointer;">
+                <div class="list-title">📄 Form SSA-3368</div>
+                <div class="list-subtitle">
+                    Disability Report - Adult<br>
+                    <strong>Status:</strong> Pre-filled with functional limitations<br>
+                    Medications, daily activities, work limitations included
+                </div>
+                <span class="badge-blue badge">Ready to Review</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Standard Medical Forms</div>
+            
+            <div class="list-item" onclick="showPage('form-medical-history')" style="cursor: pointer;">
+                <div class="list-title">📄 Complete Medical History</div>
+                <div class="list-subtitle">
+                    Comprehensive health history form<br>
+                    <strong>Status:</strong> Pre-filled from your records<br>
+                    All diagnoses, medications, procedures included
+                </div>
+                <span class="badge badge">Complete</span>
+            </div>
+            
+            <div class="list-item" onclick="showPage('form-medication-list')" style="cursor: pointer;">
+                <div class="list-title">📄 Current Medications List</div>
+                <div class="list-subtitle">
+                    Full medication list with dosages<br>
+                    <strong>Status:</strong> Updated daily<br>
+                    3 active medications
+                </div>
+                <span class="badge badge">Complete</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FORM: VA 21-526EZ -->
+    <div class="page" id="form-va-21-526">
+        <div class="card">
+            <div class="card-title">VA Form 21-526EZ</div>
+            <div class="card-subtitle">Application for Disability Compensation</div>
+            <div class="alert">
+                ✅ <strong>Pre-filled with your data</strong> - Review and submit
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Veteran Information</div>
+            <div class="list-item">
+                <div class="list-title">Name</div>
+                <div class="list-subtitle">John Doe</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Social Security Number</div>
+                <div class="list-subtitle">***-**-6789</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">VA File Number</div>
+                <div class="list-subtitle">123456789</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Date of Birth</div>
+                <div class="list-subtitle">January 15, 1959 (Age 65)</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Branch of Service</div>
+                <div class="list-subtitle">U.S. Army</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Claimed Conditions</div>
+            <div class="list-item">
+                <div class="list-title">1. Type 2 Diabetes Mellitus</div>
+                <div class="list-subtitle">
+                    <strong>ICD-10:</strong> E11.9<br>
+                    <strong>Diagnosed:</strong> 11/15/2023<br>
+                    <strong>Service Connection:</strong> Exposure to Agent Orange (presumptive)<br>
+                    <strong>Current Treatment:</strong> Metformin 1000mg twice daily<br>
+                    <strong>HbA1c:</strong> 7.2%
+                </div>
+                <span class="badge badge">Documentation Complete</span>
+            </div>
+            <div class="list-item">
+                <div class="list-title">2. Essential Hypertension</div>
+                <div class="list-subtitle">
+                    <strong>ICD-10:</strong> I10<br>
+                    <strong>Diagnosed:</strong> 01/10/2024<br>
+                    <strong>Service Connection:</strong> Secondary to Type 2 Diabetes<br>
+                    <strong>Current Treatment:</strong> Lisinopril 10mg daily<br>
+                    <strong>Blood Pressure:</strong> 138/86 mmHg
+                </div>
+                <span class="badge badge">Documentation Complete</span>
+            </div>
+            <div class="list-item">
+                <div class="list-title">3. Post-Traumatic Stress Disorder (PTSD)</div>
+                <div class="list-subtitle">
+                    <strong>ICD-10:</strong> F43.1<br>
+                    <strong>Service Connection:</strong> Combat-related stressor<br>
+                    <strong>Status:</strong> Supporting statement needed
+                </div>
+                <span class="badge-orange badge">Needs Statement</span>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Supporting Documents Attached</div>
+            <div class="list-item">
+                <div class="list-title">✓ DD-214 (Discharge Papers)</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">✓ Medical Records - Dr. Sarah Johnson</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">✓ Lab Results (HbA1c, Lipid Panel)</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">✓ Medication List</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button class="action-btn">Download PDF</button>
+            <button class="action-btn action-btn-secondary">Submit to VA</button>
+        </div>
+    </div>
+    
+    <!-- FORM: VA 21-4142 -->
+    <div class="page" id="form-va-21-4142">
+        <div class="card">
+            <div class="card-title">VA Form 21-4142</div>
+            <div class="card-subtitle">Authorization to Release Medical Information</div>
+            <div class="alert">
+                ✅ <strong>Pre-filled with your providers</strong>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Veteran Information</div>
+            <div class="list-item">
+                <div class="list-title">Name</div>
+                <div class="list-subtitle">John Doe</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">SSN</div>
+                <div class="list-subtitle">***-**-6789</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Authorized Providers</div>
+            <div class="list-item">
+                <div class="list-title">1. Dr. Sarah Johnson, MD</div>
+                <div class="list-subtitle">
+                    <strong>Practice:</strong> Mercy Hospital - Primary Care & Endocrinology<br>
+                    <strong>Address:</strong> 123 Medical Plaza, Suite 502<br>
+                    <strong>Phone:</strong> (202) 555-0123<br>
+                    <strong>Records Requested:</strong> All records from 2023-present
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">2. VA Medical Center</div>
+                <div class="list-subtitle">
+                    <strong>Facility:</strong> Washington DC VA Medical Center<br>
+                    <strong>Address:</strong> 50 Irving Street NW<br>
+                    <strong>Records Requested:</strong> All C&P exams and treatment records
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button class="action-btn">Download PDF</button>
+            <button class="action-btn action-btn-secondary">Submit to VA</button>
+        </div>
+    </div>
+    
+    <!-- FORM: SSDI Application -->
+    <div class="page" id="form-ssdi-application">
+        <div class="card">
+            <div class="card-title">SSDI Application (SSA-16)</div>
+            <div class="card-subtitle">Application for Social Security Disability Insurance</div>
+            <div class="alert">
+                ✅ <strong>Pre-filled with work history & medical data</strong>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Personal Information</div>
+            <div class="list-item">
+                <div class="list-title">Full Name</div>
+                <div class="list-subtitle">John Doe</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Social Security Number</div>
+                <div class="list-subtitle">***-**-6789</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Date of Birth</div>
+                <div class="list-subtitle">January 15, 1959 (Age 65)</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Disability Information</div>
+            <div class="list-item">
+                <div class="list-title">Primary Disabling Condition</div>
+                <div class="list-subtitle">
+                    <strong>Type 2 Diabetes Mellitus (E11.9)</strong><br>
+                    Diagnosed: 11/15/2023<br>
+                    Prevents: Extended standing, physical labor, requires frequent breaks for blood sugar monitoring
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Additional Conditions</div>
+                <div class="list-subtitle">
+                    • Hypertension (I10) - Limits physical exertion<br>
+                    • Hyperlipidemia (E78.5) - Requires strict diet, frequent monitoring<br>
+                    • PTSD - Affects concentration, sleep, social interaction
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Date Unable to Work</div>
+                <div class="list-subtitle">February 1, 2024</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Work History (Last 15 Years)</div>
+            <div class="list-item">
+                <div class="list-title">2015-2024: Construction Supervisor</div>
+                <div class="list-subtitle">
+                    ABC Construction Company<br>
+                    Physical demands: Standing 8+ hours, lifting 50+ lbs, outdoor work
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">2010-2015: Warehouse Manager</div>
+                <div class="list-subtitle">
+                    XYZ Logistics<br>
+                    Physical demands: Walking, lifting, inventory management
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Medical Providers</div>
+            <div class="list-item">
+                <div class="list-title">Dr. Sarah Johnson, MD</div>
+                <div class="list-subtitle">Primary Care & Endocrinology - Mercy Hospital</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">VA Medical Center</div>
+                <div class="list-subtitle">Mental Health Services (PTSD treatment)</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button class="action-btn">Download PDF</button>
+            <button class="action-btn action-btn-secondary">Submit to SSA</button>
+        </div>
+    </div>
+    
+    <!-- FORM: Medical History -->
+    <div class="page" id="form-medical-history">
+        <div class="card">
+            <div class="card-title">Complete Medical History</div>
+            <div class="card-subtitle">Comprehensive health record</div>
+            <div class="alert">
+                ✅ <strong>Auto-updated from your medical records</strong>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Current Diagnoses</div>
+            <div class="list-item">
+                <div class="list-title">Type 2 Diabetes Mellitus (E11.9)</div>
+                <div class="list-subtitle">
+                    Diagnosed: 11/15/2023<br>
+                    Treating Provider: Dr. Sarah Johnson, MD<br>
+                    Current Status: Controlled with medication<br>
+                    Latest HbA1c: 7.2% (03/15/2024)
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Essential Hypertension (I10)</div>
+                <div class="list-subtitle">
+                    Diagnosed: 01/10/2024<br>
+                    Treating Provider: Dr. Sarah Johnson, MD<br>
+                    Current Status: Managed with medication<br>
+                    Latest BP: 138/86 mmHg (03/15/2024)
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Hyperlipidemia (E78.5)</div>
+                <div class="list-subtitle">
+                    Diagnosed: 02/20/2024<br>
+                    Treating Provider: Dr. Sarah Johnson, MD<br>
+                    Latest LDL: 165 mg/dL (02/20/2024)
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Current Medications</div>
+            <div class="list-item">
+                <div class="list-title">Metformin 1000mg</div>
+                <div class="list-subtitle">
+                    Twice daily (morning and evening with food)<br>
+                    For: Type 2 Diabetes<br>
+                    Prescribed: 11/15/2023
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Lisinopril 10mg</div>
+                <div class="list-subtitle">
+                    Once daily (morning)<br>
+                    For: Hypertension<br>
+                    Prescribed: 01/10/2024
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Atorvastatin 20mg</div>
+                <div class="list-subtitle">
+                    Once daily (evening)<br>
+                    For: Hyperlipidemia<br>
+                    Prescribed: 02/20/2024
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Surgical History</div>
+            <div class="list-item">
+                <div class="list-title">None on record</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Family History</div>
+            <div class="list-item">
+                <div class="list-title">Father: Type 2 Diabetes, Heart Disease</div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">Mother: Hypertension</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button class="action-btn">Download PDF</button>
+            <button class="action-btn action-btn-secondary">Share with Provider</button>
+        </div>
+    </div>
+    
+    <!-- FORM: Medication List -->
+    <div class="page" id="form-medication-list">
+        <div class="card">
+            <div class="card-title">Current Medications List</div>
+            <div class="card-subtitle">Updated automatically from your records</div>
+            <div class="alert">
+                ✅ <strong>Last updated:</strong> Today, April 8, 2024
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Active Medications (3)</div>
+            <div class="list-item">
+                <div class="list-title">1. Metformin</div>
+                <div class="list-subtitle">
+                    <strong>Strength:</strong> 1000mg tablets<br>
+                    <strong>Dosage:</strong> Take 1 tablet by mouth twice daily with food<br>
+                    <strong>For:</strong> Type 2 Diabetes Mellitus (E11.9)<br>
+                    <strong>Prescriber:</strong> Dr. Sarah Johnson, MD<br>
+                    <strong>Pharmacy:</strong> CVS Pharmacy #1234<br>
+                    <strong>Date Prescribed:</strong> 11/15/2023<br>
+                    <strong>Refills Remaining:</strong> 3
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">2. Lisinopril</div>
+                <div class="list-subtitle">
+                    <strong>Strength:</strong> 10mg tablets<br>
+                    <strong>Dosage:</strong> Take 1 tablet by mouth once daily in the morning<br>
+                    <strong>For:</strong> Hypertension (I10)<br>
+                    <strong>Prescriber:</strong> Dr. Sarah Johnson, MD<br>
+                    <strong>Pharmacy:</strong> CVS Pharmacy #1234<br>
+                    <strong>Date Prescribed:</strong> 01/10/2024<br>
+                    <strong>Refills Remaining:</strong> 5
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="list-title">3. Atorvastatin</div>
+                <div class="list-subtitle">
+                    <strong>Strength:</strong> 20mg tablets<br>
+                    <strong>Dosage:</strong> Take 1 tablet by mouth once daily in the evening<br>
+                    <strong>For:</strong> Hyperlipidemia (E78.5)<br>
+                    <strong>Prescriber:</strong> Dr. Sarah Johnson, MD<br>
+                    <strong>Pharmacy:</strong> CVS Pharmacy #1234<br>
+                    <strong>Date Prescribed:</strong> 02/20/2024<br>
+                    <strong>Refills Remaining:</strong> 5
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">Allergies</div>
+            <div class="list-item">
+                <div class="list-title">No Known Drug Allergies (NKDA)</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button class="action-btn">Download PDF</button>
+            <button class="action-btn action-btn-secondary">Print for Appointment</button>
         </div>
     </div>
     
