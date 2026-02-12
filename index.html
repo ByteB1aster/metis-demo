@@ -1156,22 +1156,21 @@ body.high-contrast .pg-header { border: 2px solid #fff !important; }
     }
     async function unlock(e) {
         e.preventDefault();
-        // Demo mode - bypass password
-        document.getElementById('auth-gate').style.display = 'none';
-        document.getElementById('app-wrap').classList.add('unlocked');
-        showPage('dashboard');
-        loadA11ySettings();
-        loadDocumentsFromStorage();
+        var pw = document.getElementById('auth-pw').value;
+        var hash = await sha256(pw);
+        if (hash === '7148894130f19fef60098c9f4a9ffe8f0165fd774bc11a9ef9e0f6e7121e7c13') {
+            document.getElementById('auth-gate').style.display = 'none';
+            document.getElementById('app-wrap').classList.add('unlocked');
+            showPage('dashboard');
+            loadA11ySettings();
+            loadDocumentsFromStorage();
+        } else {
+            var err = document.getElementById('auth-err');
+            err.style.display = 'block';
+            document.getElementById('auth-pw').value = '';
+            document.getElementById('auth-pw').focus();
+        }
     }
-    
-    // Auto-unlock on page load
-    window.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('auth-gate').style.display = 'none';
-        document.getElementById('app-wrap').classList.add('unlocked');
-        showPage('dashboard');
-        loadA11ySettings();
-        loadDocumentsFromStorage();
-    });
     
 
 /* ===== ACCESSIBILITY FUNCTIONS ===== */
