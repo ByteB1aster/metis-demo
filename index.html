@@ -21,8 +21,8 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: #f5f5f5;
-            color: #333;
+            background: rgba(255,255,255,0.06);
+            
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
@@ -132,7 +132,7 @@
         .menu-item {
             display: block;
             padding: 14px 16px;
-            color: #333;
+            
             font-size: 15px;
             cursor: pointer;
             border-radius: 8px;
@@ -182,7 +182,7 @@
 
         .card-subtitle {
             font-size: 14px;
-            color: #666;
+            
             margin-bottom: 16px;
         }
 
@@ -236,7 +236,7 @@
 
         .stat-label {
             font-size: 13px;
-            color: #666;
+            
             font-weight: 600;
         }
 
@@ -258,7 +258,7 @@
 
         .list-subtitle {
             font-size: 14px;
-            color: #666;
+            
             line-height: 1.6;
         }
 
@@ -393,7 +393,7 @@
 
         .timeline-event {
             font-size: 15px;
-            color: #666;
+            
             line-height: 1.6;
         }
 
@@ -418,10 +418,10 @@
         .bar-active { background: #a7cf28; }
         .bar-inactive { background: #ddd; }
         .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
-        .legend-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: #666; }
+        .legend-item { display: flex; align-items: center; gap: 4px; font-size: 11px;  }
         .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
         .metric-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
-        .metric-label { font-size: 14px; color: #666; }
+        .metric-label { font-size: 14px;  }
         .metric-value { font-size: 14px; font-weight: 700; color: #001830; }
         .metric-change { font-size: 12px; margin-left: 6px; }
         .metric-up { color: #a7cf28; }
@@ -429,12 +429,12 @@
         .metric-flat { color: #f88a2f; }
         .insight-card { background: white; color: #222; border-radius: 16px; padding: 24px; margin-bottom: 20px; border: 2px solid #001830; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
         .insight-card .card-title { color: #001830; font-weight: 800; }
-        .insight-card .list-subtitle { color: #333; }
+        .insight-card .list-subtitle {  }
         .insight-card strong { color: #001830; }
         .insight-card .insight-tag { background: #001830; color: #a7cf28; }
         .insight-tag { background: rgba(167,207,40,0.2); color: #a7cf28; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; display: inline-block; margin: 4px 4px 4px 0; }
         .alert-red { background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%); border: 2px solid #dc3545; color: #721c24; }
-        .rx-cost { display: flex; justify-content: space-between; padding: 10px 16px; background: #fff3cd; border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
+        .rx-cost { display: flex; justify-content: space-between; padding: 10px 16px; background: rgba(248,138,47,0.15); border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
         .rx-cost-label { color: #856404; font-weight: 600; }
         .rx-cost-value { color: #856404; font-weight: 800; }
         /* CSS-only menu toggle (works without JavaScript) */
@@ -520,7 +520,7 @@ body.high-contrast .nav-bar * { color: #fff !important; }
 body.high-contrast .stat-card { background: #fff !important; border: 2px solid #000 !important; }
 body.high-contrast .stat-value { color: #000 !important; }
 body.high-contrast .stat-label { color: #333 !important; }
-body.high-contrast .list-item { background: #f5f5f5 !important; border-color: #000 !important; color: #000 !important; }
+body.high-contrast .list-item { background: rgba(255,255,255,0.06) !important; border-color: #000 !important; color: #000 !important; }
 body.high-contrast .list-title { color: #000 !important; }
 body.high-contrast .list-subtitle { color: #222 !important; }
 body.high-contrast .menu { background: #fff !important; }
@@ -950,7 +950,7 @@ body.dark-mode .dash-divider-line { background: #444 !important; }
 .pg-bento-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
 .pg-bento-card.span-2 { grid-column: span 2; }
 .pg-bento-val { font-size: 34px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
-.pg-bento-label { font-size: 14px; font-weight: 700; color: #666; }
+.pg-bento-label { font-size: 14px; font-weight: 700;  }
 .pg-bento-sub { font-size: 13px; color: #999; margin-top: 4px; line-height: 1.4; }
 .pg-bento-accent { border-left: 4px solid; }
 .pg-bento-accent-red { border-color: #dc3545; }
@@ -968,7 +968,7 @@ body.dark-mode .dash-divider-line { background: #444 !important; }
 .pg-provider-card-inactive { border-color: #ccc; }
 .pg-provider-name { font-size: 16px; font-weight: 800; color: #001830; margin-bottom: 4px; }
 .pg-provider-role { font-size: 14px; font-weight: 700; color: #a7cf28; margin-bottom: 6px; }
-.pg-provider-detail { font-size: 14px; color: #666; line-height: 1.5; }
+.pg-provider-detail { font-size: 14px;  line-height: 1.5; }
 .pg-provider-ai {
     margin-top: 10px; padding: 10px 14px; background: rgba(167,207,40,0.08);
     border-radius: 10px; font-size: 13px; color: #5a7a10; line-height: 1.5;
@@ -1107,6 +1107,68 @@ body.high-contrast .pg-header { border: 2px solid #fff !important; }
 @media (max-width: 480px) { .pg-bento-grid { grid-template-columns: 1fr !important; } }
 .pg-bento-card { overflow: hidden; word-break: break-word; }
 
+/* === GLOBAL GLASS-PANEL READABILITY FIXES === */
+/* stat-card inside glass panels: dark glass background instead of white */
+.pg-glass .stat-card, .pg-glass-wrap .stat-card {
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    border-radius: 12px !important;
+}
+.pg-glass .stat-card .stat-value, .pg-glass .stat-card .stat-label,
+.pg-glass-wrap .stat-card .stat-value, .pg-glass-wrap .stat-card .stat-label {
+    color: rgba(255,255,255,0.93) !important;
+}
+/* Colored stat-values keep their accent colors */
+.pg-glass .stat-card .stat-value[style*="color:#f88a2f"] { color: #ffc08a !important; }
+.pg-glass .stat-card .stat-value[style*="color:#2196f3"] { color: #82c4f8 !important; }
+.pg-glass .stat-card .stat-value[style*="color:#a7cf28"] { color: #c5e864 !important; }
+.pg-glass .stat-card .stat-value[style*="color:#dc3545"] { color: #ff8a95 !important; }
+.pg-glass .stat-card .stat-value[style*="color:#001830"] { color: #c5e864 !important; }
+
+/* Fix inline light backgrounds inside glass panels — make them dark glass */
+.pg-glass div[style*="background: rgba(33,150,243,0.12)"],
+.pg-glass div[style*="background: rgba(33,150,243,0.12)"],
+.pg-glass div[style*="background: rgba(248,138,47,0.15)"],
+.pg-glass div[style*="background: rgba(248,138,47,0.15)"],
+.pg-glass div[style*="background: rgba(167,207,40,0.12)"],
+.pg-glass div[style*="background: rgba(167,207,40,0.12)"],
+.pg-glass div[style*="background: rgba(220,53,69,0.12)"],
+.pg-glass div[style*="background: rgba(220,53,69,0.12)"],
+.pg-glass div[style*="background: rgba(255,255,255,0.06)"],
+.pg-glass div[style*="background: rgba(255,255,255,0.06)"],
+.pg-glass div[style*="background: white"],
+.pg-glass div[style*="background:white"],
+.pg-glass div[style*="background: #fff"],
+.pg-glass div[style*="background:#fff"] {
+    background: rgba(255,255,255,0.06) !important;
+    border-left-color: inherit !important;
+}
+
+/* Fix bento cards that appear inside glass-wrap but outside glass panels */
+.pg-glass-wrap .pg-bento-card {
+    background: white !important;
+}
+.pg-glass-wrap .pg-bento-card, .pg-glass-wrap .pg-bento-card * {
+    color: #333 !important;
+}
+.pg-glass-wrap .pg-bento-card .pg-bento-label { color: #666 !important; }
+.pg-glass-wrap .pg-bento-card .pg-bento-sub { color: #999 !important; }
+.pg-glass-wrap .pg-bento-card .pg-bento-val { color: #001830 !important; }
+.pg-glass-wrap .pg-bento-card .badge { color: white !important; }
+
+/* Fix appointments page font sizes */
+#appointments .pg-bento-card .pg-bento-val { font-size: 16px !important; }
+#appointments .pg-bento-card .pg-bento-label { font-size: 12px !important; }
+#appointments .pg-bento-card .pg-bento-sub { font-size: 12px !important; }
+
+/* Fix badges inside bento cards */
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.badge-green { background: #a7cf28; color: white !important; }
+.badge-red { background: #dc3545; color: white !important; }
+.badge-blue { background: #2196f3; color: white !important; }
+.badge-orange { background: #f88a2f; color: white !important; }
+.badge-purple { background: #9c27b0; color: white !important; }
+
 </style>
     <script>
     // Critical functions in head so they're available immediately
@@ -1140,7 +1202,7 @@ body.high-contrast .pg-header { border: 2px solid #fff !important; }
         #auth-gate { position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(135deg, #001830 0%, #003050 100%); z-index:99999; display:flex; align-items:center; justify-content:center; }
         #auth-gate .lg { background:white; border-radius:20px; padding:48px 36px; max-width:400px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.3); }
         #auth-gate .lg h1 { font-size:42px; font-weight:800; color:#001830; letter-spacing:2px; margin-bottom:8px; }
-        #auth-gate .lg p { color:#666; font-size:14px; margin-bottom:32px; }
+        #auth-gate .lg p {  font-size:14px; margin-bottom:32px; }
         #auth-gate .lg input { width:100%; padding:16px 20px; border:2px solid #ddd; border-radius:12px; font-size:16px; font-family:'Montserrat',sans-serif; outline:none; -webkit-appearance:none; }
         #auth-gate .lg input:focus { border-color:#a7cf28; }
         #auth-gate .lg button { width:100%; padding:16px; background:linear-gradient(135deg,#a7cf28,#8ab020); color:white; border:none; border-radius:12px; font-size:16px; font-weight:700; cursor:pointer; margin-top:16px; font-family:'Montserrat',sans-serif; touch-action:manipulation; }
@@ -1616,7 +1678,7 @@ function loadDocumentsFromStorage() {
 <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="Accessibility Settings">
     <h3>&#x267F; Accessibility</h3>
     <div class="a11y-group">
-        <div style="font-weight:600; margin-bottom:8px; font-size:13px; color:#666;">Text Size</div>
+        <div style="font-weight:600; margin-bottom:8px; font-size:13px; ">Text Size</div>
         <div class="a11y-range-row">
             <input type="range" id="a11yFontSize" min="80" max="150" value="100" oninput="setFontSize(this.value)" aria-label="Font size percentage">
             <span id="a11yFontSizeVal">100%</span>
@@ -2099,7 +2161,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass">
           <div class="pg-glass-title">How 80% Combined Rating Calculated</div>
           <div class="pg-glass-body">
-            <div style="font-size:12px; line-height:1.8; color:#555;">
+            <div style="font-size:12px; line-height:1.8; ">
               <div><strong>PTSD:</strong> 50%</div>
               <div style="margin-top:4px;">Remaining capacity: 50%</div>
               <div style="margin-top:8px;"><strong>OSA:</strong> 50% of remaining 50% = 25%</div>
@@ -2120,7 +2182,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass">
           <div class="pg-glass-title">Non-Service-Connected Conditions</div>
           <div class="pg-glass-body">
-            <div style="font-size:12px; color:#666;">
+            <div style="font-size:12px; ">
               <div style="margin-bottom:8px;">• Type 2 Diabetes Mellitus (T2DM)</div>
               <div style="margin-bottom:8px;">• Hypertension (HTN)</div>
               <div style="margin-bottom:8px;">• Hyperlipidemia</div>
@@ -2210,27 +2272,27 @@ function loadDocumentsFromStorage() {
         <div class="pg-bento-card" style="border-left:4px solid #28a745;">
           <div style="font-size:11px;font-weight:800;color:#28a745;text-transform:uppercase;letter-spacing:1px;">Active</div>
           <div style="font-size:16px;font-weight:800;color:#001830;margin:6px 0 4px;">VA Health Care</div>
-          <div style="font-size:13px;color:#666;">Priority Group 1 enrolled. Care for service-connected conditions through VA.</div>
+          <div style="font-size:13px;">Priority Group 1 enrolled. Care for service-connected conditions through VA.</div>
         </div>
         <div class="pg-bento-card" style="border-left:4px solid #28a745;">
           <div style="font-size:11px;font-weight:800;color:#28a745;text-transform:uppercase;letter-spacing:1px;">Active</div>
           <div style="font-size:16px;font-weight:800;color:#001830;margin:6px 0 4px;">GI Bill Benefits</div>
-          <div style="font-size:13px;color:#666;">Education benefits used from military service. Benefits history available.</div>
+          <div style="font-size:13px;">Education benefits used from military service. Benefits history available.</div>
         </div>
         <div class="pg-bento-card" style="border-left:4px solid #f88a2f;">
           <div style="font-size:11px;font-weight:800;color:#f88a2f;text-transform:uppercase;letter-spacing:1px;">In Progress</div>
           <div style="font-size:16px;font-weight:800;color:#001830;margin:6px 0 4px;">SSDI Application</div>
-          <div style="font-size:13px;color:#666;">Social Security Disability Insurance application pending based on 80% VA rating.</div>
+          <div style="font-size:13px;">Social Security Disability Insurance application pending based on 80% VA rating.</div>
         </div>
         <div class="pg-bento-card" style="border-left:4px solid #9c27b0;">
           <div style="font-size:11px;font-weight:800;color:#9c27b0;text-transform:uppercase;letter-spacing:1px;">Eligible</div>
           <div style="font-size:16px;font-weight:800;color:#001830;margin:6px 0 4px;">Vocational Rehab (Ch. 31)</div>
-          <div style="font-size:13px;color:#666;">Employment support for veterans with service-connected disabilities.</div>
+          <div style="font-size:13px;">Employment support for veterans with service-connected disabilities.</div>
         </div>
         <div class="pg-bento-card" style="border-left:4px solid #2196f3;">
           <div style="font-size:11px;font-weight:800;color:#2196f3;text-transform:uppercase;letter-spacing:1px;">Available</div>
           <div style="font-size:16px;font-weight:800;color:#001830;margin:6px 0 4px;">CHAMPVA (Spouse)</div>
-          <div style="font-size:13px;color:#666;">Health coverage for spouse if rating reaches 100% P&T. Currently at 80% rating.</div>
+          <div style="font-size:13px;">Health coverage for spouse if rating reaches 100% P&T. Currently at 80% rating.</div>
         </div>
       </div>
 
@@ -2336,16 +2398,16 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-wrap pg-glass-wrap-blue">
             <div class="pg-glass-section">Metabolic Cluster</div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Type 2 Diabetes Mellitus (E11.65)</div>
-                <div class="pg-glass-body">With hyperglycemia. Diagnosed 2018. Managed with Metformin. Provider: Dr. Michael Torres, Austin Endocrine Associates. Status: Active. HbA1c monitoring ongoing.</div>
+                <div class="pg-glass-title">Type 2 Diabetes Mellitus (E11.65)<span class="badge badge-green" style="margin-left:8px;">VA SC 20%</span></div>
+                <div class="pg-glass-body">With hyperglycemia. Diagnosed 2018. Managed with Metformin. Provider: Dr. Michael Torres, Austin Endocrine Associates. Status: Active. HbA1c monitoring ongoing. Service-connected, presumptive Gulf War.</div>
             </div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Essential Hypertension (I10)</div>
-                <div class="pg-glass-body">Diagnosed 2015. Treated with Lisinopril 20mg daily. Provider: Dr. Sarah Chen, Austin VA Medical Center. Status: Controlled. Monitor BP regularly, check potassium levels.</div>
+                <div class="pg-glass-title">Essential Hypertension (I10)<span class="badge badge-green" style="margin-left:8px;">VA SC Secondary 10%</span></div>
+                <div class="pg-glass-body">Diagnosed 2015. Treated with Lisinopril 20mg daily. Provider: Dr. Sarah Chen, Austin VA Medical Center. Status: Controlled. Monitor BP regularly, check potassium levels. Service-connected secondary to diabetes.</div>
             </div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Hyperlipidemia (E78.5)</div>
-                <div class="pg-glass-body">Elevated cholesterol and triglycerides. Diagnosed 2016. Treated with Atorvastatin 40mg nightly. Provider: Dr. Sarah Chen, Austin VA Medical Center. Status: Monitoring. Cardioprotective therapy ongoing.</div>
+                <div class="pg-glass-title">Hyperlipidemia (E78.5)<span class="badge" style="margin-left:8px; background:#6c757d; color:white; font-size:11px; padding:4px 8px; border-radius:4px; display:inline-block;">Not Independently Rated</span></div>
+                <div class="pg-glass-body">Elevated cholesterol and triglycerides. Diagnosed 2016. Treated with Atorvastatin 40mg nightly. Provider: Dr. Sarah Chen, Austin VA Medical Center. Status: Monitoring. Cardioprotective therapy ongoing. Service-connected, acknowledged but not separately rated.</div>
             </div>
         </div>
 
@@ -2353,8 +2415,8 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-wrap pg-glass-wrap-blue">
             <div class="pg-glass-section">Mental Health</div>
             <div class="pg-glass">
-                <div class="pg-glass-title">PTSD (F43.10)</div>
-                <div class="pg-glass-body">Post-traumatic stress disorder, Gulf War related. Diagnosed 2003. Service-connected condition. Treated with Sertraline 100mg daily. Provider: Dr. Lisa Patel, Austin VA Mental Health. Status: Active management. VA rating: Service-connected.</div>
+                <div class="pg-glass-title">PTSD (F43.10)<span class="badge badge-green" style="margin-left:8px;">VA SC 50%</span></div>
+                <div class="pg-glass-body">Post-traumatic stress disorder, Gulf War related. Diagnosed 2003. Service-connected condition. Treated with Sertraline 100mg daily. Provider: Dr. Lisa Patel, Austin VA Mental Health. Status: Active management. Service-connected, combat-related.</div>
             </div>
         </div>
 
@@ -2362,12 +2424,12 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-wrap pg-glass-wrap-red">
             <div class="pg-glass-section">Musculoskeletal Cluster</div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Degenerative Disc Disease L4-L5 (M51.16)</div>
-                <div class="pg-glass-body">Lumbar disc degeneration at L4-L5 level. Diagnosed 2019. Service-connected condition. Provider: Dr. James Wright, Central TX Orthopedic Center. Status: Chronic, managed with physical therapy and medication. VA rating: Service-connected.</div>
+                <div class="pg-glass-title">Degenerative Disc Disease L4-L5 (M51.16)<span class="badge badge-green" style="margin-left:8px;">VA SC 20%</span></div>
+                <div class="pg-glass-body">Lumbar disc degeneration at L4-L5 level. Diagnosed 2019. Service-connected condition. Provider: Dr. James Wright, Central TX Orthopedic Center. Status: Chronic, managed with physical therapy and medication. Service-connected.</div>
             </div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Left Knee Osteoarthritis (M17.12)</div>
-                <div class="pg-glass-body">Degenerative joint disease, left knee. Diagnosed 2020. Provider: Dr. James Wright, Central TX Orthopedic Center. Status: Symptomatic. Conservative management with activity modification and analgesics.</div>
+                <div class="pg-glass-title">Left Knee Osteoarthritis (M17.12)<span class="badge badge-green" style="margin-left:8px;">VA SC 10%</span></div>
+                <div class="pg-glass-body">Degenerative joint disease, left knee. Diagnosed 2020. Provider: Dr. James Wright, Central TX Orthopedic Center. Status: Symptomatic. Conservative management with activity modification and analgesics. Service-connected.</div>
             </div>
         </div>
 
@@ -2375,12 +2437,12 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-wrap pg-glass-wrap-red">
             <div class="pg-glass-section">Neurological Cluster</div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Peripheral Neuropathy (G62.9)</div>
-                <div class="pg-glass-body">Diabetic peripheral neuropathy with tingling and numbness in feet. Diagnosed 2020. Secondary to Type 2 Diabetes. Provider: Dr. Robert Kim, Austin Neurology Clinic. Treated with Gabapentin 300mg three times daily. Status: Symptomatic management ongoing.</div>
+                <div class="pg-glass-title">Peripheral Neuropathy (G62.9)<span class="badge badge-green" style="margin-left:8px;">VA SC Secondary 10%</span></div>
+                <div class="pg-glass-body">Diabetic peripheral neuropathy with tingling and numbness in feet. Diagnosed 2020. Secondary to Type 2 Diabetes. Provider: Dr. Robert Kim, Austin Neurology Clinic. Treated with Gabapentin 300mg three times daily. Status: Symptomatic management ongoing. Service-connected secondary to diabetes.</div>
             </div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Tinnitus (H93.19)</div>
-                <div class="pg-glass-body">Noise-induced tinnitus (bilateral). Diagnosed 2002. Related to military service noise exposure. Provider: Dr. Robert Kim, Austin Neurology Clinic. Status: Chronic, managed symptomatically. No current hearing aid fitted.</div>
+                <div class="pg-glass-title">Tinnitus (H93.19)<span class="badge badge-green" style="margin-left:8px;">VA SC 10%</span></div>
+                <div class="pg-glass-body">Noise-induced tinnitus (bilateral). Diagnosed 2002. Related to military service noise exposure. Provider: Dr. Robert Kim, Austin Neurology Clinic. Status: Chronic, managed symptomatically. No current hearing aid fitted. Service-connected.</div>
             </div>
         </div>
 
@@ -2388,12 +2450,12 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-wrap pg-glass-wrap-red">
             <div class="pg-glass-section">GI and Sleep Cluster</div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Gastroesophageal Reflux Disease (K21.0)</div>
-                <div class="pg-glass-body">GERD with esophageal symptoms. Diagnosed 2017. Treated with Omeprazole 20mg daily, taken 30 minutes before breakfast. Provider: Dr. Amy Nguyen, TX GI Specialists. Status: Well-controlled on proton pump inhibitor therapy.</div>
+                <div class="pg-glass-title">Gastroesophageal Reflux Disease (K21.0)<span class="badge badge-green" style="margin-left:8px;">VA SC Secondary 10%</span></div>
+                <div class="pg-glass-body">GERD with esophageal symptoms. Diagnosed 2017. Treated with Omeprazole 20mg daily, taken 30 minutes before breakfast. Provider: Dr. Amy Nguyen, TX GI Specialists. Status: Well-controlled on proton pump inhibitor therapy. Service-connected secondary to medications.</div>
             </div>
             <div class="pg-glass">
-                <div class="pg-glass-title">Obstructive Sleep Apnea (G47.33)</div>
-                <div class="pg-glass-body">OSA, moderate severity. Diagnosed 2019. Managed with CPAP therapy nightly. Adjunctive Melatonin 5mg at bedtime for sleep support. Provider: Dr. David Park, Austin Sleep Center. Status: CPAP compliant. Regular follow-up recommended.</div>
+                <div class="pg-glass-title">Obstructive Sleep Apnea (G47.33)<span class="badge badge-green" style="margin-left:8px;">VA SC 50%</span></div>
+                <div class="pg-glass-body">OSA, moderate severity. Diagnosed 2019. Managed with CPAP therapy nightly. Adjunctive Melatonin 5mg at bedtime for sleep support. Provider: Dr. David Park, Austin Sleep Center. Status: CPAP compliant. Regular follow-up recommended. Service-connected secondary to PTSD/weight.</div>
             </div>
         </div>
 
@@ -2403,7 +2465,7 @@ function loadDocumentsFromStorage() {
             <div class="pg-glass">
                 <div class="pg-severity pg-severity-critical">⚠️ GULF WAR VETERAN</div>
                 <div class="pg-glass-title">Military Service History</div>
-                <div class="pg-glass-body">U.S. Army, E-6 (Staff Sergeant) rank. Gulf War service (1990-1991). Multiple service-connected conditions documented. Primary care: Austin VA Medical Center.</div>
+                <div class="pg-glass-body">U.S. Army, E-6 (Staff Sergeant) rank. Gulf War service (1990-1991). Multiple service-connected conditions documented. Primary care: Austin VA Medical Center. Combined VA Disability Rating: 80%</div>
             </div>
         </div>
 
@@ -2428,8 +2490,6 @@ function loadDocumentsFromStorage() {
             <button class="pg-glass-btn pg-glass-btn-outline" onclick="showPage('dashboard')" style="margin-bottom:0;">← Back to Dashboard</button>
         </div>
     </div>
-
-    <!-- MEDICATIONS -->
     <div class="page" id="medications">
         <!-- Page Header -->
         <div class="pg-header pg-header-orange">
@@ -2504,7 +2564,7 @@ function loadDocumentsFromStorage() {
                     <span style="color:#a7cf28; font-weight:700;">VA Pharmacy Coverage</span>
                     <span style="color:white; font-weight:800; font-size:22px;">100%</span>
                 </div>
-                <div style="margin-top:4px; font-size:11px; color:#666;">All 8 medications covered through VA Medical Center as eligible veteran</div>
+                <div style="margin-top:4px; font-size:11px; ">All 8 medications covered through VA Medical Center as eligible veteran</div>
             </div>
         </div>
 
@@ -2658,55 +2718,55 @@ function loadDocumentsFromStorage() {
                         <div class="stat-value" style="color:#f88a2f;">7.2</div>
                         <div class="stat-label">HbA1c (%)</div>
                         <span class="badge" style="background:#f88a2f; color:white; margin-top:6px;">ABOVE TARGET</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Target: <7.0% | Down from 8.1%</div>
+                        <div style="margin-top:6px; font-size:12px; ">Target: <7.0% | Down from 8.1%</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">142</div>
                         <div class="stat-label">Fasting Glucose</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Target: <130 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Target: <130 mg/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#f88a2f;">198</div>
                         <div class="stat-label">Total Cholesterol</div>
                         <span class="badge" style="background:#f88a2f; color:white; margin-top:6px;">BORDERLINE</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Desirable: <200</div>
+                        <div style="margin-top:6px; font-size:12px; ">Desirable: <200</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">112</div>
                         <div class="stat-label">LDL</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">ABOVE TARGET</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Target: <100 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Target: <100 mg/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">42</div>
                         <div class="stat-label">HDL</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">LOW</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Optimal: >50 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Optimal: >50 mg/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">188</div>
                         <div class="stat-label">Triglycerides</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Normal: <150 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Normal: <150 mg/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#001830;">139</div>
                         <div class="stat-label">Sodium</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Range: 135-145 mEq/L</div>
+                        <div style="margin-top:6px; font-size:12px; ">Range: 135-145 mEq/L</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#001830;">4.2</div>
                         <div class="stat-label">Potassium</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Range: 3.5-5.0 mEq/L</div>
+                        <div style="margin-top:6px; font-size:12px; ">Range: 3.5-5.0 mEq/L</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#001830;">1.1</div>
                         <div class="stat-label">Creatinine</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Range: 0.7-1.3 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Range: 0.7-1.3 mg/dL</div>
                     </div>
                 </div>
             </div>
@@ -2740,43 +2800,43 @@ function loadDocumentsFromStorage() {
                         <div class="stat-value" style="color:#001830;">6.8</div>
                         <div class="stat-label">WBC</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Range: 4.5-11.0 K/uL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Range: 4.5-11.0 K/uL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#001830;">14.2</div>
                         <div class="stat-label">Hemoglobin</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Range: 13.5-17.5 g/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Range: 13.5-17.5 g/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#001830;">245</div>
                         <div class="stat-label">Platelets</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Range: 150-400 K/uL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Range: 150-400 K/uL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#001830;">2.4</div>
                         <div class="stat-label">TSH</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Range: 0.4-4.0 mIU/L</div>
+                        <div style="margin-top:6px; font-size:12px; ">Range: 0.4-4.0 mIU/L</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">28</div>
                         <div class="stat-label">Vitamin D</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">INSUFFICIENT</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Optimal: 30-100 ng/mL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Optimal: 30-100 ng/mL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#f88a2f;">1.2</div>
                         <div class="stat-label">PSA</div>
                         <span class="badge" style="background:#28a745; color:white; margin-top:6px;">Normal</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Typical for age 48</div>
+                        <div style="margin-top:6px; font-size:12px; ">Typical for age 48</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#f88a2f;">45</div>
                         <div class="stat-label">Microalbumin/Creatinine</div>
                         <span class="badge" style="background:#f88a2f; color:white; margin-top:6px;">ELEVATED</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Normal: <30 mg/g</div>
+                        <div style="margin-top:6px; font-size:12px; ">Normal: <30 mg/g</div>
                     </div>
                 </div>
             </div>
@@ -2797,37 +2857,37 @@ function loadDocumentsFromStorage() {
                         <div class="stat-value" style="color:#dc3545;">7.8</div>
                         <div class="stat-label">HbA1c (%)</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">ABOVE TARGET</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Target: <7.0%</div>
+                        <div style="margin-top:6px; font-size:12px; ">Target: <7.0%</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">156</div>
                         <div class="stat-label">Fasting Glucose</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Target: <130 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Target: <130 mg/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#f88a2f;">206</div>
                         <div class="stat-label">Total Cholesterol</div>
                         <span class="badge" style="background:#f88a2f; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Desirable: <200</div>
+                        <div style="margin-top:6px; font-size:12px; ">Desirable: <200</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">118</div>
                         <div class="stat-label">LDL</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">ABOVE TARGET</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Target: <100 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Target: <100 mg/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">38</div>
                         <div class="stat-label">HDL</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">LOW</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Optimal: >50 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Optimal: >50 mg/dL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">205</div>
                         <div class="stat-label">Triglycerides</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Normal: <150 mg/dL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Normal: <150 mg/dL</div>
                     </div>
                 </div>
             </div>
@@ -2848,49 +2908,49 @@ function loadDocumentsFromStorage() {
                         <div class="stat-value" style="color:#dc3545;">8.1</div>
                         <div class="stat-label">HbA1c (%)</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">DIAGNOSTIC</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Diagnostic threshold: ≥6.5%</div>
+                        <div style="margin-top:6px; font-size:12px; ">Diagnostic threshold: ≥6.5%</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">178</div>
                         <div class="stat-label">Fasting Glucose</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Fasting: 70-100</div>
+                        <div style="margin-top:6px; font-size:12px; ">Fasting: 70-100</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">224</div>
                         <div class="stat-label">Total Cholesterol</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Desirable: <200</div>
+                        <div style="margin-top:6px; font-size:12px; ">Desirable: <200</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">128</div>
                         <div class="stat-label">LDL</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Optimal: <100</div>
+                        <div style="margin-top:6px; font-size:12px; ">Optimal: <100</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">36</div>
                         <div class="stat-label">HDL</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">LOW</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Optimal: >50</div>
+                        <div style="margin-top:6px; font-size:12px; ">Optimal: >50</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">228</div>
                         <div class="stat-label">Triglycerides</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">HIGH</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Normal: <150</div>
+                        <div style="margin-top:6px; font-size:12px; ">Normal: <150</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#dc3545;">28</div>
                         <div class="stat-label">Vitamin D</div>
                         <span class="badge" style="background:#dc3545; color:white; margin-top:6px;">DEFICIENT</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Optimal: >30 ng/mL</div>
+                        <div style="margin-top:6px; font-size:12px; ">Optimal: >30 ng/mL</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-value" style="color:#f88a2f;">52</div>
                         <div class="stat-label">Microalbumin/Creatinine</div>
                         <span class="badge" style="background:#f88a2f; color:white; margin-top:6px;">ELEVATED</span>
-                        <div style="margin-top:6px; font-size:12px; color:#666;">Normal: <30 mg/g</div>
+                        <div style="margin-top:6px; font-size:12px; ">Normal: <30 mg/g</div>
                     </div>
                 </div>
             </div>
@@ -3633,7 +3693,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">AncestryDNA.txt</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">Uploaded 02/12/2026</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <div style="margin-bottom: 8px;"><strong>650,373 variants</strong> analyzed from V2.0 array</div>
           <div style="margin-bottom: 8px;"><strong>127 health-related</strong> variants identified</div>
           <div style="margin-bottom: 8px;"><strong>10 actionable</strong> findings requiring attention</div>
@@ -3989,8 +4049,8 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Mother — Alive, Age 76</div>
       <div class="pg-glass-body">
-        <div style="margin-bottom:10px;"><strong style="color:#2196f3;">Hyperlipidemia</strong><br><span style="font-size:12px; color:#666;">Managed with statin therapy</span></div>
-        <div><strong style="color:#2196f3;">Osteoarthritis</strong><br><span style="font-size:12px; color:#666;">Multiple joints affected; managed with pain control and physical therapy</span></div>
+        <div style="margin-bottom:10px;"><strong style="color:#2196f3;">Hyperlipidemia</strong><br><span style="font-size:12px; ">Managed with statin therapy</span></div>
+        <div><strong style="color:#2196f3;">Osteoarthritis</strong><br><span style="font-size:12px; ">Multiple joints affected; managed with pain control and physical therapy</span></div>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-orange">Metabolic Condition</span>
@@ -4001,9 +4061,9 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Father (Deceased) — Died Age 72 from Myocardial Infarction</div>
       <div class="pg-glass-body">
-        <div style="margin-bottom:10px;"><strong style="color:#dc3545;">Type 2 Diabetes</strong><br><span style="font-size:12px; color:#666;">Diagnosed age 55; required insulin therapy</span></div>
-        <div style="margin-bottom:10px;"><strong style="color:#dc3545;">Hypertension</strong><br><span style="font-size:12px; color:#666;">Managed with antihypertensive agents</span></div>
-        <div><strong style="color:#dc3545;">Myocardial Infarction</strong><br><span style="font-size:12px; color:#666;">Fatal cardiac event at age 72; primary cause of death</span></div>
+        <div style="margin-bottom:10px;"><strong style="color:#dc3545;">Type 2 Diabetes</strong><br><span style="font-size:12px; ">Diagnosed age 55; required insulin therapy</span></div>
+        <div style="margin-bottom:10px;"><strong style="color:#dc3545;">Hypertension</strong><br><span style="font-size:12px; ">Managed with antihypertensive agents</span></div>
+        <div><strong style="color:#dc3545;">Myocardial Infarction</strong><br><span style="font-size:12px; ">Fatal cardiac event at age 72; primary cause of death</span></div>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-red">CRITICAL - Cardiac Death</span>
@@ -4014,8 +4074,8 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Older Brother — Age 52</div>
       <div class="pg-glass-body">
-        <div style="margin-bottom:10px;"><strong style="color:#2196f3;">Type 2 Diabetes</strong><br><span style="font-size:12px; color:#666;">Diagnosed in his 40s; managed with metformin</span></div>
-        <div><strong style="color:#2196f3;">Hypertension</strong><br><span style="font-size:12px; color:#666;">Managed with antihypertensive therapy</span></div>
+        <div style="margin-bottom:10px;"><strong style="color:#2196f3;">Type 2 Diabetes</strong><br><span style="font-size:12px; ">Diagnosed in his 40s; managed with metformin</span></div>
+        <div><strong style="color:#2196f3;">Hypertension</strong><br><span style="font-size:12px; ">Managed with antihypertensive therapy</span></div>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-orange">Metabolic Risk</span>
@@ -4031,8 +4091,8 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Paternal Grandfather (Deceased) — Died Age 68 from Stroke</div>
       <div class="pg-glass-body">
-        <div style="margin-bottom:10px;"><strong style="color:#dc3545;">Type 2 Diabetes</strong><br><span style="font-size:12px; color:#666;">Diagnosed age 54; required insulin therapy</span></div>
-        <div><strong style="color:#dc3545;">Stroke</strong><br><span style="font-size:12px; color:#666;">Ischemic cerebrovascular event at age 68; primary cause of death. Diabetes contributed to cardiovascular complication.</span></div>
+        <div style="margin-bottom:10px;"><strong style="color:#dc3545;">Type 2 Diabetes</strong><br><span style="font-size:12px; ">Diagnosed age 54; required insulin therapy</span></div>
+        <div><strong style="color:#dc3545;">Stroke</strong><br><span style="font-size:12px; ">Ischemic cerebrovascular event at age 68; primary cause of death. Diabetes contributed to cardiovascular complication.</span></div>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-red">Cerebrovascular Death</span>
@@ -4048,8 +4108,8 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Maternal Grandmother (Deceased) — Died Age 85</div>
       <div class="pg-glass-body">
-        <div style="margin-bottom:10px;"><strong style="color:#2196f3;">Alzheimer's Disease</strong><br><span style="font-size:12px; color:#666;">Diagnosed age 78; progressive cognitive decline; died from dementia complications</span></div>
-        <div><strong style="color:#2196f3;">Other Age-Related Conditions</strong><br><span style="font-size:12px; color:#666;">Common comorbidities associated with advanced age</span></div>
+        <div style="margin-bottom:10px;"><strong style="color:#2196f3;">Alzheimer's Disease</strong><br><span style="font-size:12px; ">Diagnosed age 78; progressive cognitive decline; died from dementia complications</span></div>
+        <div><strong style="color:#2196f3;">Other Age-Related Conditions</strong><br><span style="font-size:12px; ">Common comorbidities associated with advanced age</span></div>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-blue">Neurodegenerative Disease</span>
@@ -4065,9 +4125,9 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Type 2 Diabetes Risk — Autosomal Dominant Pattern</div>
       <div class="pg-glass-body">
-        <p style="margin:0 0 8px 0; font-size:13px; color:#555;"><strong>Family Pattern:</strong> Father diagnosed T2DM age 55, paternal grandfather diagnosed age 54. Older brother diagnosed in his 40s. Three-generation pattern suggests strong genetic predisposition with autosomal dominant inheritance of metabolic susceptibility.</p>
-        <p style="margin:0; font-size:13px; color:#555;"><strong>John's Profile:</strong> TCF7L2 CT heterozygous (strongest T2DM genetic risk factor). Currently non-diabetic (glucose 89) but lipid panel elevated (cholesterol, triglycerides high) indicating metabolic syndrome precursor. Active prevention critical.</p>
-        <p style="margin-top:8px; font-size:12px; color:#666;"><strong>Recommendation:</strong> Intensive lifestyle modification, annual HbA1c and fasting glucose screening, Mediterranean-style diet, 150+ min/week moderate activity, weight management. Genetic counseling appropriate given three-generation diabetes pattern.</p>
+        <p style="margin:0 0 8px 0; font-size:13px; "><strong>Family Pattern:</strong> Father diagnosed T2DM age 55, paternal grandfather diagnosed age 54. Older brother diagnosed in his 40s. Three-generation pattern suggests strong genetic predisposition with autosomal dominant inheritance of metabolic susceptibility.</p>
+        <p style="margin:0; font-size:13px; "><strong>John's Profile:</strong> TCF7L2 CT heterozygous (strongest T2DM genetic risk factor). Currently non-diabetic (glucose 89) but lipid panel elevated (cholesterol, triglycerides high) indicating metabolic syndrome precursor. Active prevention critical.</p>
+        <p style="margin-top:8px; font-size:12px; "><strong>Recommendation:</strong> Intensive lifestyle modification, annual HbA1c and fasting glucose screening, Mediterranean-style diet, 150+ min/week moderate activity, weight management. Genetic counseling appropriate given three-generation diabetes pattern.</p>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-red">Family History: CRITICAL</span>
@@ -4078,9 +4138,9 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Cardiovascular Risk — Clustering of Early MI and Stroke</div>
       <div class="pg-glass-body">
-        <p style="margin:0 0 8px 0; font-size:13px; color:#555;"><strong>Family Pattern:</strong> Father myocardial infarction age 72 (fatal), paternal grandfather stroke age 68 (fatal). Both parents hypertensive. Father also diabetic (diabetes-related cardiovascular complications). Strong clustering of cardiovascular events and mortality.</p>
-        <p style="margin:0; font-size:13px; color:#555;"><strong>John's Profile:</strong> ACE D/D homozygous (predisposes to hypertension), APOE ε4 allele (elevated LDL), MTHFR CT (elevated homocysteine). Currently on lisinopril (appropriate for ACE genotype) and atorvastatin. Strong genetic + familial risk warrants aggressive management.</p>
-        <p style="margin-top:8px; font-size:12px; color:#666;"><strong>Recommendation:</strong> Aggressive lipid management, regular blood pressure monitoring, aspirin therapy if appropriate. Annual cardiovascular screening. Consider cardiology consultation given early familial MI/stroke. Aggressive risk factor modification essential.</p>
+        <p style="margin:0 0 8px 0; font-size:13px; "><strong>Family Pattern:</strong> Father myocardial infarction age 72 (fatal), paternal grandfather stroke age 68 (fatal). Both parents hypertensive. Father also diabetic (diabetes-related cardiovascular complications). Strong clustering of cardiovascular events and mortality.</p>
+        <p style="margin:0; font-size:13px; "><strong>John's Profile:</strong> ACE D/D homozygous (predisposes to hypertension), APOE ε4 allele (elevated LDL), MTHFR CT (elevated homocysteine). Currently on lisinopril (appropriate for ACE genotype) and atorvastatin. Strong genetic + familial risk warrants aggressive management.</p>
+        <p style="margin-top:8px; font-size:12px; "><strong>Recommendation:</strong> Aggressive lipid management, regular blood pressure monitoring, aspirin therapy if appropriate. Annual cardiovascular screening. Consider cardiology consultation given early familial MI/stroke. Aggressive risk factor modification essential.</p>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-red">Family History: CRITICAL</span>
@@ -4091,9 +4151,9 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Alzheimer's Disease Risk — Maternal Lineage</div>
       <div class="pg-glass-body">
-        <p style="margin:0 0 8px 0; font-size:13px; color:#555;"><strong>Family Pattern:</strong> Maternal grandmother diagnosed with Alzheimer's disease at age 78. Family history of neurodegenerative disease.</p>
-        <p style="margin:0; font-size:13px; color:#555;"><strong>John's Profile:</strong> APOE ε3/ε4 heterozygous (3-fold increased Alzheimer's risk). Carries one copy of ε4 allele. Combined genetic and maternal family history creates moderate-high risk for cognitive decline.</p>
-        <p style="margin-top:8px; font-size:12px; color:#666;"><strong>Recommendation:</strong> Cognitive baseline assessment. Mediterranean diet, cognitive engagement, physical exercise, cardiovascular health optimization. Monitor for cognitive changes. Consider periodic cognitive screening starting at age 60-65.</p>
+        <p style="margin:0 0 8px 0; font-size:13px; "><strong>Family Pattern:</strong> Maternal grandmother diagnosed with Alzheimer's disease at age 78. Family history of neurodegenerative disease.</p>
+        <p style="margin:0; font-size:13px; "><strong>John's Profile:</strong> APOE ε3/ε4 heterozygous (3-fold increased Alzheimer's risk). Carries one copy of ε4 allele. Combined genetic and maternal family history creates moderate-high risk for cognitive decline.</p>
+        <p style="margin-top:8px; font-size:12px; "><strong>Recommendation:</strong> Cognitive baseline assessment. Mediterranean diet, cognitive engagement, physical exercise, cardiovascular health optimization. Monitor for cognitive changes. Consider periodic cognitive screening starting at age 60-65.</p>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-orange">Family History: Moderate-High</span>
@@ -4104,9 +4164,9 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Musculoskeletal Conditions — Age-Related Joint Disease</div>
       <div class="pg-glass-body">
-        <p style="margin:0 0 8px 0; font-size:13px; color:#555;"><strong>Family Pattern:</strong> Mother has osteoarthritis in multiple joints (age 76). John carries COL1A1 GT variant affecting collagen integrity.</p>
-        <p style="margin:0; font-size:13px; color:#555;"><strong>John's Profile:</strong> DDD L4-L5, left knee osteoarthritis, peripheral neuropathy. COL1A1 GT heterozygous predisposes to structural joint disease. Combined genetic predisposition and age-related wear.</p>
-        <p style="margin-top:8px; font-size:12px; color:#666;"><strong>Recommendation:</strong> Joint-protective strategies including weight management, anti-inflammatory diet, physical therapy. Avoid high-impact activities. Consider glucosamine/chondroitin supplementation. Monitor for progression. May require orthopedic intervention if conservative management insufficient.</p>
+        <p style="margin:0 0 8px 0; font-size:13px; "><strong>Family Pattern:</strong> Mother has osteoarthritis in multiple joints (age 76). John carries COL1A1 GT variant affecting collagen integrity.</p>
+        <p style="margin:0; font-size:13px; "><strong>John's Profile:</strong> DDD L4-L5, left knee osteoarthritis, peripheral neuropathy. COL1A1 GT heterozygous predisposes to structural joint disease. Combined genetic predisposition and age-related wear.</p>
+        <p style="margin-top:8px; font-size:12px; "><strong>Recommendation:</strong> Joint-protective strategies including weight management, anti-inflammatory diet, physical therapy. Avoid high-impact activities. Consider glucosamine/chondroitin supplementation. Monitor for progression. May require orthopedic intervention if conservative management insufficient.</p>
       </div>
       <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
         <span class="pg-ai-tag pg-ai-tag-orange">Family History: Moderate</span>
@@ -4120,14 +4180,14 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Family History Summary for John Doe</div>
       <div class="pg-glass-body">
-        <p style="margin:0 0 12px 0; font-size:13px; color:#555;">John Doe's family history reveals significant genetic clustering of metabolic and cardiovascular disease with early mortality in paternal lineage, plus neurodegenerative disease in maternal lineage:</p>
-        <div style="margin-top:12px; padding:12px; background:rgba(33,150,243,0.1); border-radius:8px; font-size:12px; color:#555; line-height:1.8;">
+        <p style="margin:0 0 12px 0; font-size:13px; ">John Doe's family history reveals significant genetic clustering of metabolic and cardiovascular disease with early mortality in paternal lineage, plus neurodegenerative disease in maternal lineage:</p>
+        <div style="margin-top:12px; padding:12px; background:rgba(33,150,243,0.1); border-radius:8px; font-size:12px;  line-height:1.8;">
           <div style="margin-bottom:8px;"><strong style="color:#2196f3;">✓ Metabolic/Diabetes Risk:</strong> Father and paternal grandfather both T2DM (early onset, required insulin). Older brother also T2DM. Three-generation pattern indicates strong genetic predisposition. John carries TCF7L2 risk variant. Prevention critical.</div>
           <div style="margin-bottom:8px;"><strong style="color:#2196f3;">✓ Cardiovascular Risk:</strong> Father fatal MI age 72, paternal grandfather fatal stroke age 68. Both parents hypertensive. John carries ACE D/D, APOE ε4, and MTHFR variants. Multiple genetic + familial cardiovascular risk factors. Aggressive management essential.</div>
           <div style="margin-bottom:8px;"><strong style="color:#2196f3;">✓ Neurodegenerative Risk:</strong> Maternal grandmother Alzheimer's disease (dx age 78). John carries APOE ε4 allele. Combined genetic and familial risk warrants cognitive monitoring.</div>
           <div><strong style="color:#2196f3;">✓ Musculoskeletal Risk:</strong> Mother osteoarthritis; John has DDD and knee OA with COL1A1 collagen variant. Age-related joint disease likely to progress.</div>
         </div>
-        <p style="margin-top:12px; margin-bottom:0; font-size:12px; color:#666;"><strong>Overall Risk Profile:</strong> High genetic predisposition to metabolic syndrome, cardiovascular disease, and neurodegenerative disease. Gulf War veteran status may compound health risks. Multi-specialty medical management and intensive lifestyle intervention recommended. Genetic counseling appropriate.</p>
+        <p style="margin-top:12px; margin-bottom:0; font-size:12px; "><strong>Overall Risk Profile:</strong> High genetic predisposition to metabolic syndrome, cardiovascular disease, and neurodegenerative disease. Gulf War veteran status may compound health risks. Multi-specialty medical management and intensive lifestyle intervention recommended. Genetic counseling appropriate.</p>
       </div>
     </div>
   </div>
@@ -4160,7 +4220,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">1. TCF7L2 rs7903146 (CT) → Type 2 Diabetes Risk</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">Strongest genetic risk factor for T2DM. Impairs beta cell insulin secretion.</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> T2DM diagnosed, family history (father age 55, paternal grandfather age 54)<br>
           <strong>Genetic Mechanism:</strong> CT heterozygous reduces beta cell function, delays insulin response to glucose<br>
           <strong>Current Status:</strong> Glucose 89 (normal), but lipid panel elevated indicating metabolic syndrome precursor<br>
@@ -4183,7 +4243,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">2. ACE I/D rs4646994 (D/D) → Hypertension & ACE Inhibitor Response</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">D/D homozygous: elevated ACE, higher angiotensin II, increased blood pressure</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> HTN diagnosed, on lisinopril therapy<br>
           <strong>Genetic Mechanism:</strong> D allele increases ACE expression and angiotensin II production<br>
           <strong>Drug-Gene Match:</strong> Lisinopril is IDEAL choice for D/D genotype (inhibits the elevated ACE)<br>
@@ -4201,7 +4261,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">3. SLCO1B1*5 rs4149056 (TC) → Atorvastatin Metabolism & Myopathy Risk</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">TC heterozygous: reduced statin transporter, intermediate metabolizer status</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> Hyperlipidemia (cholesterol elevated), on atorvastatin<br>
           <strong>Genetic Mechanism:</strong> TC variant reduces liver uptake of statin; slower metabolism<br>
           <strong>Clinical Implication:</strong> Intermediate risk for statin-induced myopathy; requires monitoring<br>
@@ -4219,7 +4279,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">4. APOE rs429358/rs7412 (ε3/ε4) → Hyperlipidemia & Alzheimer's Risk</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">ε3/ε4 heterozygous: one ε4 allele, elevated LDL cholesterol</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> Hyperlipidemia (cholesterol 269 high), Alzheimer's risk<br>
           <strong>Genetic Mechanism:</strong> ε4 allele less efficient at cholesterol clearance; 3x Alzheimer's risk vs ε3/ε3<br>
           <strong>Lipid Effect:</strong> Elevated LDL levels directly due to APOE ε4 genotype<br>
@@ -4237,7 +4297,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">5. MTHFR C677T rs1801133 (CT) → Folate Metabolism & Cardiovascular Risk</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">CT heterozygous: ~65% enzyme activity, reduced folate metabolism</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> HTN, hyperlipidemia, cardiovascular family history<br>
           <strong>Genetic Mechanism:</strong> Reduced MTHFR enzyme activity impairs folate metabolism; elevated homocysteine likely<br>
           <strong>Cardiovascular Link:</strong> Elevated homocysteine is independent cardiovascular risk modifier<br>
@@ -4260,7 +4320,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">6. SLC6A4 5-HTTLPR (S/L) → PTSD & SSRI Treatment Response</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">S/L heterozygous serotonin transporter: variable SSRI response, stress susceptibility</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> PTSD diagnosed (Gulf War veteran), on sertraline 100mg<br>
           <strong>Genetic Mechanism:</strong> S/L variant affects serotonin reuptake efficiency; intermediate activity<br>
           <strong>Drug-Gene Correlation:</strong> Sertraline targets serotonin transporter; intermediate response expected<br>
@@ -4278,7 +4338,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">7. CLOCK rs1801260 (AG) → OSA & Sleep Disturbance Management</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">AG heterozygous: evening chronotype, sleep phase delay, circadian rhythm disruption</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> OSA diagnosed, on melatonin supplementation<br>
           <strong>Genetic Mechanism:</strong> G allele shifts circadian preference toward evening; delays sleep onset<br>
           <strong>OSA Connection:</strong> CLOCK disruption exacerbates sleep fragmentation and apnea severity<br>
@@ -4296,7 +4356,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">8. COMT rs4680 (Val/Met) → Pain Processing & Psychotropic Response</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">Val/Met heterozygous: intermediate dopamine/catecholamine metabolism</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> PTSD, chronic pain (DDD, knee OA), on gabapentin<br>
           <strong>Genetic Mechanism:</strong> Val/Met variant moderates dopamine and norepinephrine breakdown; intermediate pain processing efficiency<br>
           <strong>Pain Correlation:</strong> Moderate dopamine availability explains pain sensitivity in DDD and knee OA<br>
@@ -4319,7 +4379,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">9. CYP2C19 rs4244285 (*1/*2) → GERD & Omeprazole Metabolism</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">*1/*2 heterozygous intermediate metabolizer: slower PPI metabolism</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> GERD diagnosed, on omeprazole therapy<br>
           <strong>Genetic Mechanism:</strong> *2 allele reduces CYP2C19 enzyme activity; slower omeprazole metabolism<br>
           <strong>Clinical Implication:</strong> Intermediate metabolizer has slower CYP2C19 activity, leading to higher omeprazole levels at standard doses<br>
@@ -4342,7 +4402,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">10. COL1A1 rs1800012 (GT) → DDD L4-L5 & Left Knee OA Predisposition</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">GT heterozygous collagen gene: reduced bone density and altered cartilage integrity</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Medical:</strong> DDD L4-L5, left knee OA, peripheral neuropathy, on gabapentin<br>
           <strong>Genetic Mechanism:</strong> GT variant reduces type I collagen structural integrity; predisposes to cartilage and bone loss<br>
           <strong>Structural Link:</strong> COL1A1 deficiency directly contributes to DDD disc degeneration and OA cartilage breakdown<br>
@@ -4386,7 +4446,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Lisinopril + ACE I/D (D/D) — OPTIMAL Drug-Gene Match</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">ACE D/D homozygous: elevated ACE levels, lisinopril is ideal treatment choice</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Basis:</strong> D/D genotype produces high ACE enzyme levels, driving angiotensin II production and hypertension<br>
           <strong>Drug-Gene Fit:</strong> Lisinopril (ACE inhibitor) directly targets the elevated ACE in D/D genotype<br>
           <strong>Clinical Implication:</strong> Enhanced response to lisinopril expected; current use is genetically optimized<br>
@@ -4404,7 +4464,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Metformin + TCF7L2 (CT) — APPROPRIATE for Beta Cell Dysfunction</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">TCF7L2 CT heterozygous: impaired beta cell insulin secretion</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Basis:</strong> TCF7L2 variant reduces beta cell function; metformin addresses insulin secretion deficit<br>
           <strong>Drug Mechanism:</strong> Metformin enhances insulin secretion from remaining functional beta cells<br>
           <strong>Dosing:</strong> May need higher doses due to beta cell dysfunction severity<br>
@@ -4422,7 +4482,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Melatonin + CLOCK (AG) — IDEAL Circadian Gene Support</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">CLOCK AG heterozygous: evening chronotype, genetic sleep phase delay</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Basis:</strong> G allele shifts circadian preference toward evening; melatonin optimizes this tendency<br>
           <strong>Drug Mechanism:</strong> Melatonin synchronizes with CLOCK AG genetic evening tendency<br>
           <strong>Clinical Fit:</strong> Excellent match for OSA and sleep disturbance management<br>
@@ -4445,7 +4505,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Sertraline + SLC6A4 (S/L) — MONITOR PTSD Symptom Control</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">SLC6A4 S/L heterozygous: intermediate serotonin transporter activity</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Basis:</strong> S/L variant affects serotonin transporter efficiency; intermediate activity expected<br>
           <strong>Drug-Gene Correlation:</strong> Sertraline targets this transporter; intermediate response expected<br>
           <strong>Current Dose:</strong> 100mg daily appears appropriate for S/L genotype<br>
@@ -4463,7 +4523,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Atorvastatin + SLCO1B1 (TC) — MONITOR for Myopathy</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">SLCO1B1*5 TC heterozygous: intermediate statin transporter, slower metabolism</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Basis:</strong> TC variant reduces liver uptake of atorvastatin; intermediate risk for myopathy<br>
           <strong>Clinical Implication:</strong> Drug accumulation risk with standard dosing<br>
           <strong>Monitoring Required:</strong> CK levels annually; watch for muscle pain, weakness, or dark urine<br>
@@ -4481,7 +4541,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Omeprazole + CYP2C19 (*1/*2) — MONITOR GERD Symptom Control</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">CYP2C19 *1/*2 heterozygous: intermediate metabolizer, slower PPI metabolism</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Basis:</strong> *2 allele reduces CYP2C19 enzyme activity<br>
           <strong>Clinical Implication:</strong> Slower omeprazole metabolism increases drug levels; standard dosing typically adequate<br>
           <strong>Monitoring:</strong> Track GERD symptom control; evaluate for breakthrough heartburn<br>
@@ -4504,7 +4564,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Gabapentin + COMT (Val/Met) — Compatible for Pain Management</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">COMT Val/Met heterozygous: intermediate dopamine/catecholamine metabolism</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Basis:</strong> Val/Met variant supports moderate pain processing efficiency<br>
           <strong>Drug-Gene Fit:</strong> Gabapentin dosing appears appropriate for intermediate pain sensitivity<br>
           <strong>Clinical Use:</strong> Manages DDD, knee OA, and peripheral neuropathy pain<br>
@@ -4522,7 +4582,7 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Aspirin — No Significant Pharmacogenomic Interactions</div>
       <div class="pg-glass-body">
         <div class="list-subtitle">No relevant genetic variants affect aspirin metabolism or efficacy</div>
-        <div style="margin-top: 12px; font-size: 14px; color: #333; line-height: 1.6;">
+        <div style="margin-top: 12px; font-size: 14px;  line-height: 1.6;">
           <strong>Genetic Screening:</strong> No pharmacogenomic interactions detected<br>
           <strong>Clinical Use:</strong> Cardiovascular and stroke prevention appropriate given family history<br>
           <strong>Standard Dosing:</strong> Appropriate for John's cardiovascular risk profile<br>
@@ -4549,26 +4609,26 @@ function loadDocumentsFromStorage() {
             <div class="stat-card">
               <div class="stat-value" style="color:#001830; font-weight:700;">Optimal</div>
               <div class="stat-label">ACE Inhibitor</div>
-              <div style="font-size:10px; color:#666; margin-top:4px;">D/D genotype: Lisinopril ideal</div>
+              <div style="font-size:10px;  margin-top:4px;">D/D genotype: Lisinopril ideal</div>
             </div>
             <div class="stat-card">
               <div class="stat-value" style="color:#001830; font-weight:700;">Intermediate</div>
               <div class="stat-label">Statin Transport</div>
-              <div style="font-size:10px; color:#666; margin-top:4px;">TC: Monitor for myopathy</div>
+              <div style="font-size:10px;  margin-top:4px;">TC: Monitor for myopathy</div>
             </div>
             <div class="stat-card">
               <div class="stat-value" style="color:#f88a2f;">Intermediate</div>
               <div class="stat-label">PPI Metabolism</div>
-              <div style="font-size:10px; color:#666; margin-top:4px;">*1/*2: Adequate levels at standard dose</div>
+              <div style="font-size:10px;  margin-top:4px;">*1/*2: Adequate levels at standard dose</div>
             </div>
             <div class="stat-card">
               <div class="stat-value" style="color:#2196f3;">Optimal</div>
               <div class="stat-label">Circadian Support</div>
-              <div style="font-size:10px; color:#666; margin-top:4px;">CLOCK AG: Melatonin ideal</div>
+              <div style="font-size:10px;  margin-top:4px;">CLOCK AG: Melatonin ideal</div>
             </div>
           </div>
         </div>
-        <div style="margin-top: 16px; font-size: 13px; color: #333; line-height: 1.6; background: rgba(248, 138, 47, 0.08); padding: 12px; border-radius: 8px; border-left: 3px solid #f88a2f;">
+        <div style="margin-top: 16px; font-size: 13px;  line-height: 1.6; background: rgba(248, 138, 47, 0.08); padding: 12px; border-radius: 8px; border-left: 3px solid #f88a2f;">
           <strong>Overall Profile:</strong> John has some optimal drug-gene matches (lisinopril, melatonin) and some requiring monitoring (atorvastatin, omeprazole). His medications are largely appropriate for his genetic profile with attention to adverse effect monitoring.
         </div>
       </div>
@@ -4582,29 +4642,29 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Drug-Gene Interaction Summary for John Doe</div>
       <div class="pg-glass-body">
-        <div style="margin-top: 12px; font-size: 13px; color: #333; line-height: 2;">
-          <div style="padding: 8px; margin-bottom: 8px; background: #f0f8ff; border-left: 4px solid #2196f3;">
+        <div style="margin-top: 12px; font-size: 13px;  line-height: 2;">
+          <div style="padding: 8px; margin-bottom: 8px; background: rgba(33,150,243,0.12); border-left: 4px solid #2196f3;">
             <strong>METFORMIN + TCF7L2:</strong> May need higher doses due to beta cell dysfunction genetic basis
           </div>
-          <div style="padding: 8px; margin-bottom: 8px; background: #f0f8ff; border-left: 4px solid #2196f3;">
+          <div style="padding: 8px; margin-bottom: 8px; background: rgba(33,150,243,0.12); border-left: 4px solid #2196f3;">
             <strong>LISINOPRIL + ACE D/D:</strong> IDEAL drug choice for genotype; enhanced response expected
           </div>
-          <div style="padding: 8px; margin-bottom: 8px; background: #fff3cd; border-left: 4px solid #f88a2f;">
+          <div style="padding: 8px; margin-bottom: 8px; background: rgba(248,138,47,0.15); border-left: 4px solid #f88a2f;">
             <strong>ATORVASTATIN + SLCO1B1*5:</strong> Intermediate risk for myopathy; monitor CK levels
           </div>
-          <div style="padding: 8px; margin-bottom: 8px; background: #f0f8ff; border-left: 4px solid #2196f3;">
+          <div style="padding: 8px; margin-bottom: 8px; background: rgba(33,150,243,0.12); border-left: 4px solid #2196f3;">
             <strong>SERTRALINE + SLC6A4:</strong> Intermediate transporter activity; current dose appears appropriate
           </div>
-          <div style="padding: 8px; margin-bottom: 8px; background: #fff3cd; border-left: 4px solid #f88a2f;">
+          <div style="padding: 8px; margin-bottom: 8px; background: rgba(248,138,47,0.15); border-left: 4px solid #f88a2f;">
             <strong>OMEPRAZOLE + CYP2C19 *1/*2:</strong> Intermediate metabolizer; standard dose provides adequate acid suppression
           </div>
-          <div style="padding: 8px; margin-bottom: 8px; background: #f0f8ff; border-left: 4px solid #2196f3;">
+          <div style="padding: 8px; margin-bottom: 8px; background: rgba(33,150,243,0.12); border-left: 4px solid #2196f3;">
             <strong>GABAPENTIN + COMT:</strong> Moderate pain processing; dosing appears appropriate
           </div>
-          <div style="padding: 8px; margin-bottom: 8px; background: #f0f8ff; border-left: 4px solid #2196f3;">
+          <div style="padding: 8px; margin-bottom: 8px; background: rgba(33,150,243,0.12); border-left: 4px solid #2196f3;">
             <strong>ASPIRIN:</strong> No significant pharmacogenomic interactions
           </div>
-          <div style="padding: 8px; background: #f0f8ff; border-left: 4px solid #2196f3;">
+          <div style="padding: 8px; background: rgba(33,150,243,0.12); border-left: 4px solid #2196f3;">
             <strong>MELATONIN + CLOCK:</strong> IDEAL genetic match for circadian variant; supports sleep optimization
           </div>
         </div>
@@ -4619,7 +4679,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Drug Interactions & Optimization Opportunities</div>
       <div class="pg-glass-body">
-        <div style="margin-top: 12px; font-size: 13px; color: #333; line-height: 1.8;">
+        <div style="margin-top: 12px; font-size: 13px;  line-height: 1.8;">
           <div style="margin-bottom: 10px;">
             <strong>Atorvastatin Myopathy Monitoring:</strong> With TC heterozygous SLCO1B1, establish baseline CK and monitor annually. Dose reduction may be needed if myalgia develops.
           </div>
@@ -4650,52 +4710,95 @@ function loadDocumentsFromStorage() {
 </div>
 
 <!-- APPOINTMENTS PAGE -->
-<div class="page" id="appointments">
+<!-- CALENDAR PAGE -->
+<div class="page" id="calendar">
   <div class="pg-header pg-header-blue">
-    <div class="pg-header-title">📅 Appointments</div>
-    <div class="pg-header-sub">Upcoming Healthcare Visits</div>
-    <div class="pg-header-stats">
-      <div class="pg-header-stat">
-        <div class="pg-header-stat-label">Scheduled</div>
-        <div class="pg-header-stat-value">4</div>
+    <div class="pg-header-title">📅 Appointment Calendar</div>
+    <div class="pg-header-sub">February 2026</div>
+  </div>
+  <div class="pg-glass-wrap">
+    <div class="pg-glass">
+      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:2px; text-align:center;">
+        <div style="font-weight:800; font-size:11px; padding:8px; color:rgba(255,255,255,0.6);">SUN</div>
+        <div style="font-weight:800; font-size:11px; padding:8px; color:rgba(255,255,255,0.6);">MON</div>
+        <div style="font-weight:800; font-size:11px; padding:8px; color:rgba(255,255,255,0.6);">TUE</div>
+        <div style="font-weight:800; font-size:11px; padding:8px; color:rgba(255,255,255,0.6);">WED</div>
+        <div style="font-weight:800; font-size:11px; padding:8px; color:rgba(255,255,255,0.6);">THU</div>
+        <div style="font-weight:800; font-size:11px; padding:8px; color:rgba(255,255,255,0.6);">FRI</div>
+        <div style="font-weight:800; font-size:11px; padding:8px; color:rgba(255,255,255,0.6);">SAT</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.5);"></div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.5);"></div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.5);"></div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.5);"></div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.5);"></div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.5);"></div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">1</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">2</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">3</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">4</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">5</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">6</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">7</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">8</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">9</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">10</div>
+        <div style="padding:8px; font-size:13px; border-radius:50%; background:rgba(33,150,243,0.3); color:#fff; font-weight:700;">11</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">12</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">13</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">14</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">15</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">16</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">17</div>
+        <div style="padding:8px; font-size:13px; border-radius:50%; background:rgba(220,53,69,0.3); color:#ff8a95; font-weight:700;">18</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">19</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">20</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">21</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">22</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">23</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">24</div>
+        <div style="padding:8px; font-size:13px; border-radius:50%; background:rgba(167,207,40,0.3); color:#c5e864; font-weight:700;">25</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">26</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">27</div>
+        <div style="padding:8px; font-size:13px; color:rgba(255,255,255,0.9);">28</div>
       </div>
     </div>
+
+    <div class="pg-glass-section">Upcoming Appointments</div>
+
+    <div class="pg-bento-card" style="border-left:4px solid #dc3545; padding:14px; gap:8px;">
+      <div class="pg-bento-sub" style="font-size:12px;">Feb 18, 2026</div>
+      <div class="pg-bento-val" style="font-size:14px;">Dr. Sarah Chen</div>
+      <div class="pg-bento-label" style="font-size:11px;">PCP Follow-up</div>
+      <div class="pg-bento-sub" style="font-size:11px;">Austin VA Medical Center</div>
+    </div>
+
+    <div class="pg-bento-card" style="border-left:4px solid #a7cf28; padding:14px; gap:8px;">
+      <div class="pg-bento-sub" style="font-size:12px;">Mar 5, 2026</div>
+      <div class="pg-bento-val" style="font-size:14px;">Dr. Michael Torres</div>
+      <div class="pg-bento-label" style="font-size:11px;">Endocrinology</div>
+      <div class="pg-bento-sub" style="font-size:11px;">A1c review</div>
+    </div>
+
+    <div class="pg-bento-card" style="border-left:4px solid #2196f3; padding:14px; gap:8px;">
+      <div class="pg-bento-sub" style="font-size:12px;">Mar 12, 2026</div>
+      <div class="pg-bento-val" style="font-size:14px;">Dr. Lisa Patel</div>
+      <div class="pg-bento-label" style="font-size:11px;">Psychiatry</div>
+      <div class="pg-bento-sub" style="font-size:11px;">PTSD check-in</div>
+    </div>
+
+    <div class="pg-bento-card" style="border-left:4px solid #f88a2f; padding:14px; gap:8px;">
+      <div class="pg-bento-sub" style="font-size:12px;">Apr 1, 2026</div>
+      <div class="pg-bento-val" style="font-size:14px;">Dr. James Wright</div>
+      <div class="pg-bento-label" style="font-size:11px;">Orthopedics</div>
+      <div class="pg-bento-sub" style="font-size:11px;">Knee evaluation</div>
+    </div>
   </div>
 
-  <div class="pg-bento-grid">
-    <div class="pg-bento-card">
-      <div class="pg-bento-label">Primary Care Follow-up</div>
-      <div class="pg-bento-val">Dr. Sarah Chen, Austin VA Medical Center</div>
-      <div class="pg-bento-val">PCP appointment - vital signs, medication review</div>
-    </div>
-
-    <div class="pg-bento-card">
-      <div class="pg-bento-label">Endocrinology Consultation</div>
-      <div class="pg-bento-val">Dr. Torres</div>
-      <div class="pg-bento-val">A1c review and diabetes management</div>
-    </div>
-
-    <div class="pg-bento-card">
-      <div class="pg-bento-label">Psychiatry Follow-up</div>
-      <div class="pg-bento-val">Dr. Patel</div>
-      <div class="pg-bento-val">PTSD management and medication review</div>
-    </div>
-
-    <div class="pg-bento-card">
-      <div class="pg-bento-label">Orthopedic Consultation</div>
-      <div class="pg-bento-val">Dr. Wright</div>
-      <div class="pg-bento-val">Left knee osteoarthritis evaluation</div>
-    </div>
-  </div>
-
-  <div style="display: flex; gap: 10px; margin-top: 20px;">
-    <button class="pg-bento-btn">Schedule New Appointment</button>
-    <button class="pg-bento-btn" onclick="showPage('calendar')" style="background:#2196f3;">📅 View Calendar</button>
-    <button class="pg-glass-btn pg-glass-btn-blue" onclick="showPage('dashboard')">← Back to Dashboard</button>
+  <div style="margin-top:24px; text-align:center;">
+    <button class="pg-glass-btn pg-glass-btn-outline" onclick="showPage('appointments')">← Back to Appointments</button>
+    <button class="pg-glass-btn pg-glass-btn-outline" onclick="showPage('dashboard')">← Back to Dashboard</button>
   </div>
 </div>
-
-<!-- CALENDAR PAGE -->
 <div class="page" id="calendar">
   <div class="pg-header pg-header-blue">
     <div class="pg-header-title">📅 Appointment Calendar</div>
@@ -4920,6 +5023,7 @@ function loadDocumentsFromStorage() {
 </div>
 
 <!-- WEARABLES PAGE -->
+<!-- WEARABLES PAGE -->
 <div class="page" id="wearables">
   <!-- Page Header -->
   <div class="pg-header pg-header-green">
@@ -4944,7 +5048,7 @@ function loadDocumentsFromStorage() {
           <div class="list-title">🟢 Connected — Last sync: 2 minutes ago</div>
           <div class="list-subtitle">
             Tracking: Sleep Stages, HRV, Resting HR, Body Temperature, Activity, SpO2<br>
-            Account: j••••••••••e@e•••••.com (hidden for security)<br>
+            Account: [hidden for security]<br>
             Data range: Nov 8, 2025 — Present (90+ days)
           </div>
           <span class="badge">Active</span>
@@ -4982,22 +5086,22 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Sleep Overview</div>
       <div class="pg-glass-body">
-        <div class="stat-grid">
-          <div class="stat-card">
-            <div class="stat-value">6h 12m</div>
-            <div class="stat-label">Total Sleep</div>
+        <div class="stat-grid" style="gap: 12px;">
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">6h 12m</div>
+            <div class="stat-label" style="font-size: 12px;">Total Sleep</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">18%</div>
-            <div class="stat-label">REM Sleep</div>
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">18%</div>
+            <div class="stat-label" style="font-size: 12px;">REM Sleep</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">11:15p</div>
-            <div class="stat-label">Avg Bedtime</div>
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">11:15p</div>
+            <div class="stat-label" style="font-size: 12px;">Avg Bedtime</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">5:47a</div>
-            <div class="stat-label">Avg Wake</div>
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">5:47a</div>
+            <div class="stat-label" style="font-size: 12px;">Avg Wake</div>
           </div>
         </div>
       </div>
@@ -5006,7 +5110,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">7-Day Sleep Stages (Jan 30 – Feb 5, 2026)</div>
       <div class="pg-glass-body">
-        <div style="font-size:12px; color:#666; margin-bottom:8px;">Each bar shows how your sleep breaks down by stage each night. Taller blue (REM) sections = better emotional processing. CPAP helping control apneas.</div>
+        <div style="font-size:12px;  margin-bottom:8px;">Each bar shows how your sleep breaks down by stage each night. Taller blue (REM) sections = better emotional processing. CPAP helping control apneas.</div>
         <div class="bar-chart">
           <div class="bar-group">
             <div class="bar-val">6h 1m</div>
@@ -5085,7 +5189,7 @@ function loadDocumentsFromStorage() {
           <div class="legend-item"><div class="legend-dot" style="background:#2196f3;"></div> REM 1h 6m avg</div>
           <div class="legend-item"><div class="legend-dot" style="background:#f88a2f;"></div> Awake 15m avg</div>
         </div>
-        <div style="margin-top:12px; padding:12px; background:rgba(167,207,40,0.1); border-radius:8px; font-size:12px; color:#333;">
+        <div style="margin-top:12px; padding:12px; background:rgba(167,207,40,0.1); border-radius:8px; font-size:12px; ">
           <strong>Key finding:</strong> CPAP is helping — your AHI residual is 3.2 (well controlled). Sleep architecture shows fair deep sleep (45m) but below target (1.5-2 hrs). REM at 18% is acceptable but on the lower end. OSA disruption is limited, but sleep duration remains short at 6.2h avg.
         </div>
       </div>
@@ -5099,7 +5203,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">CPAP Nightly Usage</div>
       <div class="pg-glass-body">
-        <div style="font-size:12px; color:#666; margin-bottom:8px;">Daily CPAP hours and AHI (Apnea-Hypopnea Index). Lower AHI = fewer breathing disruptions. Target AHI < 5.</div>
+        <div style="font-size:12px;  margin-bottom:8px;">Daily CPAP hours and AHI (Apnea-Hypopnea Index). Lower AHI = fewer breathing disruptions. Target AHI < 5.</div>
         <div class="bar-chart">
           <div class="bar-group">
             <div class="bar-val">6.1h</div>
@@ -5156,7 +5260,7 @@ function loadDocumentsFromStorage() {
           <div class="legend-item"><div class="legend-dot" style="background:#2196f3;"></div> Avg AHI 3.2 (well controlled)</div>
           <div class="legend-item"><div class="legend-dot" style="background:#f88a2f;"></div> Mask Fit: Good (minimal leaks)</div>
         </div>
-        <div style="margin-top:12px; padding:12px; background:rgba(167,207,40,0.1); border-radius:8px; font-size:12px; color:#333;">
+        <div style="margin-top:12px; padding:12px; background:rgba(167,207,40,0.1); border-radius:8px; font-size:12px; ">
           <strong>CPAP Performance:</strong> 85% compliance (21/30 nights), consistent 6+ hour usage. AHI residual 3.2 indicates OSA is well controlled on current pressure settings. Mask seal is stable — minimal leak events.
         </div>
       </div>
@@ -5170,7 +5274,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Daily Step Count & Activity (Jan 30 – Feb 5, 2026)</div>
       <div class="pg-glass-body">
-        <div style="font-size:12px; color:#666; margin-bottom:8px;">Green = active time. Gray = sedentary. Limited by knee OA and back pain, but consistent walking helps maintain mobility.</div>
+        <div style="font-size:12px;  margin-bottom:8px;">Green = active time. Gray = sedentary. Limited by knee OA and back pain, but consistent walking helps maintain mobility.</div>
         <div class="bar-chart">
           <div class="bar-group">
             <div class="bar-stack">
@@ -5226,7 +5330,7 @@ function loadDocumentsFromStorage() {
           <div class="legend-item"><div class="legend-dot" style="background:#a7cf28;"></div> Active avg 30min/day</div>
           <div class="legend-item"><div class="legend-dot" style="background:#ddd;"></div> Sedentary avg 23.5h/day</div>
         </div>
-        <div style="margin-top:12px; padding:12px; background:rgba(167,207,40,0.1); border-radius:8px; font-size:12px; color:#333;">
+        <div style="margin-top:12px; padding:12px; background:rgba(167,207,40,0.1); border-radius:8px; font-size:12px; ">
           <strong>Activity pattern:</strong> 5,200 steps avg — modest but consistent. Knee OA limits distance, back pain limits intensity. Daily walking plus PT exercises are helping maintain function despite limitations. Step count has declined 15% over past 3 months — orthopedic follow-up recommended.
         </div>
       </div>
@@ -5240,29 +5344,29 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Resting Heart Rate & Heart Rate Variability (HRV)</div>
       <div class="pg-glass-body">
-        <div class="stat-grid">
-          <div class="stat-card">
-            <div class="stat-value">68 bpm</div>
-            <div class="stat-label">Resting HR</div>
+        <div class="stat-grid" style="gap: 12px;">
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">68 bpm</div>
+            <div class="stat-label" style="font-size: 12px;">Resting HR</div>
             <div class="stat-sublabel" style="font-size:11px; color:#f88a2f; margin-top:4px;">Slightly elevated (reflects metabolic syndrome)</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">28 ms</div>
-            <div class="stat-label">HRV (7-day avg)</div>
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">28 ms</div>
+            <div class="stat-label" style="font-size: 12px;">HRV (7-day avg)</div>
             <div class="stat-sublabel" style="font-size:11px; color:#dc3545; margin-top:4px;">Low (autonomic dysfunction)</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">+0.3°C</div>
-            <div class="stat-label">Body Temp Deviation</div>
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">+0.3°C</div>
+            <div class="stat-label" style="font-size: 12px;">Body Temp Deviation</div>
             <div class="stat-sublabel" style="font-size:11px; color:#f88a2f; margin-top:4px;">Mild inflammation</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-value">72</div>
-            <div class="stat-label">Sleep Score</div>
+          <div class="stat-card" style="padding: 12px;">
+            <div class="stat-value" style="font-size: 16px;">72</div>
+            <div class="stat-label" style="font-size: 12px;">Sleep Score</div>
             <div class="stat-sublabel" style="font-size:11px; color:#f88a2f; margin-top:4px;">Fair (OSA impact)</div>
           </div>
         </div>
-        <div style="margin-top:12px; padding:12px; background:rgba(220,53,69,0.08); border-radius:8px; font-size:12px; color:#333;">
+        <div style="margin-top:12px; padding:12px; background:rgba(220,53,69,0.08); border-radius:8px; font-size:12px; ">
           <strong>Interpretation:</strong> Resting HR 68 is slightly elevated for age 48 (expected 60-65), reflecting T2DM and HTN. HRV 28ms is low, suggesting reduced parasympathetic tone — consistent with diabetes-related autonomic neuropathy and PTSD hyperarousal. Temperature deviation +0.3°C suggests chronic low-grade inflammation (metabolic syndrome). Sleep score 72 is fair given OSA disruption despite CPAP.
         </div>
       </div>
@@ -5278,19 +5382,19 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-body">
         <div class="list-item" style="background:rgba(255,255,255,0.1); border-color:#dc3545; margin-bottom:12px;">
           <div class="list-title" style="color:#ff6b6b; font-weight:700;">OSA ↔ Short Sleep Duration</div>
-          <div class="list-subtitle" style="color:#333;">CPAP AHI 3.2 (controlled), but sleep duration only 6.2h vs 7-9h target. This creates a sleep debt that impacts glucose control and recovery.</div>
+          <div class="list-subtitle">CPAP AHI 3.2 (controlled), but sleep duration only 6.2h vs 7-9h target. This creates a sleep debt that impacts glucose control and recovery.</div>
         </div>
         <div class="list-item" style="background:rgba(255,255,255,0.1); border-color:rgba(167,207,40,0.5); margin-bottom:12px;">
           <div class="list-title" style="color:#001830; font-weight:700;">Low HRV ↔ Autonomic Neuropathy + PTSD Hyperarousal</div>
-          <div class="list-subtitle" style="color:#333;">HRV 28ms indicates reduced parasympathetic function. Dual drivers: diabetes-related autonomic neuropathy AND PTSD stress response. Gabapentin helps neuropathy; Sertraline helps PTSD.</div>
+          <div class="list-subtitle">HRV 28ms indicates reduced parasympathetic function. Dual drivers: diabetes-related autonomic neuropathy AND PTSD stress response. Gabapentin helps neuropathy; Sertraline helps PTSD.</div>
         </div>
         <div class="list-item" style="background:rgba(255,255,255,0.1); border-color:#dc3545; margin-bottom:12px;">
           <div class="list-title" style="color:#ff6b6b;">Step Decline ↔ Knee OA Progression</div>
-          <div class="list-subtitle" style="color:#333;">15% step decline over 3 months (5,600→5,200). Knee OA and back pain (L4-L5 DDD) are limiting activity. Orthopedic follow-up needed to prevent further mobility loss.</div>
+          <div class="list-subtitle">15% step decline over 3 months (5,600→5,200). Knee OA and back pain (L4-L5 DDD) are limiting activity. Orthopedic follow-up needed to prevent further mobility loss.</div>
         </div>
         <div class="list-item" style="background:rgba(255,255,255,0.1); border-color:#a7cf28;">
           <div class="list-title" style="color:#001830; font-weight:700;">CPAP Compliance (85%) ✓ — Management Working</div>
-          <div class="list-subtitle" style="color:#333;">Consistent 6h+ nightly usage with stable AHI indicates you're using CPAP effectively despite the burden. This is excellent for long-term OSA health.</div>
+          <div class="list-subtitle">Consistent 6h+ nightly usage with stable AHI indicates you're using CPAP effectively despite the burden. This is excellent for long-term OSA health.</div>
         </div>
       </div>
     </div>
@@ -5793,7 +5897,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">🤖 Key Trend Interpretations</div>
       <div class="pg-glass-body">
-        <div style="color:#333; margin-top:12px;">
+        <div style=" margin-top:12px;">
           <strong style="color:#a7cf28; font-weight:700;">Improving:</strong> Weight (-3 lbs), REM sleep slight uptick, Sleep latency improving. Your body is making positive metabolic adjustments. Continue current diet/activity approach.<br><br>
           <strong style="color:#dc3545;">Concerning:</strong> Step count declining (-15% over 90 days) suggests knee OA or back pain progression is limiting mobility. This is a critical driver of worsening glucose control, OSA, and cardiovascular health. URGENT: Orthopedic evaluation needed. HRV declining (-12%) indicates worsening autonomic neuropathy — this is a long-term marker of diabetes progression.<br><br>
           <strong style="color:#f88a2f;">Watch:</strong> Total sleep duration below 7-hour target despite CPAP compliance. CPAP is controlling apneas (AHI 3.2), but you're still sleep-deprived. Consider earlier bedtime or CPAP setting adjustment to extend sleep duration. Sleep debt is driving glucose spikes and limiting recovery.
@@ -6096,42 +6200,42 @@ function loadDocumentsFromStorage() {
     <!-- Diabetes Management -->
     <div class="pg-bento-card">
       <div style="font-weight:600; margin-bottom:8px;">Diabetes Management</div>
-      <div style="font-size:13px; color:#666; margin-bottom:12px;">Understanding Type 2 Diabetes and control strategies</div>
+      <div style="font-size:13px;  margin-bottom:12px;">Understanding Type 2 Diabetes and control strategies</div>
       <button class="action-btn" style="width:100%;">View Resource</button>
     </div>
 
     <!-- PTSD Support -->
     <div class="pg-bento-card">
       <div style="font-weight:600; margin-bottom:8px;">PTSD Support & Treatment</div>
-      <div style="font-size:13px; color:#666; margin-bottom:12px;">Therapy approaches and coping strategies for veterans</div>
+      <div style="font-size:13px;  margin-bottom:12px;">Therapy approaches and coping strategies for veterans</div>
       <button class="action-btn" style="width:100%;">View Resource</button>
     </div>
 
     <!-- VA Benefits for Veterans -->
     <div class="pg-bento-card">
       <div style="font-weight:600; margin-bottom:8px;">VA Disability Benefits Guide</div>
-      <div style="font-size:13px; color:#666; margin-bottom:12px;">Maximizing your 80% rating and entitlements</div>
+      <div style="font-size:13px;  margin-bottom:12px;">Maximizing your 80% rating and entitlements</div>
       <button class="action-btn" style="width:100%;">View Resource</button>
     </div>
 
     <!-- Sleep Apnea Management -->
     <div class="pg-bento-card">
       <div style="font-weight:600; margin-bottom:8px;">Sleep Apnea Management</div>
-      <div style="font-size:13px; color:#666; margin-bottom:12px;">CPAP therapy and sleep hygiene for veterans</div>
+      <div style="font-size:13px;  margin-bottom:12px;">CPAP therapy and sleep hygiene for veterans</div>
       <button class="action-btn" style="width:100%;">View Resource</button>
     </div>
 
     <!-- Chronic Pain Management -->
     <div class="pg-bento-card">
       <div style="font-weight:600; margin-bottom:8px;">Chronic Pain Management</div>
-      <div style="font-size:13px; color:#666; margin-bottom:12px;">Strategies for managing spine and joint pain</div>
+      <div style="font-size:13px;  margin-bottom:12px;">Strategies for managing spine and joint pain</div>
       <button class="action-btn" style="width:100%;">View Resource</button>
     </div>
 
     <!-- Austin VA Medical Center Info -->
     <div class="pg-bento-card">
       <div style="font-weight:600; margin-bottom:8px;">Austin VA Medical Center</div>
-      <div style="font-size:13px; color:#666; margin-bottom:12px;">Services, contact info, and appointment scheduling</div>
+      <div style="font-size:13px;  margin-bottom:12px;">Services, contact info, and appointment scheduling</div>
       <button class="action-btn" style="width:100%;">View Resource</button>
     </div>
   </div>
@@ -6161,27 +6265,27 @@ function loadDocumentsFromStorage() {
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
           <div style="padding:8px; border-left:2px solid rgba(33,150,243,0.5);">
             <div style="font-weight:600; font-size:13px;">DD-214 Discharge Certificate</div>
-            <div style="font-size:12px; color:#666;">Military Discharge</div>
+            <div style="font-size:12px; ">Military Discharge</div>
           </div>
           <div style="padding:8px; border-left:2px solid rgba(33,150,243,0.5);">
             <div style="font-weight:600; font-size:13px;">VA Rating Decision</div>
-            <div style="font-size:12px; color:#666;">80% Combined Rating</div>
+            <div style="font-size:12px; ">80% Combined Rating</div>
           </div>
           <div style="padding:8px; border-left:2px solid rgba(33,150,243,0.5);">
             <div style="font-weight:600; font-size:13px;">Lab Results</div>
-            <div style="font-size:12px; color:#666;">Recent Test Results</div>
+            <div style="font-size:12px; ">Recent Test Results</div>
           </div>
           <div style="padding:8px; border-left:2px solid rgba(33,150,243,0.5);">
             <div style="font-weight:600; font-size:13px;">Medical Records</div>
-            <div style="font-size:12px; color:#666;">Consolidated Records</div>
+            <div style="font-size:12px; ">Consolidated Records</div>
           </div>
           <div style="padding:8px; border-left:2px solid rgba(33,150,243,0.5);">
             <div style="font-weight:600; font-size:13px;">Prescription Records</div>
-            <div style="font-size:12px; color:#666;">Current & Past Medications</div>
+            <div style="font-size:12px; ">Current & Past Medications</div>
           </div>
           <div style="padding:8px; border-left:2px solid rgba(33,150,243,0.5);">
             <div style="font-weight:600; font-size:13px;">Provider Letters</div>
-            <div style="font-size:12px; color:#666;">Physician Documentation</div>
+            <div style="font-size:12px; ">Physician Documentation</div>
           </div>
         </div>
       </div>
@@ -6252,21 +6356,21 @@ function loadDocumentsFromStorage() {
         <div class="pg-bento-grid">
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">VA 21-526EZ</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">Disability Rating</div>
+                <div style="font-size:13px;  margin-bottom:12px;">Disability Rating</div>
                 <div style="margin-bottom:12px;"><span class="badge badge-blue">80% Combined Rating</span></div>
                 <button class="action-btn" onclick="showPage('form-va-21-526')" style="width:100%;">View Form</button>
             </div>
 
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">VA 21-4142</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">Authorization to Release Records</div>
+                <div style="font-size:13px;  margin-bottom:12px;">Authorization to Release Records</div>
                 <div style="margin-bottom:12px;"><span class="badge badge-green">Ready to Submit</span></div>
                 <button class="action-btn" onclick="showPage('form-va-21-4142')" style="width:100%;">View Form</button>
             </div>
 
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">VA 21-0781</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">PTSD Statement</div>
+                <div style="font-size:13px;  margin-bottom:12px;">PTSD Statement</div>
                 <div style="margin-bottom:12px;"><span class="badge badge-green">Ready to Submit</span></div>
                 <button class="action-btn" onclick="showPage('form-va-21-0781')" style="width:100%;">View Form</button>
             </div>
@@ -6279,14 +6383,14 @@ function loadDocumentsFromStorage() {
         <div class="pg-bento-grid">
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">SSDI Application</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">Appeal & Disability Claim</div>
+                <div style="font-size:13px;  margin-bottom:12px;">Appeal & Disability Claim</div>
                 <div style="margin-bottom:12px;"><span class="badge badge-orange">Status Pending</span></div>
                 <button class="action-btn" onclick="showPage('form-ssdi-application')" style="width:100%;">View Form</button>
             </div>
 
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">SSA-3368</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">Disability Report</div>
+                <div style="font-size:13px;  margin-bottom:12px;">Disability Report</div>
                 <div style="margin-bottom:12px;"><span class="badge badge-green">Ready to Submit</span></div>
                 <button class="action-btn" onclick="showPage('form-ssdi-3368')" style="width:100%;">View Form</button>
             </div>
@@ -6299,7 +6403,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-bento-grid">
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">MSPB Appeal Form</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">Merit Systems Protection Board</div>
+                <div style="font-size:13px;  margin-bottom:12px;">Merit Systems Protection Board</div>
                 <div style="margin-bottom:12px;"><span class="badge badge-blue">Ready to Submit</span></div>
                 <button class="action-btn" onclick="showPage('form-mspb-appeal')" style="width:100%;">View Form</button>
             </div>
@@ -6312,31 +6416,31 @@ function loadDocumentsFromStorage() {
         <div class="pg-bento-grid">
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">Complete Medical History</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">All diagnoses, surgeries, medications documented</div>
+                <div style="font-size:13px;  margin-bottom:12px;">All diagnoses, surgeries, medications documented</div>
                 <button class="action-btn" onclick="showPage('form-medical-history')" style="width:100%;">View Form</button>
             </div>
 
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">Current Medications</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">All 8 medications with dosages and refills</div>
+                <div style="font-size:13px;  margin-bottom:12px;">All 8 medications with dosages and refills</div>
                 <button class="action-btn" onclick="showPage('form-medication-list')" style="width:100%;">View Form</button>
             </div>
 
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">📋 Medication List for Doctors</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">Print-ready medication summary with prescriber info</div>
+                <div style="font-size:13px;  margin-bottom:12px;">Print-ready medication summary with prescriber info</div>
                 <button class="action-btn" onclick="showPage('form-med-list')" style="width:100%;">View Form</button>
             </div>
 
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">📋 Conditions Summary</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">All 10 conditions organized by system with ICD-10</div>
+                <div style="font-size:13px;  margin-bottom:12px;">All 10 conditions organized by system with ICD-10</div>
                 <button class="action-btn" onclick="showPage('form-conditions-summary')" style="width:100%;">View Form</button>
             </div>
 
             <div class="pg-bento-card">
                 <div style="font-weight:600; margin-bottom:8px;">📋 Privacy Authorization</div>
-                <div style="font-size:13px; color:#666; margin-bottom:12px;">HIPAA-compliant records release authorization</div>
+                <div style="font-size:13px;  margin-bottom:12px;">HIPAA-compliant records release authorization</div>
                 <button class="action-btn" onclick="showPage('form-privacy-auth')" style="width:100%;">View Form</button>
             </div>
         </div>
@@ -6541,7 +6645,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-section">Authorization Scope</div>
         <div class="pg-glass">
             <div class="pg-glass-body">
-                <p style="font-size:13px; line-height:1.6; color:#333;">
+                <p style="font-size:13px; line-height:1.6; ">
                     Applicant authorizes the above providers to release all medical records, test results, treatment plans, medications, and clinical notes to the U.S. Department of Veterans Affairs for disability rating purposes.
                 </p>
             </div>
@@ -6608,7 +6712,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-section">Service-Connected Events</div>
         <div class="pg-glass">
             <div class="pg-glass-body">
-                <p style="font-size:13px; line-height:1.6; color:#333;">
+                <p style="font-size:13px; line-height:1.6; ">
                     Applicant claims PTSD resulted from service-connected events during military service (1996–2005) in the U.S. Army during the Gulf War Era. Applicant achieved rank of E-6 Staff Sergeant.
                 </p>
             </div>
@@ -6777,7 +6881,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-section">Physical Limitations</div>
         <div class="pg-glass">
             <div class="pg-glass-body">
-                <div style="font-size:13px; line-height:1.8; color:#333;">
+                <div style="font-size:13px; line-height:1.8; ">
                     <div style="margin-bottom:10px;">Cannot sit or stand for prolonged periods due to spinal pain</div>
                     <div style="margin-bottom:10px;">Cannot lift more than 10 lbs</div>
                     <div style="margin-bottom:10px;">Chronic daily pain from degenerative disc disease L4-L5</div>
@@ -6795,22 +6899,22 @@ function loadDocumentsFromStorage() {
             <div class="pg-glass-body">
                 <div class="pg-glass-list-item">
                     <div style="font-weight:600; margin-bottom:4px;">PTSD (Post-Traumatic Stress Disorder)</div>
-                    <div style="font-size:12px; color:#666;">Intrusive flashbacks, hypervigilance, emotional numbness, sleep disturbance</div>
+                    <div style="font-size:12px; ">Intrusive flashbacks, hypervigilance, emotional numbness, sleep disturbance</div>
                 </div>
                 <div class="pg-glass-divider" style="margin:10px 0;"></div>
                 <div class="pg-glass-list-item">
                     <div style="font-weight:600; margin-bottom:4px;">Major Depressive Disorder</div>
-                    <div style="font-size:12px; color:#666;">Persistent hopelessness, fatigue, anhedonia, concentration difficulty</div>
+                    <div style="font-size:12px; ">Persistent hopelessness, fatigue, anhedonia, concentration difficulty</div>
                 </div>
                 <div class="pg-glass-divider" style="margin:10px 0;"></div>
                 <div class="pg-glass-list-item">
                     <div style="font-weight:600; margin-bottom:4px;">Anxiety Disorder</div>
-                    <div style="font-size:12px; color:#666;">Panic attacks, difficulty with social interaction, constant worry</div>
+                    <div style="font-size:12px; ">Panic attacks, difficulty with social interaction, constant worry</div>
                 </div>
                 <div class="pg-glass-divider" style="margin:10px 0;"></div>
                 <div class="pg-glass-list-item">
                     <div style="font-weight:600; margin-bottom:4px;">Cognitive Impairment</div>
-                    <div style="font-size:12px; color:#666;">Difficulty concentrating, memory issues, executive dysfunction</div>
+                    <div style="font-size:12px; ">Difficulty concentrating, memory issues, executive dysfunction</div>
                 </div>
             </div>
         </div>
@@ -6883,7 +6987,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-section">Service-Connected Diagnoses (VA-Rated)</div>
         <div class="pg-glass">
             <div class="pg-glass-body">
-                <div style="font-size:13px; line-height:1.8; color:#333;">
+                <div style="font-size:13px; line-height:1.8; ">
                     <div style="margin-bottom:10px;">1. Type 2 Diabetes Mellitus (E11.65)</div>
                     <div style="margin-bottom:10px;">2. Hypertension (I10)</div>
                     <div style="margin-bottom:10px;">3. Hyperlipidemia (E78.5)</div>
@@ -6904,7 +7008,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-section">Surgical History</div>
         <div class="pg-glass">
             <div class="pg-glass-body">
-                <div style="font-size:13px; line-height:1.8; color:#333;">
+                <div style="font-size:13px; line-height:1.8; ">
                     <div style="margin-bottom:10px;">Appendectomy (childhood)</div>
                     <div style="margin-bottom:10px;">Knee arthroscopy, left (2015)</div>
                     <div>Other minor surgical procedures</div>
@@ -7014,7 +7118,7 @@ function loadDocumentsFromStorage() {
                 <strong style="color:#0d7f3a;">✓ NKDA (No Known Drug Allergies)</strong>
             </div>
             <div class="pg-glass-body">
-                <div style="font-size:13px; color:#666;">Patient has confirmed no known drug allergies.</div>
+                <div style="font-size:13px; ">Patient has confirmed no known drug allergies.</div>
             </div>
         </div>
     </div>
@@ -7195,12 +7299,12 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Current Coverage Status</div>
       <div class="pg-glass-body">
-        <p style="margin-top:0; color:#333;">John Doe maintains dual coverage: VA Healthcare (80% rating, Priority Group 1) for service-connected disabilities and Employer Health Insurance (part-time work) for non-service-connected conditions.</p>
+        <p style="margin-top:0; color:rgba(255,255,255,0.93);">John Doe maintains dual coverage: VA Healthcare (80% rating, Priority Group 1) for service-connected disabilities and Employer Health Insurance (part-time work) for non-service-connected conditions.</p>
         <div style="margin-top:12px; padding:12px; background:rgba(33,150,243,0.15); border-radius:8px;">
-          <div style="font-weight:700; color:#2196f3; font-size:13px; margin-bottom:8px;">Active Coverage Sources</div>
-          <div class="rx-cost"><span class="rx-cost-label">VA Healthcare (Primary for SC)</span><span class="rx-cost-value" style="color:#28a745;">Active</span></div>
-          <div class="rx-cost"><span class="rx-cost-label">Employer Plan (Non-SC conditions)</span><span class="rx-cost-value" style="color:#28a745;">Available</span></div>
-          <div class="rx-cost"><span class="rx-cost-label">SSDI Benefits</span><span class="rx-cost-value" style="color:#f88a2f;">Pending</span></div>
+          <div style="font-weight:700; color:#82c4f8; font-size:13px; margin-bottom:8px;">Active Coverage Sources</div>
+          <div class="rx-cost"><span class="rx-cost-label" style="color:rgba(255,255,255,0.9);">VA Healthcare (Primary for SC)</span><span class="rx-cost-value" style="color:#28a745;">Active</span></div>
+          <div class="rx-cost"><span class="rx-cost-label" style="color:rgba(255,255,255,0.9);">Employer Plan (Non-SC conditions)</span><span class="rx-cost-value" style="color:#28a745;">Available</span></div>
+          <div class="rx-cost"><span class="rx-cost-label" style="color:rgba(255,255,255,0.9);">SSDI Benefits</span><span class="rx-cost-value" style="color:#f88a2f;">Pending</span></div>
         </div>
         <div style="margin-top:12px; padding:8px 12px; background:#001830; border-radius:6px; display:flex; justify-content:space-between; align-items:center;">
           <span style="color:#a7cf28; font-weight:700; font-size:12px;">CURRENT MONTHLY INCOME</span>
@@ -7215,19 +7319,19 @@ function loadDocumentsFromStorage() {
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
           <div style="padding:10px; background:rgba(40,167,69,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#28a745; font-size:14px;">$1,986</div>
-            <div style="font-size:11px; color:#666;">VA Disability</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.85);">VA Disability</div>
           </div>
           <div style="padding:10px; background:rgba(40,167,69,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#28a745; font-size:14px;">$2,200</div>
-            <div style="font-size:11px; color:#666;">Part-Time Work</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.85);">Part-Time Work</div>
           </div>
           <div style="padding:10px; background:rgba(220,53,69,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#dc3545; font-size:14px;">$340</div>
-            <div style="font-size:11px; color:#666;">Dr. Torres (Endo)</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.85);">Dr. Torres (Endo)</div>
           </div>
           <div style="padding:10px; background:rgba(220,53,69,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#dc3545; font-size:14px;">$180</div>
-            <div style="font-size:11px; color:#666;">Sleep Study</div>
+            <div style="font-size:11px; color:rgba(255,255,255,0.85);">Sleep Study</div>
           </div>
         </div>
       </div>
@@ -7236,11 +7340,11 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Coverage Coordination Strategy</div>
       <div class="pg-glass-body">
-        <div style="font-size:13px; line-height:1.6; color:#333;">
-          <div style="margin-bottom:10px;"><strong>1. Maximize VA Benefits</strong> — Ensure all service-connected conditions (PTSD 50%, OSA 50%, DDD 20%, PN 20%, Knee OA 10%, Tinnitus 10%) are managed through VA Priority Group 1 care.</div>
-          <div style="margin-bottom:10px;"><strong>2. Employer Plan for Non-SC</strong> — Use employer coverage for T2DM, HTN, Hyperlipidemia, GERD care. Reduces out-of-pocket expenses with Dr. Torres and specialists.</div>
-          <div style="margin-bottom:10px;"><strong>3. SSDI Application Follow-Up</strong> — 80% VA rating strongly supports disability claim. If approved: +$1,800/mo income + Medicare eligibility pathway (24-month wait).</div>
-          <div><strong>4. Ticket to Work Advantage</strong> — If SSDI approved, can continue part-time work with work incentive protections, maintaining both income streams without losing benefits.</div>
+        <div style="font-size:13px; line-height:1.6; color:rgba(255,255,255,0.93);">
+          <div style="margin-bottom:10px;"><strong style="color:white;">1. Maximize VA Benefits</strong> — Ensure all service-connected conditions (PTSD 50%, OSA 50%, DDD 20%, PN 20%, Knee OA 10%, Tinnitus 10%) are managed through VA Priority Group 1 care.</div>
+          <div style="margin-bottom:10px;"><strong style="color:white;">2. Employer Plan for Non-SC</strong> — Use employer coverage for T2DM, HTN, Hyperlipidemia, GERD care. Reduces out-of-pocket expenses with Dr. Torres and specialists.</div>
+          <div style="margin-bottom:10px;"><strong style="color:white;">3. SSDI Application Follow-Up</strong> — 80% VA rating strongly supports disability claim. If approved: +$1,800/mo income + Medicare eligibility pathway (24-month wait).</div>
+          <div><strong style="color:white;">4. Ticket to Work Advantage</strong> — If SSDI approved, can continue part-time work with work incentive protections, maintaining both income streams without losing benefits.</div>
         </div>
       </div>
     </div>
@@ -7249,12 +7353,12 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">SSDI &amp; Medicare Timeline</div>
       <div class="pg-glass-body">
         <div style="margin-bottom:10px;">
-          <div style="font-weight:700; color:#001830;">Current Status:</div>
+          <div style="font-weight:700; color:rgba(255,255,255,0.93);">Current Status:</div>
           <span class="badge badge-orange">SSDI Application Pending</span>
         </div>
         <div style="margin-top:10px;">
-          <div style="font-weight:700; color:#001830;">If Approved:</div>
-          <div style="font-size:13px; color:#555; margin-top:4px;">Medicare Part A + Part B eligibility begins 24 months after SSDI approval. Combined with VA coverage, provides comprehensive healthcare for both SC and non-SC conditions. John Doe would be ~50 years old at Medicare eligibility.</div>
+          <div style="font-weight:700; color:rgba(255,255,255,0.93);">If Approved:</div>
+          <div style="font-size:13px; color:rgba(255,255,255,0.85); margin-top:4px;">Medicare Part A + Part B eligibility begins 24 months after SSDI approval. Combined with VA coverage, provides comprehensive healthcare for both SC and non-SC conditions. John Doe would be ~50 years old at Medicare eligibility.</div>
         </div>
       </div>
     </div>
@@ -7262,7 +7366,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Annual Review Checklist</div>
       <div class="pg-glass-body">
-        <div style="font-size:13px; color:#555;">
+        <div style="font-size:13px; color:rgba(255,255,255,0.85);">
           <div style="margin-bottom:8px;">✓ VA Rating Status — Monitor for any benefit changes (currently 80% established March 2021)</div>
           <div style="margin-bottom:8px;">✓ SSDI Status — Check application progress and respond to any SSA requests</div>
           <div style="margin-bottom:8px;">✓ Employer Benefits — Verify health insurance enrollment for non-SC condition coverage</div>
@@ -7276,24 +7380,24 @@ function loadDocumentsFromStorage() {
   <!-- Service-Connected Conditions & Coverage -->
   <div class="pg-glass-wrap pg-glass-wrap-green">
     <div style="padding:16px; background:rgba(40,167,69,0.15); border-radius:8px; margin-bottom:16px;">
-      <div style="font-size:16px; font-weight:700; color:#001830; margin-bottom:4px;">🎖️ Service-Connected Conditions &amp; VA Coverage</div>
-      <div style="font-size:12px; color:#666;">80% Combined Rating — Gulf War Veteran — March 2021 Effective Date</div>
+      <div style="font-size:16px; font-weight:700; color:white; margin-bottom:4px;">🎖️ Service-Connected Conditions &amp; VA Coverage</div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.85);">80% Combined Rating — Gulf War Veteran — March 2021 Effective Date</div>
     </div>
 
     <div class="pg-glass">
       <div class="pg-glass-title">PTSD (Post-Traumatic Stress Disorder) — 50%</div>
       <div class="pg-glass-body">
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">Service-Connected:</span>
-          <span style="color:#001830; font-weight:700;">Gulf War Deployment</span>
+          <span style="color:rgba(255,255,255,0.85);">Service-Connected:</span>
+          <span style="color:white; font-weight:700;">Gulf War Deployment</span>
         </div>
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">VA Coverage:</span>
+          <span style="color:rgba(255,255,255,0.85);">VA Coverage:</span>
           <span style="color:#28a745; font-weight:700;">✓ Full Coverage</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1);">
-          <span style="color:#666;"><strong>Includes:</strong></span>
-          <span style="color:#001830; font-size:12px;">Psychiatry, psychotherapy, medications</span>
+        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1);">
+          <span style="color:rgba(255,255,255,0.85);"><strong>Includes:</strong></span>
+          <span style="color:rgba(255,255,255,0.85); font-size:12px;">Psychiatry, psychotherapy, medications</span>
         </div>
       </div>
     </div>
@@ -7302,16 +7406,16 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Obstructive Sleep Apnea (OSA) — 50%</div>
       <div class="pg-glass-body">
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">Service-Connected:</span>
-          <span style="color:#001830; font-weight:700;">Military Service Exposure</span>
+          <span style="color:rgba(255,255,255,0.85);">Service-Connected:</span>
+          <span style="color:white; font-weight:700;">Military Service Exposure</span>
         </div>
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">VA Coverage:</span>
+          <span style="color:rgba(255,255,255,0.85);">VA Coverage:</span>
           <span style="color:#28a745; font-weight:700;">✓ Full Coverage</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1);">
-          <span style="color:#666;"><strong>Includes:</strong></span>
-          <span style="color:#001830; font-size:12px;">CPAP device, sleep studies, monitoring</span>
+        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1);">
+          <span style="color:rgba(255,255,255,0.85);"><strong>Includes:</strong></span>
+          <span style="color:rgba(255,255,255,0.85); font-size:12px;">CPAP device, sleep studies, monitoring</span>
         </div>
       </div>
     </div>
@@ -7320,16 +7424,16 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Degenerative Disc Disease — L4-L5 — 20%</div>
       <div class="pg-glass-body">
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">Service-Connected:</span>
-          <span style="color:#001830; font-weight:700;">Military Duties</span>
+          <span style="color:rgba(255,255,255,0.85);">Service-Connected:</span>
+          <span style="color:white; font-weight:700;">Military Duties</span>
         </div>
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">VA Coverage:</span>
+          <span style="color:rgba(255,255,255,0.85);">VA Coverage:</span>
           <span style="color:#28a745; font-weight:700;">✓ Full Coverage</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1);">
-          <span style="color:#666;"><strong>Includes:</strong></span>
-          <span style="color:#001830; font-size:12px;">Neurology, spinal care, pain management</span>
+        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1);">
+          <span style="color:rgba(255,255,255,0.85);"><strong>Includes:</strong></span>
+          <span style="color:rgba(255,255,255,0.85); font-size:12px;">Neurology, spinal care, pain management</span>
         </div>
       </div>
     </div>
@@ -7338,16 +7442,16 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Peripheral Neuropathy — 20%</div>
       <div class="pg-glass-body">
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">Service-Connected:</span>
-          <span style="color:#001830; font-weight:700;">Gulf War Service</span>
+          <span style="color:rgba(255,255,255,0.85);">Service-Connected:</span>
+          <span style="color:white; font-weight:700;">Gulf War Service</span>
         </div>
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">VA Coverage:</span>
+          <span style="color:rgba(255,255,255,0.85);">VA Coverage:</span>
           <span style="color:#28a745; font-weight:700;">✓ Full Coverage</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1);">
-          <span style="color:#666;"><strong>Includes:</strong></span>
-          <span style="color:#001830; font-size:12px;">Neurology consults, medications</span>
+        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1);">
+          <span style="color:rgba(255,255,255,0.85);"><strong>Includes:</strong></span>
+          <span style="color:rgba(255,255,255,0.85); font-size:12px;">Neurology consults, medications</span>
         </div>
       </div>
     </div>
@@ -7356,16 +7460,16 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Left Knee Osteoarthritis — 10%</div>
       <div class="pg-glass-body">
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">Service-Connected:</span>
-          <span style="color:#001830; font-weight:700;">Military Service</span>
+          <span style="color:rgba(255,255,255,0.85);">Service-Connected:</span>
+          <span style="color:white; font-weight:700;">Military Service</span>
         </div>
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">VA Coverage:</span>
+          <span style="color:rgba(255,255,255,0.85);">VA Coverage:</span>
           <span style="color:#28a745; font-weight:700;">✓ Full Coverage</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1);">
-          <span style="color:#666;"><strong>Includes:</strong></span>
-          <span style="color:#001830; font-size:12px;">Orthopedic care, PT/OT</span>
+        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1);">
+          <span style="color:rgba(255,255,255,0.85);"><strong>Includes:</strong></span>
+          <span style="color:rgba(255,255,255,0.85); font-size:12px;">Orthopedic care, PT/OT</span>
         </div>
       </div>
     </div>
@@ -7374,16 +7478,16 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-title">Tinnitus — 10%</div>
       <div class="pg-glass-body">
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">Service-Connected:</span>
-          <span style="color:#001830; font-weight:700;">Military Service</span>
+          <span style="color:rgba(255,255,255,0.85);">Service-Connected:</span>
+          <span style="color:white; font-weight:700;">Military Service</span>
         </div>
         <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="color:#666;">VA Coverage:</span>
+          <span style="color:rgba(255,255,255,0.85);">VA Coverage:</span>
           <span style="color:#28a745; font-weight:700;">✓ Full Coverage</span>
         </div>
-        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(0,0,0,0.1);">
-          <span style="color:#666;"><strong>Includes:</strong></span>
-          <span style="color:#001830; font-size:12px;">Audiology services, hearing evaluations</span>
+        <div style="display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid rgba(255,255,255,0.1);">
+          <span style="color:rgba(255,255,255,0.85);"><strong>Includes:</strong></span>
+          <span style="color:rgba(255,255,255,0.85); font-size:12px;">Audiology services, hearing evaluations</span>
         </div>
       </div>
     </div>
@@ -7391,8 +7495,8 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title" style="background:rgba(40,167,69,0.15);">Non-Service-Connected Conditions</div>
       <div class="pg-glass-body">
-        <p style="margin:0 0 12px 0; font-size:13px; color:#555;"><strong>Currently not service-connected:</strong> Type 2 Diabetes Mellitus, Hypertension, Hyperlipidemia, GERD. John Doe covers these through employer health plan (part-time work benefits) and civilian providers (Dr. Torres for endocrinology).</p>
-        <p style="margin:0; font-size:12px; color:#555;"><strong>Future consideration:</strong> Could file new claims if these conditions are determined to be service-connected upon examination.</p>
+        <p style="margin:0 0 12px 0; font-size:13px; color:rgba(255,255,255,0.93);"><strong>Currently not service-connected:</strong> Type 2 Diabetes Mellitus, Hypertension, Hyperlipidemia, GERD. John Doe covers these through employer health plan (part-time work benefits) and civilian providers (Dr. Torres for endocrinology).</p>
+        <p style="margin:0; font-size:12px; color:rgba(255,255,255,0.85);"><strong>Future consideration:</strong> Could file new claims if these conditions are determined to be service-connected upon examination.</p>
       </div>
     </div>
   </div>
@@ -7402,8 +7506,6 @@ function loadDocumentsFromStorage() {
     <button class="pg-glass-btn pg-glass-btn-outline" onclick="showPage('dashboard')">← Back to Dashboard</button>
   </div>
 </div>
-
-<!-- MEDICAL BILLS PAGE -->
 <div id="medical-bills" class="page">
   <div class="pg-header pg-header-orange">
     <h1 class="pg-header-title">💳 Medical Bills &amp; Costs</h1>
@@ -7428,7 +7530,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">VA Coverage — Service-Connected Conditions</div>
       <div class="pg-glass-body">
-        <p style="margin-top:0; color:#333; font-size:13px;">All service-connected disability care is covered through VA at NO COST due to 80% Priority Group 1 rating. This includes:</p>
+        <p style="margin-top:0;  font-size:13px;">All service-connected disability care is covered through VA at NO COST due to 80% Priority Group 1 rating. This includes:</p>
         <div style="margin-top:12px;">
           <div class="rx-cost"><span class="rx-cost-label">PTSD (50%) care — Psychiatry, therapy, medications</span><span class="rx-cost-value" style="color:#28a745;">$0</span></div>
           <div class="rx-cost"><span class="rx-cost-label">OSA (50%) care — Sleep management, CPAP, monitoring</span><span class="rx-cost-value" style="color:#28a745;">$0</span></div>
@@ -7447,14 +7549,14 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Non-Service-Connected Care — Out-of-Pocket</div>
       <div class="pg-glass-body" style="font-size:12px;">
-        <p style="margin-top:0; color:#333;">T2DM, HTN, Hyperlipidemia, and GERD are non-service-connected. Coverage through employer health plan (part-time work) and civilian providers. Outstanding balances:</p>
+        <p style="margin-top:0; ">T2DM, HTN, Hyperlipidemia, and GERD are non-service-connected. Coverage through employer health plan (part-time work) and civilian providers. Outstanding balances:</p>
         <div style="margin-top:12px;">
           <div class="rx-cost"><span class="rx-cost-label">Dr. Torres — Endocrinology (T2DM, HTN copay)</span><span class="rx-cost-value" style="color:#f88a2f;">$340.00</span></div>
           <div class="rx-cost"><span class="rx-cost-label">Sleep Study &amp; Follow-up (OSA civilian monitoring)</span><span class="rx-cost-value" style="color:#f88a2f;">$180.00</span></div>
         </div>
         <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(0,0,0,0.1);">
           <div style="font-weight:700; color:#f88a2f;">Monthly Average: ~$520</div>
-          <div style="font-size:11px; color:#666; margin-top:4px;">Non-SC care shared between employer plan and out-of-pocket</div>
+          <div style="font-size:11px;  margin-top:4px;">Non-SC care shared between employer plan and out-of-pocket</div>
         </div>
       </div>
     </div>
@@ -7496,7 +7598,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Financial Snapshot</div>
       <div class="pg-glass-body">
-        <p style="margin:0; font-size:13px; color:#555; line-height:1.6;">
+        <p style="margin:0; font-size:13px;  line-height:1.6;">
           <strong style="color:#001830;">Current Status:</strong> John Doe maintains positive net income with dual coverage (VA primary for service-connected, employer plan for non-SC). Outstanding medical balances are manageable. SSDI approval would provide additional $1,800/month income buffer and Medicare eligibility pathway (24-month waiting period).
         </p>
       </div>
@@ -7537,14 +7639,14 @@ function loadDocumentsFromStorage() {
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
           <div style="padding:10px; background:rgba(33,150,243,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#2196f3;">Age 65</div>
-            <div style="font-size:12px; color:#555; margin-top:4px;">Eligibility Begins</div>
+            <div style="font-size:12px;  margin-top:4px;">Eligibility Begins</div>
           </div>
           <div style="padding:10px; background:rgba(33,150,243,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#2196f3;">17 Years</div>
-            <div style="font-size:12px; color:#555; margin-top:4px;">Time Away</div>
+            <div style="font-size:12px;  margin-top:4px;">Time Away</div>
           </div>
         </div>
-        <p style="margin:0; font-size:13px; color:#555; line-height:1.6;">Standard Medicare eligibility timeline. Coverage begins automatically at age 65. John Doe would reach this age in 2043.</p>
+        <p style="margin:0; font-size:13px;  line-height:1.6;">Standard Medicare eligibility timeline. Coverage begins automatically at age 65. John Doe would reach this age in 2043.</p>
       </div>
     </div>
 
@@ -7553,9 +7655,9 @@ function loadDocumentsFromStorage() {
       <div class="pg-glass-body">
         <div style="margin-bottom:12px; padding:10px; background:rgba(33,150,243,0.1); border-radius:6px;">
           <div style="font-weight:700; color:#2196f3;">24-Month Waiting Period</div>
-          <div style="font-size:12px; color:#555; margin-top:4px;">Begins from SSDI approval date</div>
+          <div style="font-size:12px;  margin-top:4px;">Begins from SSDI approval date</div>
         </div>
-        <div style="font-size:13px; color:#555; line-height:1.6;">
+        <div style="font-size:13px;  line-height:1.6;">
           <strong>Current Status:</strong> SSDI application pending. 80% VA rating strongly supports disability claim. <strong>If approved:</strong> Medicare Part A (hospital) + Part B (medical) effective 24 months after approval. John Doe would reach Medicare eligibility age ~50-51 if SSDI approved in next 1-2 years.
         </div>
       </div>
@@ -7575,14 +7677,14 @@ function loadDocumentsFromStorage() {
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
           <div style="padding:10px; background:rgba(33,150,243,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#2196f3;">State</div>
-            <div style="font-size:12px; color:#555; margin-top:4px;">Texas (Austin resident)</div>
+            <div style="font-size:12px;  margin-top:4px;">Texas (Austin resident)</div>
           </div>
           <div style="padding:10px; background:rgba(33,150,243,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#2196f3;">Status</div>
-            <div style="font-size:12px; color:#555; margin-top:4px;">Not Currently Applied</div>
+            <div style="font-size:12px;  margin-top:4px;">Not Currently Applied</div>
           </div>
         </div>
-        <div style="font-size:13px; color:#555; line-height:1.6;">
+        <div style="font-size:13px;  line-height:1.6;">
           <strong>Income Situation:</strong> Current combined income ($4,186/month) exceeds Medicaid limits for most TX categories. However, disabled/veteran categories may offer pathways. Not priority given VA 80% rating and employer coverage.
         </div>
       </div>
@@ -7591,8 +7693,8 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">VA Healthcare (Primary Coverage)</div>
       <div class="pg-glass-body">
-        <p style="margin:0 0 8px 0; font-size:13px; color:#555; font-weight:700;">80% Rating + Priority Group 1 = Highest Priority for All Benefits</p>
-        <p style="margin:0; font-size:13px; color:#555; line-height:1.6;">
+        <p style="margin:0 0 8px 0; font-size:13px;  font-weight:700;">80% Rating + Priority Group 1 = Highest Priority for All Benefits</p>
+        <p style="margin:0; font-size:13px;  line-height:1.6;">
           Primary coverage for all 6 service-connected conditions. Covers all VA-provided services at no cost to John Doe. No deductibles or copayments for SC conditions. This remains the foundation of his healthcare coverage and should continue even if SSDI and Medicare are approved.
         </p>
       </div>
@@ -7615,7 +7717,7 @@ function loadDocumentsFromStorage() {
 
     <div class="pg-glass">
       <div class="pg-glass-title">Action Items</div>
-      <div class="pg-glass-body" style="font-size:13px; color:#555;">
+      <div class="pg-glass-body" style="font-size:13px; ">
         <div style="margin-bottom:8px;">1. Follow up on SSDI application status regularly. 80% VA rating is strong evidence for approval.</div>
         <div style="margin-bottom:8px;">2. If SSDI approved: Mark calendar for 24-month Medicare eligibility waiting period and pre-enrollment 3 months before.</div>
         <div style="margin-bottom:8px;">3. Maintain employer health plan coverage while working part-time. Continue work incentive benefits if SSDI approved.</div>
@@ -7670,7 +7772,7 @@ function loadDocumentsFromStorage() {
 
     <div class="pg-bento-card" style="grid-column: span 2;">
       <div style="font-weight:700; color:#001830; margin-bottom:12px;">Address</div>
-      <div style="font-size:13px; color:#555; line-height:1.5;">1247 Oak Ridge Drive<br>Austin, TX 78745</div>
+      <div style="font-size:13px;  line-height:1.5;">1247 Oak Ridge Drive<br>Austin, TX 78745</div>
     </div>
 
     <div class="pg-bento-card">
@@ -7695,7 +7797,7 @@ function loadDocumentsFromStorage() {
 
     <div class="pg-bento-card" style="grid-column: span 2;">
       <div style="font-weight:700; color:#001830; margin-bottom:8px;">Military Service</div>
-      <div style="font-size:12px; color:#666; line-height:1.6;">
+      <div style="font-size:12px;  line-height:1.6;">
         <div style="margin-bottom:6px;"><strong>Branch:</strong> US Army</div>
         <div style="margin-bottom:6px;"><strong>Rank:</strong> E-6 Staff Sergeant</div>
         <div><strong>Era:</strong> Gulf War Veteran</div>
@@ -7704,7 +7806,7 @@ function loadDocumentsFromStorage() {
 
     <div class="pg-bento-card" style="grid-column: span 2;">
       <div style="font-weight:700; color:#001830; margin-bottom:8px;">Contact Information</div>
-      <div style="font-size:12px; color:#666; line-height:1.6;">
+      <div style="font-size:12px;  line-height:1.6;">
         <div style="margin-bottom:6px;"><strong>Phone:</strong> (512) 555-0847</div>
         <div style="margin-bottom:6px;"><strong>Email:</strong> john.doe@email.com</div>
         <div><strong>Emergency Contact:</strong> Jane Doe (Wife) — (512) 555-0923</div>
@@ -7713,14 +7815,14 @@ function loadDocumentsFromStorage() {
 
     <div class="pg-bento-card" style="grid-column: span 2;">
       <div style="font-weight:700; color:#001830; margin-bottom:8px;">Current Care Team</div>
-      <div style="font-size:12px; color:#666; line-height:1.6;">
+      <div style="font-size:12px;  line-height:1.6;">
         <div style="margin-bottom:6px;"><strong>PCP:</strong> Dr. Sarah Chen, MD (Austin VA Medical Center)</div>
       </div>
     </div>
 
     <div class="pg-bento-card" style="grid-column: span 2;">
       <div style="font-weight:700; color:#001830; margin-bottom:8px;">Physical Measurements</div>
-      <div style="font-size:12px; color:#666; line-height:1.6;">
+      <div style="font-size:12px;  line-height:1.6;">
         <div style="margin-bottom:6px;"><strong>Height:</strong> 5'11"</div>
         <div style="margin-bottom:6px;"><strong>Weight:</strong> 198 lbs</div>
         <div><strong>Blood Type:</strong> A+</div>
@@ -7729,7 +7831,7 @@ function loadDocumentsFromStorage() {
 
     <div class="pg-bento-card" style="grid-column: span 2;">
       <div style="font-weight:700; color:#001830; margin-bottom:8px;">Active Conditions</div>
-      <div style="font-size:12px; color:#666; line-height:1.6;">
+      <div style="font-size:12px;  line-height:1.6;">
         <div style="margin-bottom:4px;">Type 2 Diabetes</div>
         <div style="margin-bottom:4px;">Hypertension</div>
         <div style="margin-bottom:4px;">Hyperlipidemia</div>
@@ -7745,7 +7847,7 @@ function loadDocumentsFromStorage() {
 
     <div class="pg-bento-card" style="grid-column: span 2;">
       <div style="font-weight:700; color:#001830; margin-bottom:8px;">Current Medications</div>
-      <div style="font-size:12px; color:#666; line-height:1.6;">
+      <div style="font-size:12px;  line-height:1.6;">
         <div style="margin-bottom:4px;">Metformin 1000mg BID</div>
         <div style="margin-bottom:4px;">Lisinopril 20mg daily</div>
         <div style="margin-bottom:4px;">Atorvastatin 40mg daily</div>
@@ -8211,22 +8313,22 @@ function loadDocumentsFromStorage() {
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
           <div style="padding:8px; background:rgba(167,207,40,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#a7cf28;">256-bit</div>
-            <div style="font-size:11px; color:#666;">AES-GCM</div>
+            <div style="font-size:11px; ">AES-GCM</div>
           </div>
           <div style="padding:8px; background:rgba(167,207,40,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#a7cf28;">100K</div>
-            <div style="font-size:11px; color:#666;">PBKDF2 Iter</div>
+            <div style="font-size:11px; ">PBKDF2 Iter</div>
           </div>
           <div style="padding:8px; background:rgba(167,207,40,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#a7cf28;">4096-bit</div>
-            <div style="font-size:11px; color:#666;">RSA Key</div>
+            <div style="font-size:11px; ">RSA Key</div>
           </div>
           <div style="padding:8px; background:rgba(167,207,40,0.1); border-radius:6px;">
             <div style="font-weight:700; color:#a7cf28;">Zero</div>
-            <div style="font-size:11px; color:#666;">Knowledge</div>
+            <div style="font-size:11px; ">Knowledge</div>
           </div>
         </div>
-        <p style="margin:0; font-size:13px; color:#555; line-height:1.6;">Military-grade encryption. Your password never leaves your device. Server has zero access to unencrypted data.</p>
+        <p style="margin:0; font-size:13px;  line-height:1.6;">AES-256 encryption. Your password never leaves your device. Server has zero access to unencrypted data.</p>
       </div>
     </div>
 
@@ -8283,7 +8385,7 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">Post-Quantum Ready</div>
       <div class="pg-glass-body">
-        <p style="margin:0; font-size:13px; color:#555; line-height:1.6;">
+        <p style="margin:0; font-size:13px;  line-height:1.6;">
           MÉTIS uses <strong>crypto-agility</strong>. When NIST post-quantum algorithms (CRYSTALS-Kyber, CRYSTALS-Dilithium) reach browsers, we'll upgrade seamlessly. No password change needed. Your PBKDF2 key derivation is already quantum-resistant at 100,000 iterations.
         </p>
       </div>
@@ -8364,16 +8466,16 @@ function loadDocumentsFromStorage() {
     </div>
 
     <div class="pg-bento-card" style="grid-column: span 2;">
-      <div style="font-weight:700; color:#001830; margin-bottom:8px;">Weekly Analysis Schedule</div>
+      <div style="font-weight:700; color:#a7cf28; margin-bottom:8px;">Weekly Analysis Schedule</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px;">
-        <div style="padding:6px; background:rgba(167,207,40,0.1); border-radius:4px;"><div style="font-weight:700;">Monday</div><div style="font-size:11px;">2:00 AM UTC</div></div>
-        <div style="padding:6px; background:rgba(167,207,40,0.1); border-radius:4px;"><div style="font-weight:700;">Feb 14</div><div style="font-size:11px;">Next Run</div></div>
+        <div style="padding:6px; background:rgba(167,207,40,0.1); border-radius:4px;"><div style="font-weight:700; color:#1a1a1a;">Monday</div><div style="font-size:11px; color:#1a1a1a;">2:00 AM UTC</div></div>
+        <div style="padding:6px; background:rgba(167,207,40,0.1); border-radius:4px;"><div style="font-weight:700; color:#1a1a1a;">Feb 14</div><div style="font-size:11px; color:#1a1a1a;">Next Run</div></div>
       </div>
     </div>
 
     <div class="pg-bento-card" style="grid-column: span 2;">
-      <div style="font-weight:700; color:#001830; margin-bottom:10px;">Weekly Analysis Includes:</div>
-      <div style="font-size:12px; line-height:1.6;">
+      <div style="font-weight:700; color:#a7cf28; margin-bottom:10px;">Weekly Analysis Includes:</div>
+      <div style="font-size:12px; line-height:1.6; color:#1a1a1a;">
         ✓ Data aggregation<br>
         ✓ AI correlation analysis<br>
         ✓ Drug interaction checks<br>
@@ -8384,12 +8486,12 @@ function loadDocumentsFromStorage() {
     </div>
 
     <div class="pg-bento-card" style="grid-column: span 2;">
-      <div style="font-weight:700; color:#001830; margin-bottom:10px;">Universal Data Import</div>
+      <div style="font-weight:700; color:#a7cf28; margin-bottom:10px;">Universal Data Import</div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px;">
         <button class="pg-bento-btn" style="background:#a7cf28; color:#001830; font-size:11px;">Upload Data</button>
         <button class="pg-bento-btn" style="background:#f88a2f; color:white; font-size:11px;">Scan QR</button>
       </div>
-      <div style="font-size:11px; color:#666;">Formats: FHIR, CDA, HL7, CSV, PDF, images, text</div>
+      <div style="font-size:11px; color:#1a1a1a;">Formats: FHIR, CDA, HL7, CSV, PDF, images, text</div>
     </div>
   </div>
 
@@ -8397,8 +8499,6 @@ function loadDocumentsFromStorage() {
     <button class="pg-glass-btn pg-glass-btn-outline" onclick="showPage('dashboard')">← Back to Dashboard</button>
   </div>
 </div>
-
-<!-- PAGE: PLATFORM ARCHITECTURE (Investors) -->
 <div class="page" id="platform-architecture">
   <div class="pg-header pg-header-blue">
     <h1 class="pg-header-title">🏗️ Platform Architecture</h1>
@@ -8513,7 +8613,7 @@ function loadDocumentsFromStorage() {
         <div style="margin-bottom:6px;"><strong style="color:#a7cf28;">🎯 Pain-Aware:</strong> Pain level input affects recommendations</div>
         <div style="margin-bottom:6px;"><strong style="color:#a7cf28;">🎤 Voice Dictation:</strong> Hands-free operation for mobility limitations</div>
         <div style="margin-bottom:6px;"><strong style="color:#a7cf28;">🛡️ VA Integration:</strong> Direct connection to disability claims and benefits</div>
-        <div><strong style="color:#a7cf28;">🔐 Military-Grade:</strong> AES-256 encryption used by US military</div>
+        <div><strong style="color:#a7cf28;">🔐 Enterprise-Grade:</strong> AES-256-GCM authenticated encryption standard</div>
       </div>
     </div>
 
