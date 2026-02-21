@@ -1134,11 +1134,10 @@ body.high-contrast .pg-header { border: 2px solid #fff !important; }
 .pg-glass [style*="color:#dc3545"] { color: #ff8a95 !important; }
 .pg-glass [style*="color:#ff8a95"] { color: #ff8a95 !important; }
 .pg-glass [style*="color:#ffcccc"] { color: #ffcccc !important; }
-/* Fix alerts inside glass panels - preserve alert text colors */
-.pg-glass .alert, .pg-glass .alert * { color: inherit !important; }
-.pg-glass .alert { color: #155724 !important; }
-.pg-glass .alert-orange, .pg-glass .alert-orange * { color: #856404 !important; }
-.pg-glass .alert-red, .pg-glass .alert-red * { color: #721c24 !important; }
+/* Fix alerts inside glass panels — use light-readable colors */
+.pg-glass .alert, .pg-glass .alert * { color: #c5e864 !important; }
+.pg-glass .alert-orange, .pg-glass .alert-orange * { color: #ffc08a !important; }
+.pg-glass .alert-red, .pg-glass .alert-red * { color: #ff8a95 !important; }
 /* Forms within glass - input fields */
 .pg-glass-wrap input, .pg-glass-wrap select, .pg-glass-wrap textarea {
     color: #fff !important;
@@ -1188,6 +1187,48 @@ body.high-contrast .pg-header { border: 2px solid #fff !important; }
     background: rgba(255,255,255,0.06) !important;
     border-left-color: inherit !important;
 }
+/* Catch any remaining light backgrounds inside glass panels */
+.pg-glass div[style*="background:#f9f9f9"],
+.pg-glass div[style*="background: #f9f9f9"],
+.pg-glass div[style*="background:#f0f0f0"],
+.pg-glass div[style*="background: #f0f0f0"],
+.pg-glass div[style*="background-color: #f5f7fa"],
+.pg-glass div[style*="background:#f5f7fa"],
+.pg-glass td[style*="background:#f9f9f9"],
+.pg-glass td[style*="background:#f0f0f0"],
+.pg-glass tr[style*="background:#f0f0f0"] {
+    background: rgba(255,255,255,0.06) !important;
+    color: #e0e8f0 !important;
+}
+/* Ensure table text in glass panels is always readable */
+.pg-glass table { color: #e0e8f0; }
+.pg-glass table th { color: #38bdf8 !important; }
+.pg-glass table td { color: #e0e8f0; }
+.pg-glass table tr { border-color: rgba(255,255,255,0.1) !important; }
+/* Override ALL inline dark text inside glass panels — catch-all */
+.pg-glass [style*="color:#001830"] { color: rgba(255,255,255,0.93) !important; }
+.pg-glass [style*="color: #001830"] { color: rgba(255,255,255,0.93) !important; }
+.pg-glass [style*="color:#333"] { color: rgba(255,255,255,0.85) !important; }
+.pg-glass [style*="color: #333"] { color: rgba(255,255,255,0.85) !important; }
+.pg-glass [style*="color:#666"] { color: rgba(255,255,255,0.6) !important; }
+.pg-glass [style*="color: #666"] { color: rgba(255,255,255,0.6) !important; }
+.pg-glass [style*="color:#555"] { color: rgba(255,255,255,0.7) !important; }
+.pg-glass [style*="color: #555"] { color: rgba(255,255,255,0.7) !important; }
+.pg-glass [style*="color:#222"] { color: rgba(255,255,255,0.9) !important; }
+.pg-glass [style*="color: #222"] { color: rgba(255,255,255,0.9) !important; }
+.pg-glass [style*="color:#155724"] { color: #c5e864 !important; }
+.pg-glass [style*="color: #155724"] { color: #c5e864 !important; }
+/* Override dark borders inside glass panels */
+.pg-glass [style*="border-top:1px solid rgba(0,0,0"] { border-top-color: rgba(255,255,255,0.1) !important; }
+.pg-glass [style*="border-bottom:1px solid rgba(0,0,0"] { border-bottom-color: rgba(255,255,255,0.1) !important; }
+/* Ensure green accent (#28a745) stays visible in glass */
+.pg-glass [style*="color:#28a745"] { color: #6fcf7f !important; }
+.pg-glass [style*="color: #28a745"] { color: #6fcf7f !important; }
+/* Insight cards inside glass panels */
+.pg-glass .insight-card { background: rgba(255,255,255,0.06) !important; border-color: rgba(255,255,255,0.15) !important; color: #e0e8f0 !important; }
+.pg-glass .insight-card .card-title { color: #38bdf8 !important; }
+.pg-glass .insight-card strong { color: #fff !important; }
+.pg-glass .insight-card .insight-tag { background: rgba(56,189,248,0.2) !important; color: #a7cf28 !important; }
 
 /* Fix bento cards that appear inside glass-wrap but outside glass panels */
 .pg-glass-wrap .pg-bento-card {
@@ -2289,6 +2330,10 @@ var RuleEngine = {
         if (healthData.wearables) {
             findings = findings.concat(this.checkWearableThresholds(healthData.wearables));
         }
+        // 7. Predictive Genomic Analysis (cross-references DNA + conditions + labs + meds + wearables)
+        if (healthData.genomics && healthData.genomics.variants && healthData.genomics.variants.length) {
+            findings = findings.concat(this.predictiveGenomicAnalysis(healthData));
+        }
 
         // Sort by severity
         var sevScore = function(s) { return {critical:4,moderate:3,mild:2,informational:1,normal:0}[s]||0; };
@@ -2464,6 +2509,309 @@ var RuleEngine = {
                     confidence: 0.75, tier: 1 });
             }
         }
+        return findings;
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PREDICTIVE GENOMIC ANALYSIS ENGINE
+    // Cross-references DNA variants with conditions, labs, medications,
+    // wearables, and family history to generate predictive risk insights
+    // ═══════════════════════════════════════════════════════════════
+    predictiveGenomicAnalysis: function(healthData) {
+        var findings = [];
+        if (!healthData.genomics || !healthData.genomics.variants) return findings;
+        var variants = healthData.genomics.variants;
+        var conditions = healthData.conditions || [];
+        var labs = healthData.labs || [];
+        var meds = healthData.medications || [];
+        var wearables = healthData.wearables || {};
+
+        // Helper: get latest lab by LOINC code
+        function latestLab(loincCode) {
+            var match = null;
+            for (var i = 0; i < labs.length; i++) {
+                if (labs[i].loincCode === loincCode) {
+                    if (!match || new Date(labs[i].date) > new Date(match.date)) match = labs[i];
+                }
+            }
+            return match;
+        }
+        // Helper: check if condition exists
+        function hasCondition(keyword) {
+            for (var i = 0; i < conditions.length; i++) {
+                if (conditions[i].name.toLowerCase().indexOf(keyword.toLowerCase()) >= 0 && conditions[i].status === 'active') return true;
+            }
+            return false;
+        }
+        // Helper: check if taking medication class
+        function onMedClass(cls) {
+            for (var i = 0; i < meds.length; i++) {
+                if (meds[i].status === 'active' && meds[i].therapeuticClass && meds[i].therapeuticClass.toLowerCase().indexOf(cls.toLowerCase()) >= 0) return true;
+            }
+            return false;
+        }
+
+        // ── TCF7L2 rs7903146 — Type 2 Diabetes Risk ──
+        for (var vi = 0; vi < variants.length; vi++) {
+            var v = variants[vi];
+
+            if (v.gene === 'TCF7L2' && v.rsid === 'rs7903146') {
+                var tcfRisk = v.genotype === 'TT' ? 2.0 : (v.genotype === 'CT' ? 1.4 : 1.0);
+                if (tcfRisk > 1.0) {
+                    var hba1c = latestLab('4548-4');
+                    var glucose = latestLab('2345-7');
+                    var hasT2DM = hasCondition('diabetes') || hasCondition('T2DM');
+                    var onMetformin = false;
+                    for (var m = 0; m < meds.length; m++) { if (meds[m].name.toLowerCase().indexOf('metformin') >= 0 && meds[m].status === 'active') { onMetformin = true; break; } }
+
+                    // Build compound risk score
+                    var riskFactors = [];
+                    var riskScore = tcfRisk;
+                    riskFactors.push('TCF7L2 ' + v.genotype + ' (' + tcfRisk + 'x genetic risk)');
+
+                    if (hasT2DM) {
+                        riskFactors.push('Active T2DM diagnosis confirms genetic predisposition');
+                    }
+                    if (hba1c && hba1c.value > 7.0) {
+                        riskScore += 0.3;
+                        riskFactors.push('HbA1c ' + hba1c.value + '% (above 7.0% target) — ongoing glycemic burden');
+                    }
+                    if (glucose && glucose.value > 126) {
+                        riskScore += 0.2;
+                        riskFactors.push('Fasting glucose ' + glucose.value + ' mg/dL (elevated)');
+                    }
+                    if (wearables.sleepScore && wearables.sleepScore < 70) {
+                        riskScore += 0.15;
+                        riskFactors.push('Poor sleep quality (score ' + wearables.sleepScore + '/100) — impairs insulin sensitivity');
+                    }
+                    if (wearables.steps7DayAvg && wearables.steps7DayAvg < 5000) {
+                        riskScore += 0.15;
+                        riskFactors.push('Low activity (' + wearables.steps7DayAvg + ' steps/day) — below 5,000 step minimum for metabolic health');
+                    }
+                    // Microalbumin (early kidney damage marker for diabetics)
+                    var microalb = latestLab('30003-8');
+                    if (microalb && microalb.value > 30) {
+                        riskScore += 0.25;
+                        riskFactors.push('Microalbumin ' + microalb.value + ' mg/L (elevated) — early diabetic nephropathy marker');
+                    }
+
+                    var sev = riskScore >= 2.0 ? 'critical' : (riskScore >= 1.5 ? 'moderate' : 'informational');
+                    var recommendation = hasT2DM
+                        ? 'Your TCF7L2 variant confirms genetic T2DM predisposition. With HbA1c above target' + (microalb && microalb.value > 30 ? ' and early nephropathy markers' : '') + ', intensified glycemic management is critical. Consider endocrinology referral, continuous glucose monitoring (CGM), and SGLT2 inhibitor addition for renal protection.'
+                        : 'You carry a TCF7L2 risk variant with ' + tcfRisk + 'x increased T2DM risk. Maintain HbA1c below 5.7%, optimize diet and exercise, and screen annually.';
+
+                    findings.push({
+                        type: 'predictive-genomic', severity: sev,
+                        gene: 'TCF7L2', variant: v.rsid, genotype: v.genotype,
+                        predictiveCategory: 'Type 2 Diabetes Progression Risk',
+                        riskScore: Math.round(riskScore * 100) / 100,
+                        riskFactors: riskFactors,
+                        mechanism: 'TCF7L2 rs7903146 ' + v.genotype + ' affects Wnt signaling and pancreatic beta-cell function. Combined with ' + riskFactors.length + ' additional risk factors, compound metabolic risk is elevated.',
+                        recommendation: recommendation,
+                        confidence: 0.88, tier: 1,
+                        source: 'GWAS Catalog / Grant et al. Nat Genet 2006 / ADA Standards of Care 2025'
+                    });
+                }
+            }
+
+            // ── APOE — Cardiovascular & Alzheimer's Risk ──
+            if (v.gene === 'APOE' && v.rsid === 'rs429358') {
+                var allele = v.genotype; // E3/E4, E4/E4, etc.
+                var hasE4 = allele.indexOf('E4') >= 0 || allele.indexOf('e4') >= 0 || allele.indexOf('ε4') >= 0;
+                var isHomoE4 = allele === 'E4/E4' || allele === 'e4/e4' || allele === 'ε4/ε4';
+
+                if (hasE4) {
+                    // --- Cardiovascular risk sub-analysis ---
+                    var ldl = latestLab('18262-6');
+                    var trig = latestLab('2571-8');
+                    var hdl = latestLab('2085-9');
+                    var hasHLD = hasCondition('hyperlipidemia') || hasCondition('cholesterol');
+                    var hasHTN = hasCondition('hypertension');
+                    var onStatin = onMedClass('statin');
+
+                    var cvRiskFactors = [];
+                    var cvRiskScore = isHomoE4 ? 3.0 : 1.8;
+                    cvRiskFactors.push('APOE ' + allele + ' — ' + (isHomoE4 ? 'homozygous' : 'heterozygous') + ' ε4 carrier (impaired lipid clearance)');
+
+                    if (ldl && ldl.value > 100) {
+                        cvRiskScore += 0.3;
+                        cvRiskFactors.push('LDL ' + ldl.value + ' mg/dL (above optimal 100 mg/dL for high-risk patients)');
+                    }
+                    if (trig && trig.value > 150) {
+                        cvRiskScore += 0.2;
+                        cvRiskFactors.push('Triglycerides ' + trig.value + ' mg/dL (elevated — APOE ε4 impairs triglyceride-rich lipoprotein clearance)');
+                    }
+                    if (hdl && hdl.value < 45) {
+                        cvRiskScore += 0.15;
+                        cvRiskFactors.push('HDL ' + hdl.value + ' mg/dL (low protective cholesterol)');
+                    }
+                    if (hasHTN) {
+                        cvRiskScore += 0.25;
+                        cvRiskFactors.push('Active hypertension — synergistic cardiovascular risk with APOE ε4');
+                    }
+                    if (hasT2DM || hasCondition('diabetes')) {
+                        cvRiskScore += 0.2;
+                        cvRiskFactors.push('Type 2 Diabetes — accelerates APOE ε4-mediated atherosclerosis');
+                    }
+                    if (wearables.restingHR && wearables.restingHR > 75) {
+                        cvRiskScore += 0.1;
+                        cvRiskFactors.push('Resting HR ' + wearables.restingHR + ' bpm — above optimal range for cardiovascular risk reduction');
+                    }
+
+                    var cvSev = cvRiskScore >= 2.5 ? 'critical' : (cvRiskScore >= 1.8 ? 'moderate' : 'informational');
+                    findings.push({
+                        type: 'predictive-genomic', severity: cvSev,
+                        gene: 'APOE', variant: v.rsid, genotype: allele,
+                        predictiveCategory: 'Cardiovascular Disease Risk',
+                        riskScore: Math.round(cvRiskScore * 100) / 100,
+                        riskFactors: cvRiskFactors,
+                        mechanism: 'APOE ε4 impairs hepatic LDL receptor binding and triglyceride-rich lipoprotein clearance. Combined with ' + cvRiskFactors.length + ' phenotypic risk factors, aggressive lipid management is warranted.',
+                        recommendation: 'Target LDL <70 mg/dL per ACC/AHA high-risk guidelines. ' + (onStatin ? 'Current statin therapy should be optimized — consider high-intensity dosing or adding ezetimibe. ' : 'Statin therapy is strongly recommended. ') + 'Request coronary artery calcium (CAC) scoring and carotid intima-media thickness (CIMT) for subclinical atherosclerosis screening. Maintain BP <130/80.',
+                        confidence: 0.85, tier: 1,
+                        source: 'Bennet et al. JAMA 2007 / ACC/AHA 2019 Guidelines / Mahley & Rall GWAS'
+                    });
+
+                    // --- Alzheimer's / Neurocognitive risk sub-analysis ---
+                    var neuroRiskFactors = [];
+                    var neuroRiskScore = isHomoE4 ? 12.0 : 3.2;
+                    neuroRiskFactors.push('APOE ' + allele + ' — ' + (isHomoE4 ? '~12x' : '~3x') + ' increased Alzheimer\'s risk vs E3/E3');
+
+                    if (wearables.sleepScore && wearables.sleepScore < 70) {
+                        neuroRiskScore += 0.5;
+                        neuroRiskFactors.push('Poor sleep quality (score ' + wearables.sleepScore + ') — sleep disruption accelerates amyloid-β accumulation in APOE ε4 carriers');
+                    }
+                    if (wearables.spo2 && wearables.spo2 < 95) {
+                        neuroRiskScore += 0.4;
+                        neuroRiskFactors.push('Low SpO2 (' + wearables.spo2 + '%) — nocturnal hypoxia from OSA accelerates neurodegeneration');
+                    }
+                    if (hasCondition('sleep apnea') || hasCondition('OSA')) {
+                        neuroRiskScore += 0.3;
+                        neuroRiskFactors.push('Obstructive Sleep Apnea — intermittent hypoxia is an independent risk factor for cognitive decline in ε4 carriers');
+                    }
+                    if (hasCondition('diabetes') || hasCondition('T2DM')) {
+                        neuroRiskScore += 0.3;
+                        neuroRiskFactors.push('Type 2 Diabetes — insulin resistance promotes tau phosphorylation and neuroinflammation');
+                    }
+                    if (wearables.steps7DayAvg && wearables.steps7DayAvg < 5000) {
+                        neuroRiskScore += 0.2;
+                        neuroRiskFactors.push('Sedentary lifestyle (' + wearables.steps7DayAvg + ' steps/day) — physical inactivity worsens APOE ε4 cognitive trajectory');
+                    }
+                    if (wearables.hrvAvg && wearables.hrvAvg < 35) {
+                        neuroRiskScore += 0.15;
+                        neuroRiskFactors.push('Low HRV (' + wearables.hrvAvg + ' ms) — autonomic dysregulation associated with neuroinflammation');
+                    }
+
+                    var neuroSev = neuroRiskScore >= 4.0 ? 'critical' : (neuroRiskScore >= 2.5 ? 'moderate' : 'informational');
+                    findings.push({
+                        type: 'predictive-genomic', severity: neuroSev,
+                        gene: 'APOE', variant: v.rsid, genotype: allele,
+                        predictiveCategory: 'Neurocognitive / Alzheimer\'s Risk',
+                        riskScore: Math.round(neuroRiskScore * 100) / 100,
+                        riskFactors: neuroRiskFactors,
+                        mechanism: 'APOE ε4 accelerates amyloid-β plaque deposition and impairs cerebral lipid transport. Multiple modifiable risk factors compound baseline genetic risk.',
+                        recommendation: 'Prioritize aggressive CPAP compliance for OSA (target >7 hrs nightly). Begin baseline cognitive screening (MoCA). Optimize glycemic control — HbA1c <7.0% reduces neuroinflammation. Increase aerobic exercise to 150+ min/week (shown to delay ε4-associated cognitive decline by 5-7 years). Consider omega-3 supplementation (DHA 1000mg/day). Discuss amyloid PET or CSF biomarkers with neurologist if cognitive symptoms emerge.',
+                        confidence: 0.82, tier: 1,
+                        source: 'Corder et al. Science 1993 / Lancet Commission on Dementia Prevention 2020 / Raichlen et al. JAMA Neurology 2023'
+                    });
+                }
+            }
+
+            // ── MTHFR rs1801133 — Folate Metabolism & Homocysteine Risk ──
+            if (v.gene === 'MTHFR' && v.rsid === 'rs1801133') {
+                var isHomo = v.genotype === 'TT';
+                var isHetero = v.genotype === 'CT';
+
+                if (isHomo || isHetero) {
+                    var enzymeActivity = isHomo ? '~30% of normal' : '~65% of normal';
+                    var mthfrRiskFactors = [];
+                    var mthfrRiskScore = isHomo ? 2.0 : 1.3;
+                    mthfrRiskFactors.push('MTHFR C677T ' + v.genotype + ' — enzyme activity ' + enzymeActivity);
+
+                    // Check if on Metformin (depletes B12 → worsens folate cycle)
+                    var onMetforminCheck = false;
+                    for (var mm = 0; mm < meds.length; mm++) { if (meds[mm].name.toLowerCase().indexOf('metformin') >= 0 && meds[mm].status === 'active') { onMetforminCheck = true; break; } }
+                    if (onMetforminCheck) {
+                        mthfrRiskScore += 0.3;
+                        mthfrRiskFactors.push('Metformin therapy depletes vitamin B12 — compounds MTHFR-related folate cycle impairment');
+                    }
+
+                    // Sertraline interaction — MTHFR affects methylation needed for serotonin synthesis
+                    var onSSRI = onMedClass('SSRI');
+                    if (onSSRI) {
+                        mthfrRiskScore += 0.2;
+                        mthfrRiskFactors.push('SSRI therapy — MTHFR variants impair methylation needed for serotonin/dopamine synthesis, potentially reducing antidepressant efficacy');
+                    }
+
+                    // PTSD/mental health connection
+                    if (hasCondition('PTSD') || hasCondition('depression') || hasCondition('anxiety')) {
+                        mthfrRiskScore += 0.15;
+                        mthfrRiskFactors.push('Active psychiatric condition — impaired methylation may affect neurotransmitter balance');
+                    }
+
+                    // Peripheral neuropathy — B12/folate deficiency worsens neuropathy
+                    if (hasCondition('neuropathy')) {
+                        mthfrRiskScore += 0.2;
+                        mthfrRiskFactors.push('Peripheral neuropathy — folate/B12 deficiency from MTHFR + Metformin may accelerate nerve damage');
+                    }
+
+                    // Cardiovascular homocysteine connection
+                    if (hasCondition('hypertension') || hasCondition('hyperlipidemia')) {
+                        mthfrRiskScore += 0.15;
+                        mthfrRiskFactors.push('Existing cardiovascular risk factors — elevated homocysteine from MTHFR variant adds to vascular burden');
+                    }
+
+                    var mthfrSev = mthfrRiskScore >= 2.0 ? 'moderate' : (mthfrRiskScore >= 1.5 ? 'moderate' : 'informational');
+                    findings.push({
+                        type: 'predictive-genomic', severity: mthfrSev,
+                        gene: 'MTHFR', variant: v.rsid, genotype: v.genotype,
+                        predictiveCategory: 'Folate Metabolism & Methylation Health',
+                        riskScore: Math.round(mthfrRiskScore * 100) / 100,
+                        riskFactors: mthfrRiskFactors,
+                        mechanism: 'MTHFR C677T reduces conversion of folic acid to active methylfolate (5-MTHF), impairing homocysteine clearance and one-carbon metabolism. ' + (onMetforminCheck ? 'Metformin-induced B12 depletion further compromises this pathway. ' : '') + (onSSRI ? 'Impaired methylation may reduce monoamine synthesis relevant to SSRI response.' : ''),
+                        recommendation: 'Request serum homocysteine, B12, and folate levels. ' + (isHomo ? 'Supplement with L-methylfolate (Deplin) 15mg/day + methylcobalamin B12 1000mcg/day. ' : 'Consider L-methylfolate 7.5-15mg/day + B12 supplementation. ') + (onMetforminCheck ? 'B12 monitoring is essential — Metformin depletes B12 stores. ' : '') + (onSSRI ? 'Methylfolate augmentation (Deplin) has evidence as SSRI adjunct therapy for treatment-resistant depression.' : ''),
+                        confidence: 0.85, tier: 1,
+                        source: 'Frosst et al. Nat Genet 1995 / Papakostas et al. Am J Psychiatry 2012 / AHA Homocysteine Guidelines'
+                    });
+                }
+            }
+        }
+
+        // ── Cross-domain Compound Risk Assessment ──
+        // Evaluate synergistic risk when multiple genetic variants interact with shared conditions
+        var hasTCF7L2risk = false, hasAPOErisk = false, hasMTHFRrisk = false;
+        for (var fi = 0; fi < findings.length; fi++) {
+            if (findings[fi].gene === 'TCF7L2') hasTCF7L2risk = true;
+            if (findings[fi].gene === 'APOE' && findings[fi].predictiveCategory.indexOf('Cardiovascular') >= 0) hasAPOErisk = true;
+            if (findings[fi].gene === 'MTHFR') hasMTHFRrisk = true;
+        }
+
+        if (hasTCF7L2risk && hasAPOErisk && hasMTHFRrisk) {
+            var compoundFactors = [
+                'TCF7L2 + APOE ε4 + MTHFR triple genetic risk burden',
+                'Metabolic-cardiovascular-neurological risk axes are all genetically elevated',
+                'Shared pathways: insulin resistance (TCF7L2) accelerates APOE ε4-driven atherosclerosis and neurodegeneration',
+                'MTHFR-driven hyperhomocysteinemia compounds both cardiovascular and neurovascular risk'
+            ];
+            if (hasCondition('diabetes') && hasCondition('hypertension') && hasCondition('hyperlipidemia')) {
+                compoundFactors.push('Active metabolic syndrome triad (T2DM + HTN + HLD) amplifies all genetic risk pathways');
+            }
+            if (wearables.spo2 && wearables.spo2 < 95 && (hasCondition('sleep apnea') || hasCondition('OSA'))) {
+                compoundFactors.push('OSA with desaturation compounds both cardiovascular and neurocognitive genetic risks');
+            }
+
+            findings.push({
+                type: 'predictive-genomic', severity: 'critical',
+                gene: 'MULTI-GENE', variant: 'compound',
+                predictiveCategory: 'Multi-Gene Compound Risk Assessment',
+                riskScore: 0,
+                riskFactors: compoundFactors,
+                mechanism: 'When TCF7L2, APOE ε4, and MTHFR C677T variants co-occur with active metabolic conditions, risk is not merely additive but synergistic. Insulin resistance accelerates lipid dysfunction, elevated homocysteine damages vasculature, and APOE ε4 impairs repair mechanisms across cardiovascular and neurological systems.',
+                recommendation: 'This patient requires integrated multi-specialty management: (1) Endocrinology — aggressive HbA1c target <6.5% with SGLT2 inhibitor consideration, (2) Cardiology — CAC scoring, LDL target <70 mg/dL, BP <130/80, (3) Neurology — baseline cognitive assessment, maximize CPAP adherence, (4) Nutrition — L-methylfolate + B12 + omega-3 supplementation protocol, (5) Lifestyle — structured exercise prescription 150+ min/week aerobic + resistance training.',
+                confidence: 0.80, tier: 1,
+                source: 'Integrated risk model — GWAS polygenic risk principles / ACC/AHA / ADA / Lancet Commission on Dementia Prevention'
+            });
+        }
+
         return findings;
     }
 };
@@ -2688,6 +3036,7 @@ function describeFinding(f) {
         case 'pharmacogenomic-alert': return 'Based on your ' + f.gene + ' genetics, you may be a ' + f.metabolizerStatus + ' metabolizer of ' + f.medication + '. ' + f.implication;
         case 'temporal-correlation': return 'Your ' + f.lab.name + ' ' + f.direction + ' by ' + f.percentChange + '% since starting ' + f.medication + '. ' + f.note;
         case 'wearable-threshold': return f.metric + ' (' + f.value + ' ' + f.unit + ') is ' + f.direction + '. ' + f.recommendation;
+        case 'predictive-genomic': return '[' + f.predictiveCategory + '] ' + f.gene + ' ' + (f.genotype||'') + ' — ' + f.mechanism.substring(0, 120) + '... ' + f.recommendation.substring(0, 150) + '...';
         default: return f.mechanism || f.recommendation || f.type + ' detected.';
     }
 }
@@ -2809,27 +3158,42 @@ var AnalysisEngine = {
             var moderate = this.findings.filter(function(f){return f.severity==='moderate';});
             var info = this.findings.filter(function(f){return f.severity==='informational'||f.severity==='mild';});
 
+            function renderFindingHTML(f) {
+                if (f.type === 'predictive-genomic') {
+                    var h = '<div class="ai-finding-item ai-finding-' + (f.severity === 'critical' ? 'critical' : f.severity === 'moderate' ? 'moderate' : 'info') + '">';
+                    h += '<div class="ai-finding-type" style="display:flex;align-items:center;gap:8px;">' + formatFindingType(f.type);
+                    if (f.predictiveCategory) h += ' <span style="opacity:0.7;font-size:11px;">— ' + f.predictiveCategory + '</span>';
+                    h += '</div>';
+                    h += '<div class="ai-finding-desc" style="margin-bottom:8px;"><strong>' + f.gene + ' ' + (f.genotype||'') + '</strong>: ' + f.mechanism + '</div>';
+                    if (f.riskFactors && f.riskFactors.length) {
+                        h += '<div style="margin:8px 0;padding:8px 12px;background:rgba(255,255,255,0.04);border-radius:6px;border-left:3px solid rgba(248,138,47,0.5);">';
+                        h += '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;opacity:0.7;">Risk Factors (' + f.riskFactors.length + ')</div>';
+                        f.riskFactors.forEach(function(rf) { h += '<div style="font-size:12px;margin-bottom:4px;padding-left:8px;border-left:2px solid rgba(255,255,255,0.1);">' + rf + '</div>'; });
+                        h += '</div>';
+                    }
+                    h += '<div style="margin-top:8px;padding:8px 12px;background:rgba(56,189,248,0.08);border-radius:6px;border-left:3px solid rgba(56,189,248,0.4);font-size:12px;">';
+                    h += '<strong>Recommendation:</strong> ' + f.recommendation + '</div>';
+                    h += '<div class="ai-finding-meta">Confidence: ' + Math.round((f.confidence||0)*100) + '% · Source: ' + (f.source||'Rule Engine') + '</div></div>';
+                    return h;
+                }
+                var cls = f.severity === 'critical' ? 'critical' : f.severity === 'moderate' ? 'moderate' : 'info';
+                return '<div class="ai-finding-item ai-finding-' + cls + '"><div class="ai-finding-type">' + formatFindingType(f.type) + '</div><div class="ai-finding-desc">' + describeFinding(f) + '</div>' +
+                    '<div class="ai-finding-meta">Confidence: ' + Math.round((f.confidence||0)*100) + '% · Source: ' + (f.source||'Rule Engine') + '</div></div>';
+            }
+
             if (critical.length) {
                 html += '<div class="ai-findings-section"><div class="ai-findings-label ai-sev-critical">Critical (' + critical.length + ')</div>';
-                critical.forEach(function(f) {
-                    html += '<div class="ai-finding-item ai-finding-critical"><div class="ai-finding-type">' + formatFindingType(f.type) + '</div><div class="ai-finding-desc">' + describeFinding(f) + '</div>' +
-                        '<div class="ai-finding-meta">Confidence: ' + Math.round((f.confidence||0)*100) + '% · Source: ' + (f.source||'Rule Engine') + '</div></div>';
-                });
+                critical.forEach(function(f) { html += renderFindingHTML(f); });
                 html += '</div>';
             }
             if (moderate.length) {
                 html += '<div class="ai-findings-section"><div class="ai-findings-label ai-sev-moderate">Moderate (' + moderate.length + ')</div>';
-                moderate.forEach(function(f) {
-                    html += '<div class="ai-finding-item ai-finding-moderate"><div class="ai-finding-type">' + formatFindingType(f.type) + '</div><div class="ai-finding-desc">' + describeFinding(f) + '</div>' +
-                        '<div class="ai-finding-meta">Confidence: ' + Math.round((f.confidence||0)*100) + '% · Source: ' + (f.source||'Rule Engine') + '</div></div>';
-                });
+                moderate.forEach(function(f) { html += renderFindingHTML(f); });
                 html += '</div>';
             }
             if (info.length) {
                 html += '<div class="ai-findings-section"><div class="ai-findings-label ai-sev-info">Informational (' + info.length + ')</div>';
-                info.forEach(function(f) {
-                    html += '<div class="ai-finding-item ai-finding-info"><div class="ai-finding-type">' + formatFindingType(f.type) + '</div><div class="ai-finding-desc">' + describeFinding(f) + '</div></div>';
-                });
+                info.forEach(function(f) { html += renderFindingHTML(f); });
                 html += '</div>';
             }
             panel.innerHTML = html;
@@ -2854,7 +3218,8 @@ function formatFindingType(type) {
         'lab-abnormality': 'Lab Abnormality',
         'pharmacogenomic-alert': 'Pharmacogenomic Alert',
         'temporal-correlation': 'Temporal Trend',
-        'wearable-threshold': 'Wearable Alert'
+        'wearable-threshold': 'Wearable Alert',
+        'predictive-genomic': 'Predictive Genomic Analysis'
     };
     return labels[type] || type;
 }
@@ -4548,32 +4913,32 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-wrap pg-glass-wrap-blue">
             <div class="pg-glass-section">Schedule at a Glance</div>
             <div class="pg-glass">
-                <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                <table style="width:100%; border-collapse:collapse; font-size:13px; color:#e0e8f0;">
                     <thead>
-                        <tr style="background:#f0f0f0; border-bottom:2px solid #ddd;">
-                            <th style="padding:10px; text-align:left;">Time</th>
-                            <th style="padding:10px; text-align:left;">Medications</th>
-                            <th style="padding:10px; text-align:left;">Instructions</th>
+                        <tr style="background:rgba(56,189,248,0.15); border-bottom:2px solid rgba(56,189,248,0.3);">
+                            <th style="padding:10px; text-align:left; color:#38bdf8;">Time</th>
+                            <th style="padding:10px; text-align:left; color:#38bdf8;">Medications</th>
+                            <th style="padding:10px; text-align:left; color:#38bdf8;">Instructions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom:1px solid #ddd;">
-                            <td style="padding:10px; background:#f9f9f9;">Morning</td>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <td style="padding:10px; background:rgba(167,207,40,0.12); color:#a7cf28; font-weight:600;">Morning</td>
                             <td style="padding:10px;">Lisinopril, Sertraline, Omeprazole (before food), Metformin (with food), Aspirin</td>
                             <td style="padding:10px;">Omeprazole must be 30 min before breakfast. Metformin with meals.</td>
                         </tr>
-                        <tr style="border-bottom:1px solid #ddd;">
-                            <td style="padding:10px; background:#f9f9f9;">Midday</td>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <td style="padding:10px; background:rgba(167,207,40,0.12); color:#a7cf28; font-weight:600;">Midday</td>
                             <td style="padding:10px;">Gabapentin 300mg</td>
                             <td style="padding:10px;">Space from other Gabapentin doses by 4+ hours</td>
                         </tr>
-                        <tr style="border-bottom:1px solid #ddd;">
-                            <td style="padding:10px; background:#f9f9f9;">Evening</td>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                            <td style="padding:10px; background:rgba(167,207,40,0.12); color:#a7cf28; font-weight:600;">Evening</td>
                             <td style="padding:10px;">Metformin (with dinner), Atorvastatin, Gabapentin</td>
                             <td style="padding:10px;">Metformin with meals. Atorvastatin at bedtime preferred.</td>
                         </tr>
                         <tr>
-                            <td style="padding:10px; background:#f9f9f9;">Bedtime</td>
+                            <td style="padding:10px; background:rgba(167,207,40,0.12); color:#a7cf28; font-weight:600;">Bedtime</td>
                             <td style="padding:10px;">Gabapentin, Melatonin</td>
                             <td style="padding:10px;">Take 30-60 min before sleep. Monitor for additive sedation.</td>
                         </tr>
@@ -4857,7 +5222,7 @@ function loadDocumentsFromStorage() {
         <div class="pg-glass-wrap">
             <div class="pg-glass-section">Complete ICD-10 Code List</div>
             <div class="pg-glass">
-                <div style="margin-top:8px; padding:12px; background:#f9f9f9; border-radius:8px; font-size:12px; line-height:1.8;">
+                <div style="margin-top:8px; padding:12px; background:rgba(255,255,255,0.06); border-radius:8px; font-size:12px; line-height:1.8;">
                     <strong>Metabolic Cluster:</strong><br>
                     E11.65 — Type 2 Diabetes Mellitus with hyperglycemia<br>
                     I10 — Essential Hypertension<br>
@@ -9938,39 +10303,39 @@ function loadDocumentsFromStorage() {
     <div class="pg-glass">
       <div class="pg-glass-title">System Architecture Overview</div>
       <div class="pg-glass-body">
-        <div style="background-color: #f5f7fa; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 10px; overflow-x: auto;">
-          <div style="text-align: center; margin-bottom: 12px; color: #001830; font-weight: bold;">USER INTERFACES</div>
+        <div style="background-color: rgba(0,24,48,0.6); border: 1px solid rgba(56,189,248,0.2); border-radius: 8px; padding: 16px; font-family: monospace; font-size: 10px; overflow-x: auto;">
+          <div style="text-align: center; margin-bottom: 12px; color: #38bdf8; font-weight: bold;">USER INTERFACES</div>
           <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 16px;">
             <div style="background-color: #a7cf28; color: #001830; padding: 8px 12px; border-radius: 4px; font-weight: bold;">PWA</div>
             <div style="background-color: #a7cf28; color: #001830; padding: 8px 12px; border-radius: 4px; font-weight: bold;">Mobile</div>
             <div style="background-color: #a7cf28; color: #001830; padding: 8px 12px; border-radius: 4px; font-weight: bold;">Desktop</div>
           </div>
-          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid #001830; margin-bottom: 12px; color: #001830; font-weight: bold;">↓</div>
-          <div style="text-align: center; margin-bottom: 12px; color: #001830; font-weight: bold;">SECURITY LAYER</div>
+          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid rgba(56,189,248,0.3); margin-bottom: 12px; color: #38bdf8; font-weight: bold;">↓</div>
+          <div style="text-align: center; margin-bottom: 12px; color: #ff6b6b; font-weight: bold;">SECURITY LAYER</div>
           <div style="display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; font-size: 9px;">
             <div style="background-color: #dc3545; color: white; padding: 5px 8px; border-radius: 4px;">AES-256-GCM</div>
             <div style="background-color: #dc3545; color: white; padding: 5px 8px; border-radius: 4px;">PBKDF2</div>
             <div style="background-color: #dc3545; color: white; padding: 5px 8px; border-radius: 4px;">RSA-OAEP</div>
             <div style="background-color: #dc3545; color: white; padding: 5px 8px; border-radius: 4px;">Zero-Knowledge</div>
           </div>
-          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid #001830; margin-bottom: 12px; color: #001830; font-weight: bold;">↓</div>
-          <div style="text-align: center; margin-bottom: 12px; color: #001830; font-weight: bold;">AI ANALYSIS ENGINE</div>
+          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid rgba(56,189,248,0.3); margin-bottom: 12px; color: #38bdf8; font-weight: bold;">↓</div>
+          <div style="text-align: center; margin-bottom: 12px; color: #64b5f6; font-weight: bold;">AI ANALYSIS ENGINE</div>
           <div style="display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; font-size: 9px;">
             <div style="background-color: #2196f3; color: white; padding: 5px 8px; border-radius: 4px;">Comorbidity</div>
             <div style="background-color: #2196f3; color: white; padding: 5px 8px; border-radius: 4px;">Drug Interactions</div>
             <div style="background-color: #2196f3; color: white; padding: 5px 8px; border-radius: 4px;">Pharmacogenomics</div>
             <div style="background-color: #2196f3; color: white; padding: 5px 8px; border-radius: 4px;">Clinical Trials</div>
           </div>
-          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid #001830; margin-bottom: 12px; color: #001830; font-weight: bold;">↓</div>
-          <div style="text-align: center; margin-bottom: 12px; color: #001830; font-weight: bold;">DATA INTEGRATIONS</div>
+          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid rgba(56,189,248,0.3); margin-bottom: 12px; color: #38bdf8; font-weight: bold;">↓</div>
+          <div style="text-align: center; margin-bottom: 12px; color: #ffb74d; font-weight: bold;">DATA INTEGRATIONS</div>
           <div style="display: flex; gap: 6px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap; font-size: 9px;">
             <div style="background-color: #f88a2f; color: white; padding: 5px 8px; border-radius: 4px;">FHIR R4</div>
             <div style="background-color: #f88a2f; color: white; padding: 5px 8px; border-radius: 4px;">Oura API</div>
             <div style="background-color: #f88a2f; color: white; padding: 5px 8px; border-radius: 4px;">VA Lighthouse</div>
             <div style="background-color: #f88a2f; color: white; padding: 5px 8px; border-radius: 4px;">Blue Button</div>
           </div>
-          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid #001830; margin-bottom: 12px; color: #001830; font-weight: bold;">↓</div>
-          <div style="text-align: center; margin-bottom: 12px; color: #001830; font-weight: bold;">DATA STORAGE</div>
+          <div style="text-align: center; padding-bottom: 8px; border-bottom: 2px solid rgba(56,189,248,0.3); margin-bottom: 12px; color: #38bdf8; font-weight: bold;">↓</div>
+          <div style="text-align: center; margin-bottom: 12px; color: #a7cf28; font-weight: bold;">DATA STORAGE</div>
           <div style="display: flex; gap: 6px; justify-content: center;">
             <div style="background-color: #001830; color: #a7cf28; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size:10px;">Encrypted IndexedDB</div>
             <div style="background-color: #001830; color: #a7cf28; padding: 8px 12px; border-radius: 4px; font-weight: bold; font-size:10px;">Cloud Backup</div>
