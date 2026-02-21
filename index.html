@@ -2101,12 +2101,12 @@ var DrugInteractionDB = {
             { drug1: '11289', drug2: '5640', severity: 'critical', mechanism: 'Ibuprofen increases bleeding risk with Warfarin and may reduce anticoagulant effect', recommendation: 'Avoid combination; use acetaminophen if possible', citation: 'FDA Drug Safety Communication' },
             { drug1: '6809', drug2: 'contrast-dye', severity: 'critical', mechanism: 'Metformin with iodinated contrast increases risk of lactic acidosis', recommendation: 'Hold Metformin 48h before and after contrast procedures', citation: 'ACR Manual on Contrast Media' },
             { drug1: 'ssri-class', drug2: 'maoi-class', severity: 'critical', mechanism: 'Combined serotonergic activity causes potentially fatal serotonin syndrome', recommendation: 'Absolutely contraindicated — 14-day washout required', citation: 'FDA Black Box Warning' },
-            { drug1: 'statin-class', drug2: '2551', severity: 'moderate', mechanism: 'Clarithromycin inhibits statin metabolism via CYP3A4, increasing rhabdomyolysis risk', recommendation: 'Use azithromycin instead or temporarily hold statin', citation: 'CPIC Guidelines' },
-            { drug1: '6809', drug2: '36567', severity: 'moderate', mechanism: 'Metformin + Lisinopril: ACE inhibitors may enhance hypoglycemic effect of Metformin', recommendation: 'Monitor blood glucose more frequently when combining; dosage adjustment may be needed', citation: 'Clinical Pharmacology Reference' },
-            { drug1: '6809', drug2: '36567-hypertension', severity: 'informational', mechanism: 'ACE inhibitors provide renal protection in diabetic patients on Metformin', recommendation: 'Combination is generally beneficial for diabetic nephropathy prevention — continue monitoring kidney function', citation: 'ADA Standards of Care 2026' },
-            { drug1: '5093', drug2: '36567', severity: 'moderate', mechanism: 'Gabapentin + Lisinopril: Both can cause dizziness; additive hypotensive effects possible', recommendation: 'Monitor blood pressure and assess for orthostatic hypotension', citation: 'Clinical Pharmacology Reference' },
-            { drug1: '35636', drug2: '5093', severity: 'moderate', mechanism: 'Sertraline + Gabapentin: Additive CNS depression; increased sedation and dizziness risk', recommendation: 'Use caution; monitor for excessive sedation especially during dosage changes', citation: 'DrugBank Interaction Database' },
-            { drug1: '36567', drug2: '10582', severity: 'moderate', mechanism: 'Lisinopril + Atorvastatin: Generally safe combination but monitor for muscle pain (rare additive myopathy risk)', recommendation: 'Routine monitoring; report unexplained muscle pain or weakness', citation: 'ACC/AHA Guidelines' }
+            { drug1: 'statin-class', drug2: '21212', severity: 'moderate', mechanism: 'Clarithromycin inhibits statin metabolism via CYP3A4, increasing rhabdomyolysis risk', recommendation: 'Use azithromycin instead or temporarily hold statin', citation: 'CPIC Guidelines' },
+            { drug1: '6809', drug2: '29046', severity: 'moderate', mechanism: 'Metformin + Lisinopril: ACE inhibitors may modestly enhance hypoglycemic effect. More importantly, both affect renal function — monitor for lactic acidosis risk if kidney function declines', recommendation: 'Monitor blood glucose and renal function (eGFR/creatinine) regularly; hold Metformin if eGFR drops below 30 mL/min', citation: 'ADA Standards of Care / FDA Metformin Label' },
+            { drug1: '6809', drug2: '29046-hypertension', severity: 'informational', mechanism: 'ACE inhibitors provide renal protection in diabetic patients on Metformin', recommendation: 'Combination is generally beneficial for diabetic nephropathy prevention — continue monitoring kidney function', citation: 'ADA Standards of Care 2026' },
+            { drug1: '25480', drug2: '29046', severity: 'moderate', mechanism: 'Gabapentin + Lisinopril: Both can cause dizziness; additive hypotensive effects possible', recommendation: 'Monitor blood pressure and assess for orthostatic hypotension', citation: 'Clinical Pharmacology Reference' },
+            { drug1: '36437', drug2: '25480', severity: 'moderate', mechanism: 'Sertraline + Gabapentin: Additive CNS depression; increased sedation and dizziness risk', recommendation: 'Use caution; monitor for excessive sedation especially during dosage changes', citation: 'DrugBank Interaction Database' },
+            { drug1: '29046', drug2: '83367', severity: 'moderate', mechanism: 'Lisinopril + Atorvastatin: Generally safe combination but monitor for muscle pain (rare additive myopathy risk)', recommendation: 'Routine monitoring; report unexplained muscle pain or weakness', citation: 'ACC/AHA Guidelines' }
         ];
 
         var self = this;
@@ -2120,11 +2120,11 @@ var DrugInteractionDB = {
             { rxNormCode: '6809', loincCode: '2345-7', expectedDirection: 'decrease', mechanism: 'Metformin lowers blood glucose through hepatic glucose production reduction and improved insulin sensitivity', recommendation: 'Expected therapeutic effect — monitor for hypoglycemia if value drops below 70 mg/dL', citation: 'Metformin Prescribing Information' },
             { rxNormCode: '6809', loincCode: '4548-4', expectedDirection: 'decrease', mechanism: 'Metformin reduces HbA1c by 1-1.5% on average over 3 months', recommendation: 'Target HbA1c <7% per ADA guidelines; reassess if not reaching target', citation: 'ADA Standards of Care' },
             { rxNormCode: '6809', loincCode: '2160-0', expectedDirection: 'increase', mechanism: 'Metformin can reduce renal clearance; monitor creatinine for kidney function', recommendation: 'Check eGFR regularly; hold if eGFR <30 mL/min', citation: 'FDA Safety Update' },
-            { rxNormCode: '10582', loincCode: '2093-3', expectedDirection: 'decrease', mechanism: 'Atorvastatin inhibits HMG-CoA reductase, reducing total cholesterol production', recommendation: 'Expected therapeutic effect — target reduction of 30-50%', citation: 'Atorvastatin Prescribing Information' },
-            { rxNormCode: '10582', loincCode: '18262-6', expectedDirection: 'decrease', mechanism: 'Atorvastatin reduces LDL cholesterol by 39-60% depending on dose', recommendation: 'Target LDL <100 mg/dL (or <70 if high cardiovascular risk)', citation: 'ACC/AHA Cholesterol Guidelines' },
-            { rxNormCode: '10582', loincCode: '1742-6', expectedDirection: 'increase', mechanism: 'Statins can elevate ALT/liver enzymes in 1-3% of patients', recommendation: 'Monitor liver enzymes; discontinue if ALT >3x upper limit of normal', citation: 'FDA Safety Communication' },
-            { rxNormCode: '36567', loincCode: '2823-3', expectedDirection: 'increase', mechanism: 'ACE inhibitors reduce aldosterone, which can increase serum potassium', recommendation: 'Monitor potassium levels; risk increases with renal impairment or potassium supplements', citation: 'Lisinopril Prescribing Information' },
-            { rxNormCode: '35636', loincCode: '2951-2', expectedDirection: 'decrease', mechanism: 'SSRIs can cause hyponatremia via SIADH, especially in older patients', recommendation: 'Monitor sodium levels, especially in first few weeks and in patients >65', citation: 'FDA Safety Communication' }
+            { rxNormCode: '83367', loincCode: '2093-3', expectedDirection: 'decrease', mechanism: 'Atorvastatin inhibits HMG-CoA reductase, reducing total cholesterol production', recommendation: 'Expected therapeutic effect — target reduction of 30-50%', citation: 'Atorvastatin Prescribing Information' },
+            { rxNormCode: '83367', loincCode: '18262-6', expectedDirection: 'decrease', mechanism: 'Atorvastatin reduces LDL cholesterol by 39-60% depending on dose', recommendation: 'Target LDL <100 mg/dL (or <70 if high cardiovascular risk)', citation: 'ACC/AHA Cholesterol Guidelines' },
+            { rxNormCode: '83367', loincCode: '1742-6', expectedDirection: 'increase', mechanism: 'Statins can elevate ALT/liver enzymes in 1-3% of patients', recommendation: 'Monitor liver enzymes; discontinue if ALT >3x upper limit of normal', citation: 'FDA Safety Communication' },
+            { rxNormCode: '29046', loincCode: '2823-3', expectedDirection: 'increase', mechanism: 'ACE inhibitors reduce aldosterone, which can increase serum potassium', recommendation: 'Monitor potassium levels; risk increases with renal impairment or potassium supplements', citation: 'Lisinopril Prescribing Information' },
+            { rxNormCode: '36437', loincCode: '2951-2', expectedDirection: 'decrease', mechanism: 'SSRIs can cause hyponatremia via SIADH, especially in older patients', recommendation: 'Monitor sodium levels, especially in first few weeks and in patients >65', citation: 'FDA Safety Communication' }
         ];
 
         labEffects.forEach(function(entry) {
@@ -2222,7 +2222,9 @@ var CYP450DB = {
             { gene: 'CYP2C19', drugs: ['clopidogrel', 'omeprazole', 'escitalopram', 'sertraline', 'voriconazole'],
               classifications: { poor: ['*2/*2','*2/*3','*3/*3'], intermediate: ['*1/*2','*1/*3'], normal: ['*1/*1'], rapid: ['*1/*17'], 'ultra-rapid': ['*17/*17'] } },
             { gene: 'CYP2C9', drugs: ['warfarin', 'phenytoin', 'losartan', 'celecoxib'],
-              classifications: { poor: ['*3/*3','*2/*3'], intermediate: ['*1/*2','*1/*3'], normal: ['*1/*1'] } }
+              classifications: { poor: ['*3/*3','*2/*3'], intermediate: ['*1/*2','*1/*3'], normal: ['*1/*1'] } },
+            { gene: 'CYP3A4', drugs: ['atorvastatin', 'simvastatin', 'midazolam', 'cyclosporine', 'tacrolimus'],
+              classifications: { poor: ['*22/*22'], intermediate: ['*1/*22'], normal: ['*1/*1','*1/*1B','*1B/*1B'] } }
         ];
         var self = this;
         data.forEach(function(g) { self.genes[g.gene] = g; });
@@ -2239,10 +2241,10 @@ var CYP450DB = {
 
     getImplication: function(medName, gene, status) {
         var implications = {
-            'poor': medName + ' may accumulate to higher-than-expected levels. Consider dose reduction or alternative medication.',
-            'intermediate': medName + ' may be metabolized slower than average. Monitor for increased side effects.',
-            'rapid': medName + ' may be metabolized faster than average. Standard doses may be less effective.',
-            'ultra-rapid': medName + ' may be cleared too quickly for therapeutic effect. Consider dose increase or alternative.'
+            'poor': medName + ' may accumulate to higher-than-expected levels. Consider 50% dose reduction or alternative medication per CPIC guidelines.',
+            'intermediate': medName + ' may be metabolized slower than average (~1.4x higher levels). CPIC does not recommend routine dose adjustment for intermediate metabolizers — monitor for side effects and discuss with your prescriber if concerns arise.',
+            'rapid': medName + ' may be metabolized faster than average. Standard doses may be less effective; consider dose increase per CPIC.',
+            'ultra-rapid': medName + ' may be cleared too quickly for therapeutic effect. Consider dose increase or alternative per CPIC guidelines.'
         };
         return implications[status] || null;
     }
@@ -2703,10 +2705,10 @@ var JohnDoeHealthData = {
     ],
     medications: [
         { name: 'Metformin 1500mg', code: '6809', rxNormCode: '6809', status: 'active', startDate: '2020-04-01', metabolizedBy: null, therapeuticClass: 'Antidiabetic' },
-        { name: 'Lisinopril 20mg', code: '36567', rxNormCode: '36567', status: 'active', startDate: '2019-09-01', therapeuticClass: 'ACE Inhibitor' },
-        { name: 'Atorvastatin 40mg', code: '10582', rxNormCode: '10582', status: 'active', startDate: '2020-04-01', metabolizedBy: 'CYP2C19', therapeuticClass: 'Statin' },
-        { name: 'Sertraline 100mg', code: '35636', rxNormCode: '35636', status: 'active', startDate: '2018-02-15', metabolizedBy: 'CYP2C19', therapeuticClass: 'SSRI' },
-        { name: 'Gabapentin 600mg', code: '5093', rxNormCode: '5093', status: 'active', startDate: '2023-03-01', therapeuticClass: 'Anticonvulsant/Neuropathic Pain' },
+        { name: 'Lisinopril 20mg', code: '29046', rxNormCode: '29046', status: 'active', startDate: '2019-09-01', therapeuticClass: 'ACE Inhibitor' },
+        { name: 'Atorvastatin 40mg', code: '83367', rxNormCode: '83367', status: 'active', startDate: '2020-04-01', metabolizedBy: 'CYP3A4', therapeuticClass: 'Statin' },
+        { name: 'Sertraline 100mg', code: '36437', rxNormCode: '36437', status: 'active', startDate: '2018-02-15', metabolizedBy: 'CYP2C19', therapeuticClass: 'SSRI' },
+        { name: 'Gabapentin 600mg', code: '25480', rxNormCode: '25480', status: 'active', startDate: '2023-03-01', therapeuticClass: 'Anticonvulsant/Neuropathic Pain' },
         { name: 'Melatonin 5mg', code: 'OTC-mel', status: 'active', startDate: '2022-01-01', therapeuticClass: 'Sleep Aid' }
     ],
     labs: [
