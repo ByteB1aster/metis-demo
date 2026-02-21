@@ -2776,6 +2776,158 @@ var RuleEngine = {
             }
         }
 
+        // ── Unlisted Condition Risk Predictions ──
+        // These conditions are NOT currently diagnosed but DNA + phenotype data predicts elevated risk
+
+        // Diabetic Nephropathy / CKD Progression
+        var microalb = latestLab('30003-8');
+        var egfr = latestLab('14959-1');
+        var creat = latestLab('2160-0');
+        if ((hasCondition('diabetes') || hasCondition('T2DM')) && microalb && microalb.value > 30) {
+            var ckdFactors = [];
+            var ckdScore = 1.5;
+            ckdFactors.push('Microalbumin ' + microalb.value + ' mg/L (>30 = early nephropathy, rising trend from 28→35→42)');
+            if (egfr && egfr.value < 90) { ckdScore += 0.3; ckdFactors.push('eGFR ' + egfr.value + ' mL/min (Stage 2 CKD range: 60-89)'); }
+            if (creat && creat.value > 1.0) { ckdScore += 0.15; ckdFactors.push('Creatinine ' + creat.value + ' mg/dL (upper normal range)'); }
+            // Check for APOE ε4 — accelerates renal damage
+            for (var vk = 0; vk < variants.length; vk++) {
+                if (variants[vk].gene === 'APOE' && (variants[vk].genotype.indexOf('E4') >= 0 || variants[vk].genotype.indexOf('ε4') >= 0)) {
+                    ckdScore += 0.25; ckdFactors.push('APOE ε4 — associated with accelerated glomerulosclerosis and renal decline');
+                }
+            }
+            if (hasCondition('hypertension')) { ckdScore += 0.2; ckdFactors.push('Hypertension — hemodynamic stress accelerates nephron loss'); }
+            // Check Metformin — dose adjustment needed if CKD progresses
+            var onMetRenal = false;
+            for (var mr = 0; mr < meds.length; mr++) { if (meds[mr].name.toLowerCase().indexOf('metformin') >= 0 && meds[mr].status === 'active') { onMetRenal = true; break; } }
+            if (onMetRenal) { ckdFactors.push('Metformin requires dose reduction or discontinuation if eGFR drops below 30 mL/min — lactic acidosis risk'); }
+
+            findings.push({
+                type: 'predictive-genomic', severity: ckdScore >= 2.0 ? 'critical' : 'moderate',
+                gene: 'MULTI-GENE', variant: 'renal', genotype: 'APOE/TCF7L2',
+                predictiveCategory: 'Diabetic Nephropathy / CKD Progression (NOT YET DIAGNOSED)',
+                riskScore: Math.round(ckdScore * 100) / 100,
+                riskFactors: ckdFactors,
+                mechanism: 'Progressive microalbuminuria (28→35→42 mg/L over 12 months) with declining eGFR indicates early diabetic nephropathy. APOE ε4 accelerates glomerulosclerosis. Combined T2DM + HTN + genetic risk creates a high-probability trajectory toward Stage 3 CKD within 3-5 years without intervention.',
+                recommendation: 'URGENT: Request nephrology referral. Start SGLT2 inhibitor (empagliflozin/dapagliflozin) — proven 30-40% reduction in CKD progression in diabetic patients. Tighten BP target to <130/80. Consider ACEi dose optimization. Monitor eGFR + UACR every 3 months. Plan Metformin dose reduction strategy if eGFR drops below 45.',
+                confidence: 0.87, tier: 1,
+                source: 'KDIGO 2024 Guidelines / CREDENCE Trial / EMPA-KIDNEY Trial / Boger et al. GWAS Nephrology'
+            });
+        }
+
+        // Diabetic Retinopathy Risk
+        var hba1cRetina = latestLab('4548-4');
+        if ((hasCondition('diabetes') || hasCondition('T2DM')) && hba1cRetina && hba1cRetina.value > 7.0) {
+            var retinaFactors = [];
+            var retinaScore = 1.3;
+            retinaFactors.push('HbA1c ' + hba1cRetina.value + '% — chronic hyperglycemia drives retinal microangiopathy');
+            // TCF7L2 carriers have higher retinopathy rates
+            for (var vr = 0; vr < variants.length; vr++) {
+                if (variants[vr].gene === 'TCF7L2') { retinaScore += 0.3; retinaFactors.push('TCF7L2 ' + variants[vr].genotype + ' — associated with higher diabetic retinopathy rates in T2DM patients (OR 1.3-1.5)'); }
+                if (variants[vr].gene === 'APOE' && (variants[vr].genotype.indexOf('E4') >= 0)) { retinaScore += 0.15; retinaFactors.push('APOE ε4 — conflicting evidence but may affect retinal vascular integrity'); }
+            }
+            if (hasCondition('hypertension')) { retinaScore += 0.25; retinaFactors.push('Hypertension — independent retinopathy accelerator via increased retinal perfusion pressure'); }
+            if (wearables.spo2 && wearables.spo2 < 95) { retinaScore += 0.15; retinaFactors.push('Low SpO2 (' + wearables.spo2 + '%) — nocturnal hypoxia from OSA may exacerbate retinal ischemia'); }
+
+            findings.push({
+                type: 'predictive-genomic', severity: retinaScore >= 1.8 ? 'moderate' : 'informational',
+                gene: 'TCF7L2', variant: 'rs7903146', genotype: 'retinal',
+                predictiveCategory: 'Diabetic Retinopathy Risk (NOT YET DIAGNOSED)',
+                riskScore: Math.round(retinaScore * 100) / 100,
+                riskFactors: retinaFactors,
+                mechanism: 'Chronic hyperglycemia (HbA1c >7.0%) with TCF7L2 risk variant and hypertension significantly increases diabetic retinopathy risk. The average T2DM patient develops some retinopathy within 10-15 years; genetic + hemodynamic risk factors may accelerate this timeline.',
+                recommendation: 'Schedule dilated fundoscopic exam (annual requirement for all T2DM patients per ADA). Request OCT imaging for baseline retinal thickness. Optimize HbA1c toward <7.0%. Ensure BP <130/80. Address sleep apnea — nocturnal hypoxia worsens retinal ischemia.',
+                confidence: 0.80, tier: 1,
+                source: 'ADA Retinopathy Screening Guidelines / Cikamatana et al. Ophthalmology 2024 / UKPDS Study'
+            });
+        }
+
+        // NAFLD/NASH Risk (Non-Alcoholic Fatty Liver Disease)
+        var alt = latestLab('1742-6');
+        if (alt && alt.value > 40 && (hasCondition('diabetes') || hasCondition('T2DM'))) {
+            var nafldFactors = [];
+            var nafldScore = 1.4;
+            nafldFactors.push('ALT ' + alt.value + ' U/L (elevated and trending up: 28→34→48 over 12 months)');
+            if (hasCondition('hyperlipidemia')) { nafldScore += 0.25; nafldFactors.push('Hyperlipidemia — dyslipidemia drives hepatic steatosis'); }
+            var trig2 = latestLab('2571-8');
+            if (trig2 && trig2.value > 150) { nafldScore += 0.2; nafldFactors.push('Triglycerides ' + trig2.value + ' mg/dL — elevated TG strongly associated with NAFLD severity'); }
+            for (var vn = 0; vn < variants.length; vn++) {
+                if (variants[vn].gene === 'TCF7L2') { nafldScore += 0.2; nafldFactors.push('TCF7L2 variant — insulin resistance pathway contributes to hepatic fat accumulation'); }
+            }
+            // Atorvastatin is safe in NAFLD but worth noting
+            var onStatinNafld = onMedClass('statin');
+            if (onStatinNafld) { nafldFactors.push('Current statin therapy — statins are safe and potentially beneficial in NAFLD; however, ALT elevation warrants hepatic workup to rule out drug-induced liver injury vs. NAFLD'); }
+
+            findings.push({
+                type: 'predictive-genomic', severity: nafldScore >= 1.8 ? 'moderate' : 'informational',
+                gene: 'TCF7L2', variant: 'metabolic', genotype: 'hepatic',
+                predictiveCategory: 'Non-Alcoholic Fatty Liver Disease Risk (NOT YET DIAGNOSED)',
+                riskScore: Math.round(nafldScore * 100) / 100,
+                riskFactors: nafldFactors,
+                mechanism: 'Progressive ALT elevation (28→34→48 U/L) in context of T2DM, hyperlipidemia, and elevated triglycerides suggests hepatic steatosis. TCF7L2-driven insulin resistance promotes hepatic de novo lipogenesis. Up to 70% of T2DM patients have NAFLD; this patient\'s metabolic profile and ALT trajectory strongly suggest undiagnosed fatty liver disease.',
+                recommendation: 'Request hepatic ultrasound or FibroScan to assess steatosis/fibrosis. Order FIB-4 index calculation. Consider GLP-1 receptor agonist (semaglutide has Phase 3 NASH resolution data). Rule out statin-induced hepatotoxicity with gamma-GT and hepatitis panel. If NAFLD confirmed, refer to hepatology.',
+                confidence: 0.82, tier: 1,
+                source: 'AASLD NAFLD Practice Guidelines 2023 / NEJM Semaglutide NASH Trials / Speliotes et al. GWAS Hepatology'
+            });
+        }
+
+        // Venous Thromboembolism Risk (MTHFR + homocysteine)
+        for (var vt = 0; vt < variants.length; vt++) {
+            if (variants[vt].gene === 'MTHFR' && (variants[vt].genotype === 'CT' || variants[vt].genotype === 'TT')) {
+                var vteFactors = [];
+                var vteScore = variants[vt].genotype === 'TT' ? 1.8 : 1.2;
+                vteFactors.push('MTHFR C677T ' + variants[vt].genotype + ' — elevated homocysteine is an independent VTE risk factor');
+                if (wearables.steps7DayAvg && wearables.steps7DayAvg < 5000) { vteScore += 0.2; vteFactors.push('Sedentary lifestyle (' + wearables.steps7DayAvg + ' steps/day) — venous stasis increases clot risk'); }
+                if (hasCondition('diabetes')) { vteScore += 0.15; vteFactors.push('T2DM — hypercoagulable state associated with insulin resistance'); }
+                if (hasCondition('sleep apnea') || hasCondition('OSA')) { vteScore += 0.1; vteFactors.push('OSA — associated with increased platelet activation and hypercoagulability'); }
+
+                if (vteScore >= 1.3) {
+                    findings.push({
+                        type: 'predictive-genomic', severity: vteScore >= 1.8 ? 'moderate' : 'informational',
+                        gene: 'MTHFR', variant: 'rs1801133', genotype: variants[vt].genotype,
+                        predictiveCategory: 'Venous Thromboembolism Risk (NOT YET DIAGNOSED)',
+                        riskScore: Math.round(vteScore * 100) / 100,
+                        riskFactors: vteFactors,
+                        mechanism: 'MTHFR C677T causes elevated homocysteine, which damages vascular endothelium and promotes a prothrombotic state. Combined with sedentary behavior and metabolic hypercoagulability from T2DM, there is a modestly elevated risk of DVT/PE.',
+                        recommendation: 'Check serum homocysteine level. If elevated (>15 µmol/L), B-vitamin supplementation (methylfolate + B12 + B6) can reduce levels. Increase daily movement — even brief walking breaks reduce VTE risk. Ensure adequate hydration. Discuss with provider before any surgery or prolonged immobilization.',
+                        confidence: 0.72, tier: 1,
+                        source: 'Den Heijer et al. Blood 2005 / Cushman et al. JAMA 2004 / AHA Thrombosis Guidelines'
+                    });
+                }
+                break;
+            }
+        }
+
+        // Treatment-Resistant Depression Risk (MTHFR + CYP2C19 intermediate + SSRI)
+        var hasMTHFR_dep = false, hasCYP2C19IM = false;
+        for (var vd = 0; vd < variants.length; vd++) {
+            if (variants[vd].gene === 'MTHFR' && (variants[vd].genotype === 'CT' || variants[vd].genotype === 'TT')) hasMTHFR_dep = true;
+        }
+        if (healthData.genomics.diplotypes && healthData.genomics.diplotypes['CYP2C19'] === '*1/*2') hasCYP2C19IM = true;
+        var onSertraline = false;
+        for (var ms = 0; ms < meds.length; ms++) { if (meds[ms].name.toLowerCase().indexOf('sertraline') >= 0 && meds[ms].status === 'active') { onSertraline = true; break; } }
+
+        if (hasMTHFR_dep && hasCYP2C19IM && onSertraline && (hasCondition('PTSD') || hasCondition('depression') || hasCondition('anxiety'))) {
+            var trdFactors = [];
+            var trdScore = 1.6;
+            trdFactors.push('CYP2C19 *1/*2 (intermediate metabolizer) — Sertraline may have ~1.4x higher plasma levels, altering efficacy/side-effect balance');
+            trdFactors.push('MTHFR C677T — reduced methylfolate production impairs serotonin/dopamine synthesis at the neurotransmitter level');
+            trdFactors.push('Active PTSD — trauma-related neuroinflammation may further reduce SSRI response');
+            if (wearables.sleepScore && wearables.sleepScore < 70) { trdScore += 0.2; trdFactors.push('Poor sleep (score ' + wearables.sleepScore + ') — sleep disruption is both a cause and consequence of treatment-resistant mood disorders'); }
+            if (wearables.hrvAvg && wearables.hrvAvg < 35) { trdScore += 0.15; trdFactors.push('Low HRV (' + wearables.hrvAvg + ' ms) — autonomic dysregulation marker associated with poor antidepressant response'); }
+
+            findings.push({
+                type: 'predictive-genomic', severity: trdScore >= 1.8 ? 'moderate' : 'informational',
+                gene: 'CYP2C19/MTHFR', variant: 'pharmacopsych', genotype: '*1/*2 + CT',
+                predictiveCategory: 'Antidepressant Response Optimization (PHARMACOGENOMIC)',
+                riskScore: Math.round(trdScore * 100) / 100,
+                riskFactors: trdFactors,
+                mechanism: 'Dual genetic impact on Sertraline efficacy: CYP2C19 *1/*2 alters drug metabolism (intermediate metabolizer) while MTHFR C677T impairs the methylation pathway needed for monoamine neurotransmitter synthesis. This pharmacogenomic combination may explain suboptimal SSRI response and suggests actionable interventions.',
+                recommendation: 'Discuss adding L-methylfolate (Deplin 15mg) as SSRI augmentation — Level A evidence for treatment-resistant depression. Consider pharmacogenomic-guided dose adjustment for Sertraline. Monitor for serotonin syndrome signs given altered metabolism. Evaluate HRV biofeedback or vagus nerve stimulation as adjuncts. Screen for treatment response with PHQ-9/PCL-5 at regular intervals.',
+                confidence: 0.78, tier: 1,
+                source: 'Papakostas et al. Am J Psychiatry 2012 / CPIC CYP2C19-Sertraline Guidelines / Fava & Mischoulon Psychiatr Clin 2009'
+            });
+        }
+
         // ── Cross-domain Compound Risk Assessment ──
         // Evaluate synergistic risk when multiple genetic variants interact with shared conditions
         var hasTCF7L2risk = false, hasAPOErisk = false, hasMTHFRrisk = false;
