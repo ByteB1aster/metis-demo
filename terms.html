@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MÉTIS Health Navigator — Terms & Conditions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a1628;
+            color: #e2e8f0;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #38bdf8;
+            margin-bottom: 4px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.6;
+        }
+        h2 {
+            color: #38bdf8;
+            font-size: 18px;
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+        p {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #cbd5e1;
+        }
+        .effective {
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.5;
+            margin-bottom: 32px;
+        }
+        a { color: #38bdf8; }
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MÉTIS Health Navigator</h1>
+            <div class="subtitle">Terms & Conditions</div>
+        </div>
+
+        <p class="effective">Effective Date: February 24, 2026</p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using MÉTIS Health Navigator ("the App"), you agree to be bound by these Terms & Conditions. If you do not agree, do not use the App.</p>
+
+        <h2>2. Description of Service</h2>
+        <p>MÉTIS Health Navigator is a client-side Progressive Web Application (PWA) that helps users consolidate and analyze their personal health data from multiple sources, including electronic health records (via FHIR R4 APIs), wearable devices, and genomic data. The App provides AI-powered health correlations, drug interaction checking, and lab trend analysis.</p>
+
+        <h2>3. Data Privacy & Storage</h2>
+        <p>MÉTIS is designed with a local-first architecture. All health data retrieved through the App is processed and stored locally in your web browser. No personal health information is transmitted to, stored on, or accessible by any external server operated by MÉTIS. Your data stays on your device.</p>
+        <p>When you connect external data sources (such as Epic MyChart, VA Health, Oura Ring, or CMS Blue Button), you authenticate directly with those services using industry-standard OAuth 2.0 protocols. MÉTIS never sees, stores, or has access to your login credentials for these services.</p>
+        <p>The App may use third-party CORS proxy services (such as corsproxy.io) to facilitate API connections where browser security restrictions would otherwise prevent direct communication. These proxy services relay data in transit but do not store it.</p>
+
+        <h2>4. Not Medical Advice</h2>
+        <p>MÉTIS Health Navigator is a health information tool, not a medical device. The App does not provide medical advice, diagnoses, or treatment recommendations. AI-generated correlations, alerts, and insights are for informational purposes only and should not replace professional medical judgment. Always consult your healthcare provider before making any medical decisions.</p>
+
+        <h2>5. Third-Party Services</h2>
+        <p>The App integrates with third-party health data providers, each governed by their own terms of service and privacy policies. By connecting to these services through MÉTIS, you acknowledge that your use of those services is subject to their respective terms. MÉTIS is not responsible for the availability, accuracy, or security practices of third-party services.</p>
+
+        <h2>6. Accuracy of Information</h2>
+        <p>While MÉTIS strives to present accurate health data and analysis, the App relies on data provided by external sources. MÉTIS does not guarantee the accuracy, completeness, or timeliness of any information displayed. Drug interaction checks reference publicly available databases and may not reflect all possible interactions.</p>
+
+        <h2>7. User Responsibilities</h2>
+        <p>You are responsible for maintaining the security of the device on which you use MÉTIS. Since all data is stored locally in your browser, clearing your browser data or using the App on a shared device may result in data loss or unauthorized access. You are responsible for safeguarding any access codes or credentials associated with your use of the App.</p>
+
+        <h2>8. Open Source & Intellectual Property</h2>
+        <p>MÉTIS Health Navigator is a personal project. The MÉTIS name, logo, and user interface design are the property of the App's creator. Third-party libraries, APIs, and data sources used by the App are subject to their respective licenses.</p>
+
+        <h2>9. Limitation of Liability</h2>
+        <p>MÉTIS Health Navigator is provided "as is" without warranties of any kind, express or implied. To the fullest extent permitted by law, the creators of MÉTIS shall not be liable for any damages arising from your use of the App, including but not limited to direct, indirect, incidental, or consequential damages, loss of data, or medical decisions made based on information presented by the App.</p>
+
+        <h2>10. Modifications</h2>
+        <p>These Terms & Conditions may be updated from time to time. Continued use of the App after changes are posted constitutes acceptance of the revised terms. The effective date at the top of this page will be updated accordingly.</p>
+
+        <h2>11. Contact</h2>
+        <p>For questions about these Terms & Conditions or the MÉTIS Health Navigator, please contact: <a href="mailto:demo@metis-health.ai">demo@metis-health.ai</a></p>
+
+        <div class="footer">
+            &copy; 2026 MÉTIS Health Navigator. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

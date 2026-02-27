@@ -1,0 +1,49 @@
+{
+    "name": "MÉTIS Health Navigator",
+    "short_name": "MÉTIS",
+    "description": "AI-powered personalized health platform for disabled veterans. Military-grade encrypted health data management with genomic analysis, medication tracking, and care coordination.",
+    "start_url": "/MetisKS/",
+    "scope": "/MetisKS/",
+    "id": "/MetisKS/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "theme_color": "#001830",
+    "background_color": "#001830",
+    "categories": ["medical", "health", "lifestyle"],
+    "lang": "en-US",
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='32' fill='%23001830'/><text x='96' y='125' font-family='Arial,sans-serif' font-size='72' font-weight='800' fill='%23a7cf28' text-anchor='middle'>M</text><text x='96' y='165' font-family='Arial,sans-serif' font-size='20' font-weight='600' fill='white' text-anchor='middle'>MÉTIS</text></svg>",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%23001830'/><text x='256' y='310' font-family='Arial,sans-serif' font-size='200' font-weight='800' fill='%23a7cf28' text-anchor='middle'>M</text><text x='256' y='420' font-family='Arial,sans-serif' font-size='56' font-weight='600' fill='white' text-anchor='middle'>MÉTIS</text></svg>",
+            "sizes": "512x512",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Health Dashboard",
+            "short_name": "Dashboard",
+            "description": "View your health overview and alerts",
+            "url": "/MetisKS/?page=dashboard"
+        },
+        {
+            "name": "Medications",
+            "short_name": "Meds",
+            "description": "View medication schedule and interactions",
+            "url": "/MetisKS/?page=medications"
+        },
+        {
+            "name": "Genomics",
+            "short_name": "DNA",
+            "description": "View genetic analysis and correlations",
+            "url": "/MetisKS/?page=genome-dashboard"
+        }
+    ]
+}
