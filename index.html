@@ -3619,8 +3619,8 @@ var RuleEngine = {
                     var hba1c = latestLab('4548-4');
                     var glucose = latestLab('2345-7');
                     var hasT2DM = hasCondition('diabetes') || hasCondition('T2DM');
-                    var onInsulin Lispro = false;
-                    for (var m = 0; m < meds.length; m++) { if (meds[m].name.toLowerCase().indexOf('insulin lispro') >= 0 && meds[m].status === 'active') { onInsulin Lispro = true; break; } }
+                    var onInsulinLispro = false;
+                    for (var m = 0; m < meds.length; m++) { if (meds[m].name.toLowerCase().indexOf('insulin lispro') >= 0 && meds[m].status === 'active') { onInsulinLispro = true; break; } }
 
                     // Build compound risk score
                     var riskFactors = [];
@@ -3786,9 +3786,9 @@ var RuleEngine = {
                     mthfrRiskFactors.push('MTHFR C677T ' + v.genotype + ' — enzyme activity ' + enzymeActivity);
 
                     // Check if on Insulin Lispro (depletes B12 -> worsens folate cycle)
-                    var onInsulin LisproCheck = false;
-                    for (var mm = 0; mm < meds.length; mm++) { if (meds[mm].name.toLowerCase().indexOf('insulin lispro') >= 0 && meds[mm].status === 'active') { onInsulin LisproCheck = true; break; } }
-                    if (onInsulin LisproCheck) {
+                    var onInsulinLisproCheck = false;
+                    for (var mm = 0; mm < meds.length; mm++) { if (meds[mm].name.toLowerCase().indexOf('insulin lispro') >= 0 && meds[mm].status === 'active') { onInsulinLisproCheck = true; break; } }
+                    if (onInsulinLisproCheck) {
                         mthfrRiskScore += 0.3;
                         mthfrRiskFactors.push('Insulin Lispro therapy depletes vitamin B12 — compounds MTHFR-related folate cycle impairment');
                     }
@@ -3825,8 +3825,8 @@ var RuleEngine = {
                         predictiveCategory: 'Folate Metabolism & Methylation Health',
                         riskScore: Math.round(mthfrRiskScore * 100) / 100,
                         riskFactors: mthfrRiskFactors,
-                        mechanism: 'MTHFR C677T reduces conversion of folic acid to active methylfolate (5-MTHF), impairing homocysteine clearance and one-carbon metabolism. ' + (onInsulin LisproCheck ? 'Insulin Lispro-induced B12 depletion further compromises this pathway. ' : '') + (ontriptan ? 'Impaired methylation may reduce monoamine synthesis relevant to triptan response.' : ''),
-                        recommendation: 'Request serum homocysteine, B12, and folate levels. ' + (isHomo ? 'Supplement with L-methylfolate (Deplin) 15mg/day + methylcobalamin B12 1000mcg/day. ' : 'Consider L-methylfolate 7.5-15mg/day + B12 supplementation. ') + (onInsulin LisproCheck ? 'B12 monitoring is essential — Insulin Lispro depletes B12 stores. ' : '') + (ontriptan ? 'Methylfolate augmentation (Deplin) has evidence as triptan adjunct therapy for treatment-resistant migraine.' : ''),
+                        mechanism: 'MTHFR C677T reduces conversion of folic acid to active methylfolate (5-MTHF), impairing homocysteine clearance and one-carbon metabolism. ' + (onInsulinLisproCheck ? 'Insulin Lispro-induced B12 depletion further compromises this pathway. ' : '') + (ontriptan ? 'Impaired methylation may reduce monoamine synthesis relevant to triptan response.' : ''),
+                        recommendation: 'Request serum homocysteine, B12, and folate levels. ' + (isHomo ? 'Supplement with L-methylfolate (Deplin) 15mg/day + methylcobalamin B12 1000mcg/day. ' : 'Consider L-methylfolate 7.5-15mg/day + B12 supplementation. ') + (onInsulinLisproCheck ? 'B12 monitoring is essential — Insulin Lispro depletes B12 stores. ' : '') + (ontriptan ? 'Methylfolate augmentation (Deplin) has evidence as triptan adjunct therapy for treatment-resistant migraine.' : ''),
                         confidence: 0.85, tier: 1,
                         source: 'Frosst et al. Nat Genet 1995 / Papakostas et al. Am J Primary Care 2012 / AHA Homocysteine Guidelines'
                     });
